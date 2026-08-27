@@ -114,3 +114,19 @@ document.addEventListener('DOMContentLoaded',function(){
   var lang=localStorage.getItem('veles-lang')||'ru';
   if(window.velesApplyLang) window.velesApplyLang(lang);
 });
+
+/* дропдаун «Бренды»: первый клик открывает меню, клик мимо — закрывает */
+document.addEventListener('DOMContentLoaded',function(){
+  document.querySelectorAll('nav .dd').forEach(function(dd){
+    var tg=dd.querySelector('a.nl'); if(!tg) return;
+    tg.addEventListener('click',function(e){
+      if(!dd.classList.contains('open')){e.preventDefault();dd.classList.add('open');}
+    });
+    dd.addEventListener('mouseleave',function(){dd.classList.remove('open')});
+  });
+  document.addEventListener('click',function(e){
+    document.querySelectorAll('nav .dd.open').forEach(function(dd){
+      if(!dd.contains(e.target)) dd.classList.remove('open');
+    });
+  });
+});
