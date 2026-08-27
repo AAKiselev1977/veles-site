@@ -1,11 +1,20 @@
-/* ВЕЛЕС · Легенды России — типографика
-   Логотипы и заголовки: Prata (кириллица, антиква)
-   Текст: PT Serif · Служебное/данные: PT Sans
-   Техно-бренды (САМПО, БАРГУЗИН, ЖАР-ПТИЦА): Russo One */
-.veles-display{font-family:'Prata',Georgia,serif;font-weight:400;letter-spacing:.05em;}
-.veles-logo{font-family:'Prata',Georgia,serif;letter-spacing:.35em;text-transform:uppercase;}
-.veles-body{font-family:'PT Serif',Georgia,serif;line-height:1.62;}
-.veles-ui{font-family:'PT Sans',system-ui,sans-serif;}
-.veles-techno{font-family:'Russo One',sans-serif;letter-spacing:.08em;}
-.veles-eyebrow{font-family:'PT Sans',sans-serif;font-size:12px;font-weight:700;
-  letter-spacing:.22em;text-transform:uppercase;color:var(--veles-gold);}
+/* ВЕЛЕС — typography */
+@import url("https://fonts.googleapis.com/css2?family=Prata:ital,wght@0,400&family=PT+Sans:ital,wght@0,400;0,700&display=swap");
+
+:root {
+  --v-font-display: "Prata", Georgia, serif;
+  --v-font-text: "PT Sans", system-ui, -apple-system, sans-serif;
+}
+
+body { font-family: var(--v-font-text); }
+
+.v-h1 { font-family: var(--v-font-display); font-size: clamp(2rem, 5vw, 4rem);
+  letter-spacing: .04em; text-transform: uppercase; line-height: 1.05; }
+.v-h2 { font-family: var(--v-font-display); font-size: clamp(1.5rem, 3vw, 2.5rem);
+  letter-spacing: .04em; text-transform: uppercase; }
+.v-label { font-family: var(--v-font-text); font-weight: 600; font-size: .75rem;
+  letter-spacing: .18em; text-transform: uppercase; color: var(--brand-accent); }
+.v-tagline { font-family: var(--v-font-text); font-weight: 500; font-size: .95rem;
+  letter-spacing: .22em; text-transform: uppercase; }
+.v-body { font-family: var(--v-font-text); font-size: 1rem; line-height: 1.65; }
+.v-rule { height: 1px; background: currentColor; opacity: .25; }

@@ -1,30 +1,43 @@
 {
-  "veles-bg": "#14100C",
-  "veles-panel": "#1E1812",
-  "veles-panel-2": "#282017",
-  "veles-gold": "#C99B45",
-  "veles-gold-bright": "#E4BC6B",
-  "veles-cream": "#EDE5D4",
-  "veles-muted": "#A79B84",
-  "veles-line": "#3A3226",
-  "veles-cinnabar": "#C0564A",
-  "parma-night": "#14283C",
-  "parma-berry": "#8E2D3E",
-  "altai-petrol": "#0E3B43",
-  "altai-ochre": "#B3502D",
-  "nart-indigo": "#141F3C",
-  "nart-garnet": "#7B1B34",
-  "zhiva-deep": "#0B2B4C",
-  "zhiva-aqua": "#35C4B5",
-  "zhiva-gold": "#F2C14E",
-  "zhar-black": "#0B0A0F",
-  "zhar-fire": "#FF6A13",
-  "zhar-gold": "#F5B301",
-  "malachit-green": "#0B3D2E",
-  "malachit-copper": "#B87333",
-  "sampo-night": "#0B1D33",
-  "sampo-aurora": "#37C6A0",
-  "sampo-gold": "#E3A63B",
-  "barguzin-blue": "#0B2E4F",
-  "barguzin-ice": "#57C4C6"
+  "name": "ВЕЛЕС",
+  "colors": {
+    "dark-oak": {
+      "value": "#14100C",
+      "label": "Тёмный дуб",
+      "role": "bg"
+    },
+    "gold": {
+      "value": "#C99B45",
+      "label": "Золото",
+      "role": "primary"
+    },
+    "light-gold": {
+      "value": "#E4BC6B",
+      "label": "Светлое золото",
+      "role": "accent"
+    },
+    "wormwood": {
+      "value": "#A79B84",
+      "label": "Полынь",
+      "role": "mono"
+    },
+    "linen": {
+      "value": "#EDE5D4",
+      "label": "Лён",
+      "role": "light"
+    },
+    "cinnabar": {
+      "value": "#C0564A",
+      "label": "Киноварь",
+      "role": "extra"
+    }
+  },
+  "roles": {
+    "primary": "gold",
+    "accent": "light-gold",
+    "bg": "dark-oak",
+    "fg": "linen",
+    "mono": "wormwood",
+    "light": "linen"
+  }
 }

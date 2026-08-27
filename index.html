@@ -3,98 +3,161 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>ВЕЛЕС — Легенды России | завод напитков, Химки</title>
-<meta name="description" content="Завод «Велес»: медовуха, сидр, морсы и энергетики на мифологии регионов России. Прямые поставки в федеральные сети, HoReCa, СТМ. До 45 млн литров в год.">
+<title>ВЕЛЕС — завод напитков | Легенды России — в каждой бутылке</title>
+<meta name="description" content="Завод напитков «Велес» (Химки): медовуха, сидр, морсы, лимонады, тоники, энергетики. Восемь брендов на мифологии регионов России. Полный цикл, СТМ, контрактное производство. До 45 млн литров в год, OTIF 98,5%.">
+<meta name="theme-color" content="#14100C">
+<meta property="og:title" content="ВЕЛЕС — завод напитков">
+<meta property="og:description" content="ЛЕГЕНДЫ РОССИИ — В КАЖДОЙ БУТЫЛКЕ. Честный состав. Федеральная логистика.">
+<meta property="og:image" content="og-image.png">
+<link rel="icon" href="favicon.ico" sizes="32x32">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Prata&family=PT+Serif:ital@0;1&family=PT+Sans:wght@400;700&family=Russo+One&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Prata&family=PT+Sans:wght@400;700&display=swap">
+<link rel="stylesheet" href="colors.css">
+<link rel="stylesheet" href="typography.css">
 <style>
-:root{--bg:#14100C; --panel:#1E1812; --panel2:#282017; --ink:#EDE5D4; --mut:#A79B84; --gold:#C99B45; --gold2:#E4BC6B; --line:#3A3226; --cin:#C0564A;}
-*{box-sizing:border-box; margin:0; padding:0;}
-html{scroll-behavior:smooth;}
-body{background:var(--bg); color:var(--ink); font-family:'PT Serif',Georgia,serif; line-height:1.6; font-size:17px;}
-img{max-width:100%; display:block;}
-a{color:var(--gold2); text-decoration:none;}
-.wrap{max-width:1180px; margin:0 auto; padding:0 22px;}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--v-bg);color:var(--v-fg);font-family:var(--v-font-text);font-size:16.5px;line-height:1.65}
+img{max-width:100%;display:block}
+a{color:var(--v-accent);text-decoration:none}
+.wrap{max-width:1200px;margin:0 auto;padding:0 24px}
+.label{font-weight:700;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--v-gold)}
+h1,h2,h3{font-family:var(--v-font-display);font-weight:400;letter-spacing:.04em;text-wrap:balance}
+h2{font-size:clamp(26px,3.2vw,38px);text-transform:uppercase;margin:10px 0 16px}
+h3{font-size:19px;margin-bottom:10px}
+.lead{color:var(--v-mono);max-width:68ch;margin-bottom:34px;font-size:17.5px}
+.btn{display:inline-flex;align-items:center;gap:10px;font-weight:700;font-size:14px;letter-spacing:.06em;padding:13px 26px;border-radius:999px;background:var(--v-gold);color:#1A1408;transition:background .2s}
+.btn:hover{background:var(--v-accent)}
+.btn.ghost{background:transparent;border:1.5px solid var(--v-gold);color:var(--v-accent)}
+.ic{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.ic-lg{width:30px;height:30px;stroke:var(--v-gold);fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+/* орнаментальный разделитель */
+.orn{height:26px;background:url("ornament-band.svg") center/auto 100% repeat-x;opacity:.85;margin:0}
 /* nav */
-nav{position:sticky; top:0; z-index:50; background:rgba(20,16,12,.92); backdrop-filter:blur(8px); border-bottom:1px solid var(--line);}
-nav .wrap{display:flex; align-items:center; gap:26px; height:62px;}
-.logo{font-family:'Prata',serif; font-size:22px; letter-spacing:.35em; color:var(--gold);}
-nav a.nl{font-family:'PT Sans',sans-serif; font-size:13.5px; color:var(--ink); letter-spacing:.05em;}
-nav a.nl:hover{color:var(--gold2);}
-nav .cta{margin-left:auto;}
-.btn{display:inline-block; font-family:'PT Sans',sans-serif; font-weight:700; font-size:14px; letter-spacing:.06em; padding:11px 22px; border-radius:999px; background:var(--gold); color:#1E170D;}
-.btn:hover{background:var(--gold2);}
-.btn.ghost{background:transparent; border:1.5px solid var(--gold); color:var(--gold2);}
+nav{position:sticky;top:0;z-index:60;background:rgba(20,16,12,.94);backdrop-filter:blur(10px);border-bottom:1px solid #3A3226}
+nav .wrap{display:flex;align-items:center;gap:24px;height:70px}
+nav img.lg{height:44px;width:auto}
+nav a.nl{font-size:13.5px;font-weight:700;letter-spacing:.06em;color:var(--v-fg)}
+nav a.nl:hover{color:var(--v-accent)}
+nav .cta{margin-left:auto}
+@media(max-width:900px){nav a.nl{display:none}nav .cta{display:inline-flex}}
 /* hero */
-.hero{position:relative; overflow:hidden; border-bottom:1px solid var(--line);}
-.hero .wrap{display:grid; grid-template-columns:1.15fr .85fr; gap:40px; align-items:center; min-height:78vh; padding-top:40px; padding-bottom:40px;}
-.hero h1{font-family:'Prata',serif; font-size:clamp(36px,5.2vw,64px); line-height:1.12; color:var(--gold); letter-spacing:.02em; text-wrap:balance;}
-.hero .sub{font-size:clamp(17px,1.6vw,20px); color:var(--mut); margin:22px 0 30px; max-width:52ch;}
-.hero .imgbox{position:relative;}
-.hero .imgbox img{border-radius:14px; box-shadow:0 30px 80px rgba(0,0,0,.55); max-height:74vh; width:auto; margin:0 auto;}
-.eyebrow{font-family:'PT Sans',sans-serif; font-size:12.5px; font-weight:700; letter-spacing:.22em; text-transform:uppercase; color:var(--gold);}
-.heroctas{display:flex; gap:14px; flex-wrap:wrap;}
-/* stats strip */
-.strip{border-bottom:1px solid var(--line); background:var(--panel);}
-.strip .wrap{display:flex; flex-wrap:wrap; gap:10px 46px; padding:20px 22px; justify-content:center;}
-.strip b{font-family:'Prata',serif; font-size:22px; color:var(--gold2); font-weight:400;}
-.strip span{font-family:'PT Sans',sans-serif; font-size:12.5px; color:var(--mut); display:block;}
-/* sections */
-section{padding:84px 0 60px;}
-h2{font-family:'Prata',serif; font-size:clamp(28px,3.4vw,40px); color:var(--ink); margin:10px 0 14px; text-wrap:balance;}
-.lead{color:var(--mut); max-width:64ch; margin-bottom:36px;}
+.hero{position:relative;border-bottom:1px solid #3A3226;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;background:url("ornament-tile.svg") center/420px repeat;opacity:.05;pointer-events:none}
+.hero .wrap{position:relative;display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center;padding-top:64px;padding-bottom:64px;min-height:82vh}
+.hero .logobox img{width:min(340px,70%);margin-bottom:34px}
+.hero h1{font-size:clamp(30px,4.6vw,54px);text-transform:uppercase;line-height:1.12;color:var(--v-fg)}
+.hero h1 b{color:var(--v-gold);font-weight:400}
+.hero .claim{margin:20px 0 8px;font-weight:700;font-size:15px;letter-spacing:.22em;text-transform:uppercase;color:var(--v-accent)}
+.hero .sub{color:var(--v-mono);max-width:54ch;margin-bottom:30px}
+.heroctas{display:flex;gap:14px;flex-wrap:wrap}
+.hero .imgbox img{border-radius:14px;box-shadow:0 30px 90px rgba(0,0,0,.6);max-height:72vh;width:auto;margin:0 auto}
+@media(max-width:900px){.hero .wrap{grid-template-columns:1fr;min-height:auto}.hero .imgbox{order:-1}.hero .imgbox img{max-height:46vh}}
+/* strip values */
+.strip{background:#1E1812;border-bottom:1px solid #3A3226}
+.strip .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;padding:26px 24px}
+.strip .v{display:flex;gap:14px;align-items:flex-start}
+.strip img{width:40px;height:40px;flex:none}
+.strip b{font-family:var(--v-font-display);font-weight:400;font-size:17px;letter-spacing:.04em;display:block;color:var(--v-accent)}
+.strip span{font-size:13px;color:var(--v-mono)}
+@media(max-width:900px){.strip .wrap{grid-template-columns:repeat(2,1fr)}}
+section{padding:90px 0 66px}
+.light{background:var(--v-linen);color:#241E14}
+.light .lead{color:#6E6353}
+.light h2{color:#241E14}
+.light .label{color:#8A6420}
+/* about */
+.about{display:grid;grid-template-columns:1.05fr .95fr;gap:44px;align-items:center}
+@media(max-width:900px){.about{grid-template-columns:1fr}}
+.about .ph{border-radius:14px;overflow:hidden;box-shadow:0 24px 70px rgba(0,0,0,.35)}
+.facts{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:#D9CDB4;border-radius:12px;overflow:hidden;margin-top:26px}
+.facts div{background:#F6F0E2;padding:16px 18px}
+.facts b{font-family:var(--v-font-display);font-weight:400;font-size:22px;display:block;color:#8A6420}
+.facts span{font-size:12.5px;color:#6E6353}
+/* symbols */
+.symrow{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:36px}
+@media(max-width:800px){.symrow{grid-template-columns:repeat(2,1fr)}}
+.sym{background:#1E1812;border:1px solid #3A3226;border-radius:12px;padding:24px;text-align:center}
+.sym img{width:56px;height:56px;margin:0 auto 12px}
+.sym b{font-weight:700;letter-spacing:.14em;font-size:13px;display:block;margin-bottom:4px;color:var(--v-accent)}
+.sym span{font-size:13px;color:var(--v-mono)}
 /* brands grid */
-.brands{display:grid; grid-template-columns:repeat(4,1fr); gap:22px;}
-@media(max-width:1000px){.brands{grid-template-columns:repeat(2,1fr);} .hero .wrap{grid-template-columns:1fr; min-height:auto;} .hero .imgbox{order:-1;} .hero .imgbox img{max-height:52vh;}}
-@media(max-width:560px){.brands{grid-template-columns:1fr;}}
-.bcard{background:var(--panel); border:1px solid var(--line); border-radius:14px; overflow:hidden; display:flex; flex-direction:column; transition:transform .25s, border-color .25s;}
-.bcard:hover{transform:translateY(-4px); border-color:var(--gold);}
-.bcard .ph{background:#0E0B08; position:relative;}
-.bcard .ph img{width:100%; height:340px; object-fit:cover; object-position:center 18%;}
-.badge{position:absolute; top:12px; left:12px; font-family:'PT Sans',sans-serif; font-size:10.5px; font-weight:700; letter-spacing:.1em; padding:4px 10px; border-radius:999px; background:rgba(20,16,12,.85); color:var(--gold2); border:1px solid var(--gold);}
-.bcard .tx{padding:18px 18px 20px; display:flex; flex-direction:column; gap:8px; flex:1;}
-.bcard h3{font-family:'Prata',serif; font-size:20px; letter-spacing:.06em; color:var(--gold2); font-weight:400;}
-.bcard .cat{font-family:'PT Sans',sans-serif; font-size:11.5px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--mut);}
-.bcard p{font-size:14px; color:var(--ink); opacity:.92;}
-.bcard .sku{font-family:'PT Sans',sans-serif; font-size:12px; color:var(--mut); margin-top:auto; padding-top:8px; border-top:1px dashed var(--line);}
-/* b2b */
-.grid3{display:grid; grid-template-columns:repeat(3,1fr); gap:20px;}
-@media(max-width:900px){.grid3{grid-template-columns:1fr;}}
-.card{background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:26px;}
-.card h3{font-family:'Prata',serif; font-size:19px; color:var(--ink); margin-bottom:12px; font-weight:400;}
-.card ul{list-style:none;}
-.card li{font-size:14.5px; padding:7px 0 7px 26px; position:relative; color:var(--ink);}
-.card li::before{content:"❖"; position:absolute; left:0; color:var(--gold); font-size:12px; top:9px;}
-.bignum{font-family:'Prata',serif; font-size:34px; color:var(--gold2);}
-.bignum small{font-family:'PT Sans',sans-serif; font-size:12.5px; color:var(--mut); display:block; letter-spacing:.03em; margin-top:4px;}
-.numrow{display:grid; grid-template-columns:repeat(4,1fr); gap:20px; margin-top:30px;}
-@media(max-width:900px){.numrow{grid-template-columns:repeat(2,1fr);}}
+.brands{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+@media(max-width:1000px){.brands{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.brands{grid-template-columns:1fr}}
+.bcard{background:#1E1812;border:1px solid #3A3226;border-radius:14px;overflow:hidden;display:flex;flex-direction:column;transition:transform .25s,border-color .25s}
+.bcard:hover{transform:translateY(-4px);border-color:var(--v-gold)}
+.bcard .ph img{width:100%;height:330px;object-fit:cover;object-position:center 18%}
+.badge{position:absolute;margin:12px;font-size:10.5px;font-weight:700;letter-spacing:.1em;padding:4px 10px;border-radius:999px;background:rgba(20,16,12,.85);color:var(--v-accent);border:1px solid var(--v-gold)}
+.bcard .ph{position:relative;background:#0E0B08}
+.bcard .tx{padding:18px;display:flex;flex-direction:column;gap:8px;flex:1}
+.bcard h3{font-size:19px;letter-spacing:.06em;color:var(--v-accent)}
+.bcard .cat{font-size:11.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--v-mono)}
+.bcard p{font-size:14px;opacity:.92}
+.bcard .sku{font-size:12px;color:var(--v-mono);margin-top:auto;padding-top:8px;border-top:1px dashed #3A3226}
+/* products table */
+.prod{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+@media(max-width:900px){.prod{grid-template-columns:1fr}}
+.pcard{background:#F6F0E2;border:1px solid #D9CDB4;border-radius:12px;padding:22px}
+.pcard h3{color:#241E14;display:flex;align-items:center;gap:10px}
+.pcard .ic-lg{stroke:#8A6420}
+.pcard ul{list-style:none;margin-top:10px}
+.pcard li{font-size:14px;color:#4A4234;padding:5px 0;border-bottom:1px dashed #D9CDB4}
+.pcard li:last-child{border:none}
+.pcard li b{color:#241E14}
+/* production */
+.prodgrid{display:grid;grid-template-columns:.95fr 1.05fr;gap:44px;align-items:center}
+@media(max-width:900px){.prodgrid{grid-template-columns:1fr}}
+.speclist{list-style:none;margin-top:18px}
+.speclist li{display:flex;gap:14px;align-items:flex-start;padding:12px 0;border-bottom:1px solid #3A3226;font-size:15px}
+.speclist .ic-lg{flex:none;margin-top:2px}
+.speclist b{color:var(--v-accent)}
+/* b2b cards */
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+@media(max-width:900px){.grid3{grid-template-columns:1fr}}
+.card{background:#1E1812;border:1px solid #3A3226;border-radius:14px;padding:26px}
+.light .card{background:#F6F0E2;border-color:#D9CDB4}
+.light .card h3{color:#241E14}
+.light .card li{color:#4A4234}
+.card h3{display:flex;align-items:center;gap:10px}
+.card ul{list-style:none;margin-top:8px}
+.card li{font-size:14.5px;padding:6px 0 6px 24px;position:relative}
+.card li::before{content:"";position:absolute;left:0;top:12px;width:12px;height:12px;background:url("logo-mark.svg") center/contain no-repeat;opacity:.8}
+/* gallery */
+.gal{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media(max-width:800px){.gal{grid-template-columns:1fr}}
+.gal img{border-radius:12px;height:250px;width:100%;object-fit:cover}
+.gal figcaption{font-size:12.5px;color:var(--v-mono);margin-top:8px}
 /* contact */
-.contact{background:var(--panel); border-top:1px solid var(--line);}
-.contact .wrap{display:grid; grid-template-columns:1.2fr .8fr; gap:44px; padding-top:70px; padding-bottom:70px;}
-@media(max-width:900px){.contact .wrap{grid-template-columns:1fr;}}
-.person{margin:16px 0; font-size:16px;}
-.person b{font-family:'PT Sans',sans-serif;}
-.person a{font-variant-numeric:tabular-nums;}
-footer{border-top:1px solid var(--line); padding:26px 0 40px; font-family:'PT Sans',sans-serif; font-size:12.5px; color:var(--mut);}
-footer .wrap{display:flex; flex-wrap:wrap; gap:10px 30px; justify-content:space-between;}
+.contact{background:#1E1812;border-top:1px solid #3A3226}
+.contact .wrap{display:grid;grid-template-columns:1.15fr .85fr;gap:44px;padding-top:80px;padding-bottom:80px}
+@media(max-width:900px){.contact .wrap{grid-template-columns:1fr}}
+.person{margin:14px 0;font-size:16px}
+.person a{font-variant-numeric:tabular-nums}
+.requisites{font-size:12.5px;color:var(--v-mono);margin-top:24px;line-height:1.7}
+footer{border-top:1px solid #3A3226;padding:34px 0 46px;font-size:12.5px;color:var(--v-mono)}
+footer .wrap{display:flex;flex-wrap:wrap;gap:18px 40px;align-items:center;justify-content:space-between}
+footer img{height:36px;width:auto;opacity:.9}
+.note18{font-size:11.5px;color:var(--v-mono)}
 /* age gate */
-#age{position:fixed; inset:0; z-index:100; background:rgba(10,8,6,.96); display:flex; align-items:center; justify-content:center; padding:20px;}
-#age .box{background:var(--panel); border:1px solid var(--gold); border-radius:16px; max-width:460px; padding:40px 36px; text-align:center;}
-#age .logo{display:block; margin-bottom:18px;}
-#age p{font-size:15px; color:var(--mut); margin:14px 0 24px;}
-#age .row{display:flex; gap:14px; justify-content:center;}
-.hidden{display:none !important;}
-.note18{font-family:'PT Sans',sans-serif; font-size:11.5px; color:var(--mut);}
+#age{position:fixed;inset:0;z-index:100;background:rgba(12,9,6,.97);display:flex;align-items:center;justify-content:center;padding:20px}
+#age .box{background:#1E1812;border:1px solid var(--v-gold);border-radius:16px;max-width:480px;padding:44px 38px;text-align:center}
+#age img{width:150px;margin:0 auto 20px}
+#age p{font-size:14.5px;color:var(--v-mono);margin:14px 0 24px}
+#age .row{display:flex;gap:14px;justify-content:center}
+.hidden{display:none!important}
 </style>
 </head>
 <body>
 
 <div id="age">
   <div class="box">
-    <span class="logo" style="font-family:'Prata',serif; font-size:26px; letter-spacing:.35em; color:var(--gold)">ВЕЛЕС</span>
-    <h2 style="font-size:22px">Вам уже есть 18 лет?</h2>
-    <p>Раздел содержит информацию о слабоалкогольных напитках естественного брожения и предназначен только для совершеннолетних.</p>
+    <img src="logo-primary.svg" alt="ВЕЛЕС — завод напитков">
+    <h2 style="font-size:21px">Вам уже есть 18 лет?</h2>
+    <p>Сайт содержит информацию о слабоалкогольных напитках естественного брожения и предназначен только для совершеннолетних.</p>
     <div class="row">
       <button class="btn" onclick="document.getElementById('age').classList.add('hidden')">Да, мне есть 18</button>
       <a class="btn ghost" href="https://ya.ru">Нет</a>
@@ -104,24 +167,26 @@ footer .wrap{display:flex; flex-wrap:wrap; gap:10px 30px; justify-content:space-
 
 <nav>
   <div class="wrap">
-    <span class="logo">ВЕЛЕС</span>
+    <a href="#top"><img class="lg" src="logo-horizontal.svg" alt="ВЕЛЕС — завод напитков"></a>
     <a class="nl" href="#brendy">Бренды</a>
-    <a class="nl" href="#setyam">Сетям</a>
-    <a class="nl" href="#horeca">HoReCa</a>
+    <a class="nl" href="#produkciya">Продукция</a>
     <a class="nl" href="#zavod">Завод</a>
+    <a class="nl" href="#setyam">Сетям</a>
+    <a class="nl" href="#stm">СТМ</a>
     <a class="nl" href="brandbook.html">Брендбук</a>
     <a class="nl cta btn" href="#kontakty">Запросить образцы</a>
   </div>
 </nav>
 
-<header class="hero">
+<header class="hero" id="top">
   <div class="wrap">
-    <div>
-      <span class="eyebrow">Завод напитков · Химки · федеральные поставки</span>
-      <h1>Легенды России —<br>в каждой бутылке</h1>
-      <p class="sub">«Велес» варит медовуху, сидр, морсы и энергетики на подлинной мифологии регионов России: от тайги Коми до Кавказских гор. Честный состав, дизайн, который продаёт с полки, и логистика уровня федеральных сетей.</p>
+    <div class="logobox">
+      <img src="logo-primary.svg" alt="ВЕЛЕС — завод напитков">
+      <h1>Легенды России —<br><b>в каждой бутылке</b></h1>
+      <p class="claim">Честный состав. Федеральная логистика.</p>
+      <p class="sub">«Велес» варит напитки на легендах регионов России — от тайги Коми до Кавказских гор. Персонаж на этикетке, его легенда — на контрэтикетке. Медовуха, сидр, морсы, лимонады, тоники и энергетики — полный цикл в Химках.</p>
       <div class="heroctas">
-        <a class="btn" href="#kontakty">Образцы в дегустационный комитет — за 48 часов</a>
+        <a class="btn" href="#kontakty"><svg class="ic"><use href="icons-sprite.svg#icon-send"/></svg>Образцы за 48 часов</a>
         <a class="btn ghost" href="#brendy">Смотреть бренды</a>
       </div>
     </div>
@@ -131,19 +196,53 @@ footer .wrap{display:flex; flex-wrap:wrap; gap:10px 30px; justify-content:space-
 
 <div class="strip">
   <div class="wrap">
-    <div><b>≈45 млн л</b><span>мощность в год</span></div>
-    <div><b>3 + 3 млн</b><span>банок и бутылок в месяц</span></div>
-    <div><b>98,5%</b><span>OTIF — сервис поставок</span></div>
-    <div><b>Класс «А»</b><span>склад в Химках</span></div>
-    <div><b>От 1 паллеты</b><span>на РЦ, микс-паллеты по SKU</span></div>
+    <div class="v"><img src="sym-berry.svg" alt=""><div><b>Натуральное сырьё</b><span>соки прямого отжима и натуральный мёд, без искусственных красителей</span></div></div>
+    <div class="v"><img src="sym-hop.svg" alt=""><div><b>Полный цикл</b><span>линия стекла 0,45 л, баночная линия 0,43 л, кеги, контракт</span></div></div>
+    <div class="v"><img src="sym-honeycomb.svg" alt=""><div><b>OTIF 98,5%</b><span>поставки от 1 паллеты на РЦ, микс-паллеты по SKU</span></div></div>
+    <div class="v"><img src="sym-horn.svg" alt=""><div><b>45 млн л в год</b><span>до 3 млн бутылок и до 3 млн банок в месяц</span></div></div>
   </div>
 </div>
 
-<section id="brendy">
+<section class="light" id="ozavode">
   <div class="wrap">
-    <span class="eyebrow">Портфель</span>
+    <div class="about">
+      <div>
+        <span class="label">Кто мы</span>
+        <h2>Мастерская уникальных вкусов</h2>
+        <p class="lead" style="margin-bottom:16px">Завод в Химках работает с 2020 года (ранее — Volksbrau): традиции натурального производства и современные технологии. Сегодня производство и бренды переходят компании «Велес» — вместе со всеми рецептурами и интеллектуальными правами.</p>
+        <p style="color:#4A4234;max-width:64ch">Мы готовим сидры и медовуху естественного брожения, натуральные морсы и лимонады, авторские тоники и колу. Восемь брендов стоят на подлинной мифологии регионов России: покупатель собирает коллекцию легенд, сеть получает готовый брендблок.</p>
+        <div class="facts">
+          <div><b>2020</b><span>завод основан в Химках</span></div>
+          <div><b>8 брендов</b><span>единая коллекция «Легенды России»</span></div>
+          <div><b>40+ SKU</b><span>медовуха · сидр · морсы · лимонады · тоники</span></div>
+          <div><b>6 категорий</b><span>включая энергетики и линию 0,0%</span></div>
+        </div>
+      </div>
+      <figure class="ph"><img src="photo-bottles.jpg" alt="Натуральное сырьё: мёд, хмель и напитки завода «Велес»"></figure>
+    </div>
+  </div>
+</section>
+
+<div class="orn"></div>
+
+<section id="simvolika">
+  <div class="wrap">
+    <span class="label">Символика бренда</span>
+    <h2>Четыре знака «Велеса»</h2>
+    <div class="symrow">
+      <div class="sym"><img src="sym-horn.svg" alt="Рог"><b>РОГ</b><span>достаток и щедрость</span></div>
+      <div class="sym"><img src="sym-honeycomb.svg" alt="Соты"><b>СОТЫ</b><span>натуральный мёд</span></div>
+      <div class="sym"><img src="sym-hop.svg" alt="Хмель"><b>ХМЕЛЬ</b><span>брожение и ремесло</span></div>
+      <div class="sym"><img src="sym-berry.svg" alt="Ягода"><b>ЯГОДА</b><span>сырьё регионов</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="brendy" style="padding-top:40px">
+  <div class="wrap">
+    <span class="label">Портфель</span>
     <h2>Восемь брендов — одна коллекция легенд</h2>
-    <p class="lead">Каждый бренд стоит на подлинных легендах своего региона: персонаж на этикетке, его история — на контрэтикетке. Покупатель собирает коллекцию, сеть получает готовый брендблок.</p>
+    <p class="lead">Каждый бренд стоит на подлинных легендах своего региона. Дизайн-концепты упаковки утверждены; ассортимент и характеристики уточняйте у отдела продаж.</p>
     <div class="brands">
       <div class="bcard"><div class="ph"><span class="badge">В ПРОИЗВОДСТВЕ</span><img src="parma.jpg" alt="ПАРМА — медовуха на легендах Коми" loading="lazy"></div>
         <div class="tx"><h3>ПАРМА</h3><div class="cat">Медовуха · Республика Коми</div>
@@ -178,85 +277,127 @@ footer .wrap{display:flex; flex-wrap:wrap; gap:10px 30px; justify-content:space-
         <p>Пей ветер: сибирские травы, саган-дайля и легенды великого озера.</p>
         <div class="sku">Ангара · Сарма · Ольхон · Эжин · 0,43 л</div></div></div>
     </div>
-    <p class="note18" style="margin-top:18px">Изображения — дизайн-концепты упаковки. Ассортимент и характеристики уточняйте у отдела продаж.</p>
   </div>
 </section>
 
-<section id="setyam" style="background:var(--panel); border-top:1px solid var(--line); border-bottom:1px solid var(--line)">
+<div class="orn"></div>
+
+<section class="light" id="produkciya">
   <div class="wrap">
-    <span class="eyebrow">Торговым сетям и дистрибьюторам</span>
+    <span class="label">Продукция</span>
+    <h2>Шесть категорий полного цикла</h2>
+    <p class="lead">Естественное брожение для алкогольных линеек, соки прямого отжима для безалкогольных. Все форматы — под федеральную логистику: паллетные нормы, микс-паллеты, кеги для HoReCa.</p>
+    <div class="prod">
+      <div class="pcard"><h3><svg class="ic-lg"><use href="icons-sprite.svg#icon-beer"/></svg>Медовуха</h3><ul>
+        <li><b>5,3–5,8%</b> · естественное брожение</li><li>стекло 0,45 л · 12 шт/упак · 70 упак/паллета</li><li>срок годности 18 месяцев</li><li>акциз 33 ₽/л — растущая категория (+15–27% г/г)</li></ul></div>
+      <div class="pcard"><h3><svg class="ic-lg"><use href="icons-sprite.svg#icon-wine"/></svg>Сидр и пуаре</h3><ul>
+        <li><b>5,0–5,5%</b> · без спирта и пивного сусла</li><li>стекло 0,45 л + банка 0,43 л + кеги</li><li>соки прямого отжима</li><li>розница категории +37% в июне</li></ul></div>
+      <div class="pcard"><h3><svg class="ic-lg"><use href="icons-sprite.svg#icon-grape"/></svg>Морсы</h3><ul>
+        <li><b>0,0%</b> · сок ≥20%, без консервантов</li><li>банка 0,43 л · 12 шт/упак · 112 упак/паллета</li><li>клюква, облепиха, брусника, черника</li><li>рынок 77 млрд ₽ без федерального лидера</li></ul></div>
+      <div class="pcard"><h3><svg class="ic-lg"><use href="icons-sprite.svg#icon-droplet"/></svg>Лимонады и мохито</h3><ul>
+        <li><b>0,0%</b> · сильногазированные</li><li>банка 0,43 л · срок 24 месяца</li><li>манго, клубника, дыня, арбуз, лайм</li><li>сезонные и авторские вкусы</li></ul></div>
+      <div class="pcard"><h3><svg class="ic-lg"><use href="icons-sprite.svg#icon-flame"/></svg>Энергетики</h3><ul>
+        <li><b>кофеин 30 мг/100 мл</b> · таурин</li><li>банка 0,43 л · маркировка 18+</li><li>категория растёт ~18% в год</li><li>запуск под брендом ЖАР-ПТИЦА — ноябрь 2026</li></ul></div>
+      <div class="pcard"><h3><svg class="ic-lg"><use href="icons-sprite.svg#icon-award"/></svg>Тоники и кола</h3><ul>
+        <li><b>0,0%</b> · барная линия для миксологии</li><li>Классический · Индиан (хинин) · Биттер-Лемон</li><li>кола/черника/лаванда — авторские миксы</li><li>HoReCa-контракты и мини-бары</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<section id="zavod">
+  <div class="wrap">
+    <div class="prodgrid">
+      <figure class="ph" style="border-radius:14px;overflow:hidden"><img src="photo-line.jpg" alt="Линия розлива завода «Велес»"></figure>
+      <div>
+        <span class="label">Производство</span>
+        <h2>Завод полного цикла, Химки</h2>
+        <ul class="speclist">
+          <li><svg class="ic-lg"><use href="icons-sprite.svg#icon-factory"/></svg><span><b>Линия стекла 0,45 л</b> — до 3 млн бутылок в месяц, кронен-укупорка, пастеризация</span></li>
+          <li><svg class="ic-lg"><use href="icons-sprite.svg#icon-boxes"/></svg><span><b>Баночная линия 0,43 л</b> — до 3 млн банок в месяц, полная запечатка sleeve</span></li>
+          <li><svg class="ic-lg"><use href="icons-sprite.svg#icon-thermometer"/></svg><span><b>Кеги</b> — розлив для HoReCa: бары, рестораны, отели</span></li>
+          <li><svg class="ic-lg"><use href="icons-sprite.svg#icon-shield-check"/></svg><span><b>Соответствие</b> — ЕГАИС, «Честный знак», сертификация ТР ТС; лабораторный контроль партий</span></li>
+          <li><svg class="ic-lg"><use href="icons-sprite.svg#icon-warehouse"/></svg><span><b>Склад класса «А»</b> — Химки, Вашутинское шоссе: ключевой логистический хаб Московского региона</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="gal" style="margin-top:44px">
+      <figure><img src="photo-bottles.jpg" alt="Сырьё: мёд и хмель"><figcaption>Натуральное сырьё: мёд, хмель, дикоросы регионов</figcaption></figure>
+      <figure><img src="photo-truck.jpg" alt="Фирменная фура «Велес»"><figcaption>Федеральная логистика: доставка аккредитованными ТК</figcaption></figure>
+      <figure><img src="photo-crate.jpg" alt="Фирменные ящики «Велес»"><figcaption>Фирменная тара и брендированная упаковка</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<div class="orn"></div>
+
+<section class="light" id="setyam">
+  <div class="wrap">
+    <span class="label">Торговым сетям и дистрибьюторам</span>
     <h2>Экономика, которая сходится у байера</h2>
-    <p class="lead">Мы приходим не с прайсом, а с готовой полочной экономикой: гарантированная маржа, промо за наш счёт и категории, которые растут двузначными темпами.</p>
+    <p class="lead">Мы приходим не с прайсом, а с готовой полочной экономикой: гарантированная маржа, промо за наш счёт и категории, растущие двузначными темпами.</p>
     <div class="grid3">
-      <div class="card"><h3>Доходность сети</h3><ul>
-        <li>45% фронт-маржи в регулярных продажах, включая бэк-маржу</li>
-        <li>35% маржи сохраняется в период глубоких акций</li>
+      <div class="card"><h3><svg class="ic-lg" style="stroke:#8A6420"><use href="icons-sprite.svg#icon-percent"/></svg>Доходность сети</h3><ul>
+        <li>45% фронт-маржи в регулярных продажах</li>
+        <li>35% маржи сохраняется в глубоких акциях</li>
         <li>Промо-скидка 25% полностью за счёт завода</li>
-        <li>Маркетинговый фонд и участие в каталогах сети</li></ul></div>
-      <div class="card"><h3>Логистика без сюрпризов</h3><ul>
+        <li>Маркетинговый фонд и участие в каталогах</li></ul></div>
+      <div class="card"><h3><svg class="ic-lg" style="stroke:#8A6420"><use href="icons-sprite.svg#icon-truck"/></svg>Логистика без сюрпризов</h3><ul>
         <li>OTIF ≥ 98,5%, строгие временные окна</li>
-        <li>Поставки от 1 паллеты на РЦ, микс-паллеты по SKU</li>
-        <li>Склад класса «А» в Химках — ключевой хаб РФ</li>
-        <li>Паллетная доставка аккредитованными ТК</li></ul></div>
-      <div class="card"><h3>Категории роста</h3><ul>
-        <li>Медовуха: производство +15–27% г/г, акциз всего 33 ₽/л</li>
-        <li>Сидр: розница +37% в июне</li>
-        <li>Морсы: рынок 77 млрд ₽ без федерального лидера</li>
-        <li>СТМ и эксклюзивные SKU под требования сети</li></ul></div>
+        <li>От 1 паллеты на РЦ, микс-паллеты по SKU</li>
+        <li>Паллетная доставка аккредитованными ТК</li>
+        <li>Excel-спецификация и образцы — за 48 часов</li></ul></div>
+      <div class="card"><h3><svg class="ic-lg" style="stroke:#8A6420"><use href="icons-sprite.svg#icon-calendar"/></svg>График листингов</h3><ul>
+        <li>Авг 2026 — Красное и Белое, Бристоль</li>
+        <li>Сент — Лента · Окт — Магнит</li>
+        <li>Нояб — Верный, Пятёрочка · Дек — Фреш Маркет</li>
+        <li>2027 — морсы ЖИВА, б/а медовуха, МАЛАХИТНИЦА</li></ul></div>
     </div>
   </div>
 </section>
 
-<section id="horeca">
+<section id="stm">
   <div class="wrap">
-    <span class="eyebrow">HoReCa</span>
-    <h2>Рестораны, бары и отели</h2>
+    <span class="label">СТМ и контрактное производство</span>
+    <h2>Создадим идеальный напиток вместе</h2>
+    <p class="lead">Мы не просто создаём напитки — мы открываем новые перспективы для вашего бренда. Библиотека готовых вкусов и рецептур, индивидуальный подход и комплексная поддержка.</p>
     <div class="grid3">
-      <div class="card"><h3>Кеги и разлив</h3><ul>
-        <li>Медовуха и сидр в кегах для баров и веранд</li>
-        <li>«Стол нартов» — дегустационные сеты кавказской линейки</li>
-        <li>Карты пейрингов под кухню заведения</li></ul></div>
-      <div class="card"><h3>Тоники и миксеры</h3><ul>
-        <li>Классический, Индиан, Биттер-Лемон — барная линия</li>
-        <li>Кола/черника/лаванда — авторские миксы</li>
-        <li>Безалкогольная карта: морсы и «Мёд-Пиво 0,0»</li></ul></div>
-      <div class="card"><h3>Отелям</h3><ul>
-        <li>Мини-бары: премиальный сидр и тоники</li>
-        <li>Welcome-сеты и лобби-бары</li>
-        <li>Решение «от стойки регистрации до номера»</li></ul></div>
+      <div class="card"><h3>Контрактное производство</h3><ul>
+        <li>Безалкогольные и слабоалкогольные напитки</li>
+        <li>Розлив в стекло 0,45, банку 0,43, кеги</li>
+        <li>Полный цикл: от рецептуры до паллеты</li></ul></div>
+      <div class="card"><h3>Собственная торговая марка</h3><ul>
+        <li>СТМ для сетей на отличающихся рецептурах</li>
+        <li>Дизайн-поддержка и сертификация</li>
+        <li>Гибкие тиражи и график производства</li></ul></div>
+      <div class="card"><h3>Разработка рецептур</h3><ul>
+        <li>Энергетики и тонизирующие напитки</li>
+        <li>Лимонады, тоники, колы</li>
+        <li>Сидры и медовухи по вашему брифу</li></ul></div>
     </div>
-  </div>
-</section>
-
-<section id="zavod" style="background:var(--panel); border-top:1px solid var(--line); border-bottom:1px solid var(--line)">
-  <div class="wrap">
-    <span class="eyebrow">Производство</span>
-    <h2>Завод «Велес», Химки</h2>
-    <p class="lead">Автоматизированный комплекс полного цикла: линия стекла 0,45 л, высокоскоростная баночная линия 0,43 л, кеги и контрактное производство. Только натуральное сырьё: соки прямого отжима и натуральный мёд, без искусственных красителей.</p>
-    <div class="numrow">
-      <div><div class="bignum">до 3 млн<small>бутылок стекла в месяц</small></div></div>
-      <div><div class="bignum">до 3 млн<small>банок в месяц</small></div></div>
-      <div><div class="bignum">≈45 млн л<small>совокупная мощность в год</small></div></div>
-      <div><div class="bignum">100%<small>сертифицированное производство</small></div></div>
-    </div>
-    <p class="note18" style="margin-top:26px">Производственная площадка и бренды Volksbrau переходят компании «Велес» со всеми интеллектуальными правами.</p>
   </div>
 </section>
 
 <section class="contact" id="kontakty" style="padding:0">
   <div class="wrap">
     <div>
-      <span class="eyebrow">Контакты</span>
+      <span class="label">Контакты</span>
       <h2>Образцы — за 48 часов</h2>
       <p class="lead" style="margin-bottom:18px">Направим образцы в ваш дегустационный комитет и Excel-спецификацию с паллетными нормами. Работаем с федеральными и локальными сетями, дистрибьюторами и HoReCa по всей России.</p>
-      <div class="person"><b>Алексей Гусятников</b> · исполнительный директор<br><a href="tel:+79272226574">+7 927 222 65 74</a> · <a href="mailto:rugusyatal78@yandex.ru">rugusyatal78@yandex.ru</a></div>
-      <div class="person"><b>Ольга Анджиевская</b> · работа с сетями<br><a href="tel:+79205003787">+7 920 500 37 87</a> · <a href="mailto:olga_andg@mail.ru">olga_andg@mail.ru</a></div>
+      <div class="person"><b>Алексей Гусятников</b> · исполнительный директор<br>
+        <svg class="ic" style="vertical-align:-3px"><use href="icons-sprite.svg#icon-phone"/></svg> <a href="tel:+79272226574">+7 927 222 65 74</a> ·
+        <svg class="ic" style="vertical-align:-3px"><use href="icons-sprite.svg#icon-mail"/></svg> <a href="mailto:rugusyatal78@yandex.ru">rugusyatal78@yandex.ru</a></div>
+      <div class="person"><b>Ольга Анджиевская</b> · работа с сетями<br>
+        <svg class="ic" style="vertical-align:-3px"><use href="icons-sprite.svg#icon-phone"/></svg> <a href="tel:+79205003787">+7 920 500 37 87</a> ·
+        <svg class="ic" style="vertical-align:-3px"><use href="icons-sprite.svg#icon-mail"/></svg> <a href="mailto:olga_andg@mail.ru">olga_andg@mail.ru</a></div>
+      <p class="requisites"><svg class="ic" style="vertical-align:-3px"><use href="icons-sprite.svg#icon-map-pin"/></svg> 141401, Московская область, г. Химки, Вашутинское шоссе, владение 4Б<br>
+      Юридическое лицо: ООО «ТД «ФОЛЬКСБРАУ» · ИНН 5047246376 · КПП 504701001 · ОГРН 1205000113075<br>
+      Производство и бренды переходят компании «Велес» со всеми интеллектуальными правами.</p>
     </div>
     <div style="align-self:center">
-      <div class="card" style="border-color:var(--gold)">
-        <h3 style="color:var(--gold2)">Запрос для сетей</h3>
-        <p style="font-size:14.5px; color:var(--mut); margin-bottom:16px">Напишите нам с рабочей почты — в ответ придут спецификация, коммерческие условия и график поставок.</p>
-        <a class="btn" style="width:100%; text-align:center" href="mailto:rugusyatal78@yandex.ru?subject=Запрос%20образцов%20—%20Велес">Написать в отдел продаж</a>
+      <div class="card" style="border-color:var(--v-gold)">
+        <h3 style="color:var(--v-accent)">Запрос для сетей</h3>
+        <p style="font-size:14.5px;color:var(--v-mono);margin:10px 0 16px">Напишите с рабочей почты — в ответ придут спецификация, коммерческие условия и график поставок.</p>
+        <a class="btn" style="width:100%;justify-content:center" href="mailto:rugusyatal78@yandex.ru?subject=Запрос%20образцов%20—%20Велес">Написать в отдел продаж</a>
       </div>
     </div>
   </div>
@@ -264,7 +405,8 @@ footer .wrap{display:flex; flex-wrap:wrap; gap:10px 30px; justify-content:space-
 
 <footer>
   <div class="wrap">
-    <span>© 2026 «Велес» · Химки, Московская область</span>
+    <img src="logo-wordmark.svg" alt="ВЕЛЕС">
+    <span>© 2026 «Велес» · Химки · <a href="brandbook.html">брендбук</a></span>
     <span class="note18">Чрезмерное употребление алкоголя вредит вашему здоровью. Информация об алкогольной продукции — только для лиц старше 18 лет. Энергетические напитки не продаются несовершеннолетним.</span>
   </div>
 </footer>

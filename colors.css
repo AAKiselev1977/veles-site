@@ -1,21 +1,23 @@
-/* ВЕЛЕС · Легенды России — фирменные цвета */
-:root{
-  --veles-bg:#14100C;          /* фон, «тёмная изба» */
-  --veles-panel:#1E1812;       /* панель */
-  --veles-panel-2:#282017;     /* панель приподнятая */
-  --veles-gold:#C99B45;        /* золото — главный акцент */
-  --veles-gold-bright:#E4BC6B; /* золото светлое (hover) */
-  --veles-cream:#EDE5D4;       /* крем — основной текст */
-  --veles-muted:#A79B84;       /* приглушённый текст */
-  --veles-line:#3A3226;        /* линии и рамки */
-  --veles-cinnabar:#C0564A;    /* киноварь — предупреждения */
-  /* бренды */
-  --parma-night:#14283C;    --parma-berry:#8E2D3E;
-  --altai-petrol:#0E3B43;   --altai-ochre:#B3502D;
-  --nart-indigo:#141F3C;    --nart-garnet:#7B1B34;
-  --zhiva-deep:#0B2B4C;     --zhiva-aqua:#35C4B5;   --zhiva-gold:#F2C14E;
-  --zhar-black:#0B0A0F;     --zhar-fire:#FF6A13;    --zhar-gold:#F5B301;
-  --malachit-green:#0B3D2E; --malachit-copper:#B87333;
-  --sampo-night:#0B1D33;    --sampo-aurora:#37C6A0; --sampo-gold:#E3A63B;
-  --barguzin-blue:#0B2E4F;  --barguzin-ice:#57C4C6;
+/* ВЕЛЕС — colour tokens */
+:root {
+  --v-dark-oak: #14100C; /* Тёмный дуб */
+  --v-gold: #C99B45; /* Золото */
+  --v-light-gold: #E4BC6B; /* Светлое золото */
+  --v-wormwood: #A79B84; /* Полынь */
+  --v-linen: #EDE5D4; /* Лён */
+  --v-cinnabar: #C0564A; /* Киноварь */
+
+  /* roles */
+  --v-primary: var(--v-gold);
+  --v-accent: var(--v-light-gold);
+  --v-bg: var(--v-dark-oak);
+  --v-fg: var(--v-linen);
+  --v-mono: var(--v-wormwood);
+  --v-light: var(--v-linen);
+  --brand-accent: var(--v-light-gold);
+}
+
+[data-theme='dark'] {
+  --v-bg: var(--v-dark-oak);
+  --v-fg: var(--v-linen);
 }

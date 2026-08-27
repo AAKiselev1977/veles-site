@@ -1,0 +1,50 @@
+{
+  "slug": "veles",
+  "prefix": "v",
+  "name": "ВЕЛЕС",
+  "legalName": "Завод напитков «Велес», Химки",
+  "subline": "ЗАВОД НАПИТКОВ",
+  "tagline": "ЛЕГЕНДЫ РОССИИ — В КАЖДОЙ БУТЫЛКЕ.",
+  "claim": "ЧЕСТНЫЙ СОСТАВ. ФЕДЕРАЛЬНАЯ ЛОГИСТИКА.",
+  "language": "ru",
+  "story": "«Велес» варит напитки на легендах регионов России — от тайги Коми до Кавказских гор. Персонаж на этикетке, его легенда — на контрэтикетке.",
+  "colors": [
+    {"token": "dark-oak", "hex": "#14100C", "label": "Тёмный дуб", "role": "bg"},
+    {"token": "gold", "hex": "#C99B45", "label": "Золото", "role": "primary"},
+    {"token": "light-gold", "hex": "#E4BC6B", "label": "Светлое золото", "role": "accent"},
+    {"token": "wormwood", "hex": "#A79B84", "label": "Полынь", "role": "mono"},
+    {"token": "linen", "hex": "#EDE5D4", "label": "Лён", "role": "light"},
+    {"token": "cinnabar", "hex": "#C0564A", "label": "Киноварь", "role": "extra"}
+  ],
+  "roles": {"primary": "gold", "accent": "light-gold", "bg": "dark-oak", "fg": "linen", "mono": "wormwood", "light": "linen"},
+  "typography": {
+    "display": {"family": "Prata", "weights": [400]},
+    "text": {"family": "PT Sans", "weights": [400, 700]}
+  },
+  "marks": {"favicon": "mark", "og": "lockup-tagline"},
+  "fixedColour": ["app-icon", "app-icon-square", "avatar-dark", "avatar-gold", "card-dark", "card-light", "seal-dark"],
+  "symbols": [
+    {"key": "horn", "label": "РОГ", "meaning": "достаток и щедрость"},
+    {"key": "honeycomb", "label": "СОТЫ", "meaning": "натуральный мёд"},
+    {"key": "hop", "label": "ХМЕЛЬ", "meaning": "брожение и ремесло"},
+    {"key": "berry", "label": "ЯГОДА", "meaning": "сырьё регионов"}
+  ],
+  "values": [
+    {"key": "natural-raw-materials", "label": "НАТУРАЛЬНОЕ СЫРЬЁ", "note": "соки прямого отжима и натуральный мёд, без искусственных красителей"},
+    {"key": "full-cycle", "label": "ПОЛНЫЙ ЦИКЛ", "note": "линия стекла 0,45 л, баночная линия 0,43 л, кеги, контрактное производство"},
+    {"key": "otif", "label": "OTIF 98,5%", "note": "поставки от 1 паллеты на РЦ, микс-паллеты по SKU"},
+    {"key": "capacity", "label": "45 МЛН Л В ГОД", "note": "до 3 млн бутылок и до 3 млн банок в месяц"}
+  ],
+  "uiIcons": ["wheat", "droplet", "package", "truck", "factory", "leaf", "award", "check", "beer", "wine", "grape", "flame", "thermometer", "boxes", "warehouse", "forklift", "scale", "clock", "calendar", "phone", "mail", "send", "map-pin", "globe", "file-text", "download", "search", "menu", "x", "chevron-right", "chevron-down", "arrow-right", "arrow-up-right", "plus", "minus", "star", "heart", "shield-check", "badge-check", "percent", "coins", "handshake", "users", "building-2", "recycle", "sprout", "sun", "snowflake"],
+  "copy": {
+    "manifesto": "Производство напитков полного цикла — медовуха, сидр, морсы, лимонады, тоники. Восемь брендов на подлинной мифологии регионов России.",
+    "slogans": ["ЛЕГЕНДЫ РОССИИ — В КАЖДОЙ БУТЫЛКЕ.", "ЧЕСТНЫЙ СОСТАВ. ФЕДЕРАЛЬНАЯ ЛОГИСТИКА.", "ЗАВОД ПОЛНОГО ЦИКЛА"],
+    "legal": "Чрезмерное употребление алкоголя вредит вашему здоровью. Информация об алкогольной продукции — только для лиц старше 18 лет.",
+    "about": "Завод в Химках (ранее Volksbrau) — производитель и владелец брендов напитков группы: ПАРМА, ХАН-АЛТАЙ, НАРТ САНЭ, ЖИВА, ЖАР-ПТИЦА, МАЛАХИТНИЦА, САМПО, БАРГУЗИН."
+  },
+  "assumptions": [
+    "Палитра и шрифты взяты из действующего сайта завода (sites/veles/index.html), а не выдуманы.",
+    "Знак — турий рог в круглой печати — сгенерирован по брифу; действующего утверждённого знака в исходниках не было.",
+    "Hex-коды сверены с CSS сайта; на листе они воспроизведены с точностью растра."
+  ]
+}
