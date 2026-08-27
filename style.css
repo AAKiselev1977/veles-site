@@ -260,3 +260,10 @@ figure.ph.cut img{filter:drop-shadow(0 22px 40px rgba(0,0,0,.55));max-height:520
 .mmenu .grp{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--v-mono);margin:14px 10px 4px}
 .mmenu .x{position:absolute;top:18px;right:20px;width:40px;height:40px;border-radius:50%;border:1px solid rgba(228,188,107,.3);
   background:none;color:var(--v-accent);font-size:18px;cursor:pointer}
+
+/* ===== fixes: карточки-вырезки, слайдер, мобильная шапка ===== */
+.sku-card .ph2.cutbox img{width:auto;height:auto;max-height:100%;max-width:92%;object-fit:contain}
+.slide .caption{padding:0 24px 90px}
+.slimg img.framed{border-radius:18px;box-shadow:0 30px 80px rgba(0,0,0,.55);filter:none;max-height:62vh}
+@media(max-width:900px){nav .cta{display:none}}
+.ph2.cutbox{height:320px}
