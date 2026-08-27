@@ -232,7 +232,7 @@ figure.ph.cut img{filter:drop-shadow(0 22px 40px rgba(0,0,0,.55));max-height:520
 .slsplit{display:grid;grid-template-columns:1.05fr .95fr;gap:36px;align-items:center;padding:48px 24px;position:relative;z-index:2}
 .slsplit .caption{align-self:center;padding:0}
 .slimg img{max-height:62vh;width:auto;margin:0 auto;filter:drop-shadow(0 28px 50px rgba(0,0,0,.6))}
-@media(max-width:900px){.slsplit{grid-template-columns:1fr;padding:60px 0}.slimg img{max-height:38vh}}
+@media(max-width:900px){.slsplit{grid-template-columns:1fr;padding:50px 24px}.slimg img{max-height:38vh}}
 .brandlogo{height:150px;width:auto;margin:6px 0 14px;filter:drop-shadow(0 8px 22px rgba(0,0,0,.5))}
 .brandlogo.wide{height:64px}
 
