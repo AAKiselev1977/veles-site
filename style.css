@@ -238,3 +238,25 @@ figure.ph.cut img{filter:drop-shadow(0 22px 40px rgba(0,0,0,.55));max-height:520
 @media(max-width:900px){.slsplit{grid-template-columns:1fr;padding:60px 0}.slimg img{max-height:38vh}}
 .brandlogo{height:150px;width:auto;margin:6px 0 14px;filter:drop-shadow(0 8px 22px rgba(0,0,0,.5))}
 .brandlogo.wide{height:64px}
+
+/* ===== мобильное меню ===== */
+.burger{display:none;background:rgba(228,188,107,.1);border:1px solid rgba(228,188,107,.3);color:var(--v-accent);
+  border-radius:10px;width:42px;height:42px;font-size:19px;cursor:pointer;flex:none;
+  -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+@media(max-width:900px){
+  nav a.nl,nav .dd{display:none}
+  .burger{display:block;margin-left:auto}
+  nav .langsel{margin-left:0}
+  nav .cta{margin-left:0}
+  nav .wrap{gap:12px}
+}
+.mmenu{position:fixed;inset:0;z-index:90;background:rgba(16,12,9,.7);display:none}
+.mmenu.open{display:block}
+.mmenu .panel{position:absolute;top:0;right:0;bottom:0;width:min(320px,86vw);padding:80px 26px 30px;
+  background:rgba(30,24,18,.92);-webkit-backdrop-filter:blur(28px) saturate(1.4);backdrop-filter:blur(28px) saturate(1.4);
+  border-left:1px solid rgba(228,188,107,.2);display:flex;flex-direction:column;gap:4px;overflow-y:auto}
+.mmenu a{padding:13px 10px;border-radius:10px;font-weight:700;font-size:15.5px;color:var(--v-fg)}
+.mmenu a:hover{background:rgba(201,155,69,.15);color:var(--v-accent)}
+.mmenu .grp{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--v-mono);margin:14px 10px 4px}
+.mmenu .x{position:absolute;top:18px;right:20px;width:40px;height:40px;border-radius:50%;border:1px solid rgba(228,188,107,.3);
+  background:none;color:var(--v-accent);font-size:18px;cursor:pointer}

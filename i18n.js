@@ -89,3 +89,28 @@ document.addEventListener('DOMContentLoaded',function(){
   apply(localStorage.getItem('veles-lang')||'ru');
 });
 })();
+
+/* мобильное меню */
+document.addEventListener('DOMContentLoaded',function(){
+  var nav=document.querySelector('nav .wrap'); if(!nav) return;
+  var burger=document.createElement('button'); burger.className='burger'; burger.innerHTML='&#9776;'; burger.setAttribute('aria-label','Меню');
+  var cta=nav.querySelector('.cta');
+  nav.insertBefore(burger, cta);
+  var mm=document.createElement('div'); mm.className='mmenu';
+  var panel=document.createElement('div'); panel.className='panel'; mm.appendChild(panel);
+  var x=document.createElement('button'); x.className='x'; x.innerHTML='&#10005;'; panel.appendChild(x);
+  var links=[['index.html',null,'Главная'],['parma.html','nav.parma','ПАРМА'],['a-live.html','nav.alive','A-LIVE'],
+    ['l-essence.html','nav.less',"L'ESSENCE"],['legendy.html','nav.leg','Легенды России'],
+    ['produkciya.html','nav.prod','Продукция'],['zavod.html','nav.plant','Завод'],['kontakty.html','nav.cont','Контакты']];
+  links.forEach(function(L){
+    var a=document.createElement('a'); a.href=L[0]; a.textContent=L[2];
+    if(L[1]) a.setAttribute('data-i18n',L[1]);
+    panel.appendChild(a);
+  });
+  document.body.appendChild(mm);
+  burger.addEventListener('click',function(){mm.classList.add('open')});
+  x.addEventListener('click',function(){mm.classList.remove('open')});
+  mm.addEventListener('click',function(e){if(e.target===mm)mm.classList.remove('open')});
+  var lang=localStorage.getItem('veles-lang')||'ru';
+  if(window.velesApplyLang) window.velesApplyLang(lang);
+});
