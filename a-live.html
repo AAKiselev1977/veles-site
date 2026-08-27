@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A-LIVE — безалкогольные напитки | Велес</title>
+<meta name="description" content="A-Live: мохито пяти вкусов и тоники Premium Bar (Классический, Индиан, Биттер Лемон). 0% алкоголя, банка 0,45 л.">
+<meta name="theme-color" content="#14100C">
+<meta property="og:title" content="A-LIVE — безалкогольные напитки | Велес">
+<meta property="og:image" content="og-image.png">
+<link rel="icon" href="favicon.ico" sizes="32x32">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Prata&family=PT+Sans:wght@400;700&display=swap">
+<link rel="stylesheet" href="colors.css">
+<link rel="stylesheet" href="typography.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="age" class="hidden">
+  <div class="box glass">
+    <img src="logo-primary.svg" alt="ВЕЛЕС — завод напитков">
+    <h2 style="font-size:21px" data-i18n="age.t">Вам уже есть 18 лет?</h2>
+    <p data-i18n="age.p">Сайт содержит информацию о слабоалкогольных напитках естественного брожения и предназначен только для совершеннолетних.</p>
+    <div class="row">
+      <button class="btn" onclick="document.getElementById('age').classList.add('hidden');localStorage.setItem('veles18','y')" data-i18n="age.yes">Да, мне есть 18</button>
+      <a class="btn ghost" href="https://ya.ru" data-i18n="age.no">Нет</a>
+    </div>
+  </div>
+</div>
+<script>if(localStorage.getItem('veles18')!=='y'){document.getElementById('age').classList.remove('hidden');}</script>
+<nav>
+  <div class="wrap">
+    <a href="index.html"><img class="lg" src="logo-horizontal.svg" alt="ВЕЛЕС — завод напитков"></a>
+    <a class="nl" href="parma.html" data-i18n="nav.parma">ПАРМА</a>
+    <a class="nl on" href="a-live.html" data-i18n="nav.alive">A-LIVE</a>
+    <a class="nl" href="l-essence.html" data-i18n="nav.less">L'ESSENCE</a>
+    <a class="nl" href="legendy.html" data-i18n="nav.leg">Легенды России</a>
+    <a class="nl" href="produkciya.html" data-i18n="nav.prod">Продукция</a>
+    <a class="nl" href="zavod.html" data-i18n="nav.plant">Завод</a>
+    <a class="nl" href="brandbook.html" data-i18n="nav.book">Брендбук</a>
+    <a class="nl" href="kontakty.html" data-i18n="nav.cont">Контакты</a>
+    <a class="nl cta btn" href="kontakty.html" data-i18n="nav.cont">Образцы</a>
+  </div>
+</nav>
+<div class="hero-page"><div class="wrap"><span class="label">Бренд завода «Велес»</span><h1>A-LIVE</h1><p class="slogan">«Освежись легко!»</p><p class="sub">Безалкогольная линейка завода: сильногазированные мохито и тоники Premium Bar для домашней и барной миксологии. 0% алкоголя, лёгкие калории.</p></div></div>
+<section>
+  <div class="wrap">
+    <div class="split" style="margin-bottom:60px">
+      <div>
+        <span class="label">Линия Mojito</span>
+        <h2>Мохито — 5 ярких вкусов</h2>
+        <ul class="speclist">
+          <li><span><b>Оригинальный</b> — классический лайм и мята</span></li>
+          <li><span><b>Манго</b> · <b>Клубника</b> · <b>Дыня</b> · <b>Арбуз</b> — летняя коллекция</span></li>
+          <li><span><b>64,5 ккал</b> на банку · сильногазированный</span></li>
+          <li><span><b>Банка 0,45 л</b> · срок годности 24 месяца</span></li>
+        </ul>
+      </div>
+      <figure class="ph"><img src="prod-alive-mojito.jpg" alt="A-Live Мохито — 5 вкусов"></figure>
+    </div>
+    <div class="split">
+      <figure class="ph"><img src="prod-alive-tonics.jpg" alt="A-Live тоники Premium Bar"></figure>
+      <div>
+        <span class="label">Линия Premium Bar</span>
+        <h2>Тоники — освежающая классика</h2>
+        <ul class="speclist">
+          <li><span><b>Классический</b> — чистая база для миксов</span></li>
+          <li><span><b>Индиан Тоник</b> — содержит хинин, классика джин-тоника</span></li>
+          <li><span><b>Биттер Лемон</b> — с натуральным соком лимона</span></li>
+          <li><span><b>30,5 ккал</b> на порцию · slim-банка · для баров и дома</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="gal" style="margin-top:44px;grid-template-columns:repeat(2,1fr)">
+      <figure><img src="prod-alive-indian.jpg" alt="A-Live Индиан Тоник"><figcaption>Индиан Тоник — хинин и лёд</figcaption></figure>
+      <figure><img src="prod-alive-bitter.jpg" alt="A-Live Биттер Лемон"><figcaption>Биттер Лемон — сок лимона</figcaption></figure>
+    </div>
+  </div>
+</section>
+<section class="light" style="padding-top:60px">
+  <div class="wrap">
+    <span class="label">Для торговых сетей</span>
+    <h2>Спецификация</h2>
+    <div class="tablewrap"><table class="spec">
+      <tr><th>SKU</th><th>Алк.</th><th>Упаковка</th><th>Объём</th><th>В упаковке</th><th>Упак/паллета</th><th>Шт/паллета</th><th>Срок</th></tr>
+      <tr><td>Мохито: Оригинальный · Манго · Клубника · Дыня · Арбуз</td><td class="num">0%</td><td>ЖБ</td><td class="num">0,45 л</td><td class="num">12</td><td class="num">112</td><td class="num">1 344</td><td class="num">24 мес</td></tr>
+      <tr><td>Тоники: Классический · Индиан · Биттер Лемон</td><td class="num">0%</td><td>ЖБ</td><td class="num">0,45 л</td><td class="num">12</td><td class="num">112</td><td class="num">1 344</td><td class="num">24 мес</td></tr>
+    </table></div>
+    <div class="grid3">
+      <div class="card"><h3>Каналы</h3><ul><li>Федеральные и локальные сети</li><li>HoReCa: миксер-контракты для баров</li><li>Маркетплейсы: мультипаки 6×/12×</li></ul></div>
+      <div class="card"><h3>Преимущества</h3><ul><li>Без ограничений рекламы — категория 0,0%</li><li>Растущие ниши тоников и мохито</li><li>Небанальные рецептуры</li></ul></div>
+      <div class="card"><h3>Логистика</h3><ul><li>Паллета 1 344 банки</li><li>Срок 24 месяца — низкие списания</li><li>Микс-паллеты по SKU</li></ul></div>
+    </div>
+  </div>
+</section>
+<footer>
+  <div class="wrap">
+    <img src="logo-wordmark.svg" alt="ВЕЛЕС">
+    <span>© 2026 «Велес» · Химки · <a href="brandbook.html">брендбук</a> · <a href="kontakty.html">контакты</a></span>
+    <span class="note18" data-i18n="ft.warn">Чрезмерное употребление алкоголя вредит вашему здоровью. Информация об алкогольной продукции — только для лиц старше 18 лет. Энергетические напитки не продаются несовершеннолетним.</span>
+  </div>
+</footer>
+<script src="i18n.js" defer></script>
+</body>
+</html>

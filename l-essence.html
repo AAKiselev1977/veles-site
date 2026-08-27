@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>L'ESSENCE — сидры и медовуха | Велес</title>
+<meta name="description" content="L'ESSENCE: полусухие игристые сидры (яблоко, смородина/мята, гранат, вишня/черешня) и медовуха апельсин/грейпфрут. Стекло 0,45 л, до 5,5%.">
+<meta name="theme-color" content="#14100C">
+<meta property="og:title" content="L'ESSENCE — сидры и медовуха | Велес">
+<meta property="og:image" content="og-image.png">
+<link rel="icon" href="favicon.ico" sizes="32x32">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Prata&family=PT+Sans:wght@400;700&display=swap">
+<link rel="stylesheet" href="colors.css">
+<link rel="stylesheet" href="typography.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="age" class="hidden">
+  <div class="box glass">
+    <img src="logo-primary.svg" alt="ВЕЛЕС — завод напитков">
+    <h2 style="font-size:21px" data-i18n="age.t">Вам уже есть 18 лет?</h2>
+    <p data-i18n="age.p">Сайт содержит информацию о слабоалкогольных напитках естественного брожения и предназначен только для совершеннолетних.</p>
+    <div class="row">
+      <button class="btn" onclick="document.getElementById('age').classList.add('hidden');localStorage.setItem('veles18','y')" data-i18n="age.yes">Да, мне есть 18</button>
+      <a class="btn ghost" href="https://ya.ru" data-i18n="age.no">Нет</a>
+    </div>
+  </div>
+</div>
+<script>if(localStorage.getItem('veles18')!=='y'){document.getElementById('age').classList.remove('hidden');}</script>
+<nav>
+  <div class="wrap">
+    <a href="index.html"><img class="lg" src="logo-horizontal.svg" alt="ВЕЛЕС — завод напитков"></a>
+    <a class="nl" href="parma.html" data-i18n="nav.parma">ПАРМА</a>
+    <a class="nl" href="a-live.html" data-i18n="nav.alive">A-LIVE</a>
+    <a class="nl on" href="l-essence.html" data-i18n="nav.less">L'ESSENCE</a>
+    <a class="nl" href="legendy.html" data-i18n="nav.leg">Легенды России</a>
+    <a class="nl" href="produkciya.html" data-i18n="nav.prod">Продукция</a>
+    <a class="nl" href="zavod.html" data-i18n="nav.plant">Завод</a>
+    <a class="nl" href="brandbook.html" data-i18n="nav.book">Брендбук</a>
+    <a class="nl" href="kontakty.html" data-i18n="nav.cont">Контакты</a>
+    <a class="nl cta btn" href="kontakty.html" data-i18n="nav.cont">Образцы</a>
+  </div>
+</nav>
+<div class="hero-page"><div class="wrap"><span class="label">Бренд завода «Велес»</span><h1>L'ESSENCE</h1><p class="slogan">vérité sauvage · «Истина внутри…»</p><p class="sub">Полусухие игристые сидры и цитрусовая медовуха. Акварельные женские образы на этикетках — линейка для тех, кто ценит эстетику и лёгкость.</p></div></div>
+<section>
+  <div class="wrap">
+    <div class="split" style="margin-bottom:60px">
+      <figure class="ph"><img src="prod-lessence-line.jpg" alt="Линейка L'ESSENCE — 5 бутылок"></figure>
+      <div>
+        <span class="label">Линейка</span>
+        <h2>Пять вкусов истины</h2>
+        <ul class="speclist">
+          <li><span><b>Сидр полусухой газированный</b> — классическое яблоко</span></li>
+          <li><span><b>Чёрная смородина / Мята</b> — фруктовый полусухой</span></li>
+          <li><span><b>Сочный Гранат</b> — фруктовый полусухой</span></li>
+          <li><span><b>Вишня / Черешня</b> — фруктовый полусухой</span></li>
+          <li><span><b>Медовуха Апельсин / Грейпфрут</b> — цитрусовая</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="split">
+      <div>
+        <span class="label">Характер бренда</span>
+        <h2>Эстетика лёгкости</h2>
+        <p class="lead" style="margin-bottom:14px">Все напитки — до 5,5% алкоголя, полусухие, игристые. Акварельные фигуры на этикетках делают L'ESSENCE узнаваемым на полке и в подарочной корзине.</p>
+        <p style="color:var(--v-mono)">Роль в портфеле: премиальный этаж для Ленты, винотек и HoReCa — мини-бары отелей, летние веранды, подарочные наборы.</p>
+      </div>
+      <figure class="ph"><img src="prod-lessence-cover.jpg" alt="L'ESSENCE — vérité sauvage"></figure>
+    </div>
+  </div>
+</section>
+<section class="light" style="padding-top:60px">
+  <div class="wrap">
+    <span class="label">Для торговых сетей</span>
+    <h2>Спецификация</h2>
+    <div class="tablewrap"><table class="spec">
+      <tr><th>SKU</th><th>Алк.</th><th>Упаковка</th><th>Объём</th><th>В упаковке</th><th>Упак/паллета</th><th>Срок</th></tr>
+      <tr><td>Сидр полусухой газированный «L'ESSENCE»</td><td class="num">до 5,5%</td><td>стекло</td><td class="num">0,45 л</td><td class="num">12</td><td class="num">70</td><td class="num">18 мес</td></tr>
+      <tr><td>Сидр фруктовый «Чёрная смородина / Мята»</td><td class="num">до 5,5%</td><td>стекло</td><td class="num">0,45 л</td><td class="num">12</td><td class="num">70</td><td class="num">18 мес</td></tr>
+      <tr><td>Сидр фруктовый «Сочный Гранат»</td><td class="num">до 5,5%</td><td>стекло</td><td class="num">0,45 л</td><td class="num">12</td><td class="num">70</td><td class="num">18 мес</td></tr>
+      <tr><td>Сидр фруктовый «Вишня / Черешня»</td><td class="num">до 5,5%</td><td>стекло</td><td class="num">0,45 л</td><td class="num">12</td><td class="num">70</td><td class="num">18 мес</td></tr>
+      <tr><td>Медовуха «Апельсин / Грейпфрут»</td><td class="num">до 5,5%</td><td>стекло</td><td class="num">0,45 л</td><td class="num">12</td><td class="num">70</td><td class="num">18 мес</td></tr>
+    </table></div>
+  </div>
+</section>
+<footer>
+  <div class="wrap">
+    <img src="logo-wordmark.svg" alt="ВЕЛЕС">
+    <span>© 2026 «Велес» · Химки · <a href="brandbook.html">брендбук</a> · <a href="kontakty.html">контакты</a></span>
+    <span class="note18" data-i18n="ft.warn">Чрезмерное употребление алкоголя вредит вашему здоровью. Информация об алкогольной продукции — только для лиц старше 18 лет. Энергетические напитки не продаются несовершеннолетним.</span>
+  </div>
+</footer>
+<script src="i18n.js" defer></script>
+</body>
+</html>
