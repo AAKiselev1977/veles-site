@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Каталог продукции | Велес</title>
+<meta name="description" content="Полный каталог завода «Велес»: медовуха ПАРМА, сидры L'ESSENCE, безалкогольные A-Live. Спецификации, паллетные нормы, сроки годности.">
+<meta name="theme-color" content="#14100C">
+<meta property="og:title" content="Каталог продукции | Велес">
+<meta property="og:image" content="og-image.png">
+<link rel="icon" href="favicon.ico" sizes="32x32">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Prata&family=PT+Sans:wght@400;700&display=swap">
+<link rel="stylesheet" href="colors.css">
+<link rel="stylesheet" href="typography.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="age" class="hidden">
+  <div class="box glass">
+    <img src="logo-primary.svg" alt="ВЕЛЕС — завод напитков">
+    <h2 style="font-size:21px" data-i18n="age.t">Вам уже есть 18 лет?</h2>
+    <p data-i18n="age.p">Сайт содержит информацию о слабоалкогольных напитках естественного брожения и предназначен только для совершеннолетних.</p>
+    <div class="row">
+      <button class="btn" onclick="document.getElementById('age').classList.add('hidden');localStorage.setItem('veles18','y')" data-i18n="age.yes">Да, мне есть 18</button>
+      <a class="btn ghost" href="https://ya.ru" data-i18n="age.no">Нет</a>
+    </div>
+  </div>
+</div>
+<script>if(localStorage.getItem('veles18')!=='y'){document.getElementById('age').classList.remove('hidden');}</script>
+<nav>
+  <div class="wrap">
+    <a href="index.html"><img class="lg" src="logo-horizontal.svg" alt="ВЕЛЕС — завод напитков"></a>
+    <a class="nl" href="parma.html" data-i18n="nav.parma">ПАРМА</a>
+    <a class="nl" href="a-live.html" data-i18n="nav.alive">A-LIVE</a>
+    <a class="nl" href="l-essence.html" data-i18n="nav.less">L'ESSENCE</a>
+    <a class="nl" href="legendy.html" data-i18n="nav.leg">Легенды России</a>
+    <a class="nl on" href="produkciya.html" data-i18n="nav.prod">Продукция</a>
+    <a class="nl" href="zavod.html" data-i18n="nav.plant">Завод</a>
+    <a class="nl" href="brandbook.html" data-i18n="nav.book">Брендбук</a>
+    <a class="nl" href="kontakty.html" data-i18n="nav.cont">Контакты</a>
+    <select id="langsel" class="langsel" aria-label="Language"></select>
+    <a class="nl cta btn" href="kontakty.html" data-i18n="nav.cta">Образцы</a>
+  </div>
+</nav>
+<div class="hero-page"><div class="wrap"><span class="label">Каталог</span><h1>Продукция завода</h1><p class="sub">Сводные спецификации действующего ассортимента: 16 SKU в трёх брендах. Паллетные нормы и сроки — для листинга и логистики. Образцы и Excel-спецификацию отправляем за 48 часов.</p></div></div>
+<section>
+  <div class="wrap">
+    <h2 style="margin-top:0">ПАРМА · медовуха</h2>
+    <div class="tablewrap"><table class="spec">
+      <tr><th>SKU</th><th>Алк.</th><th>Формат</th><th>В упак</th><th>Упак/паллета</th><th>Срок</th></tr>
+      <tr><td>«Пера» брусника, клюква</td><td class="num">5,8%</td><td>стекло 0,45</td><td class="num">12</td><td class="num">70</td><td class="num">18 мес</td></tr>
+      <tr><td>«Войпель» черника, ежевика, лесная малина</td><td class="num">5,8%</td><td>стекло 0,45</td><td class="num">12</td><td class="num">70</td><td class="num">18 мес</td></tr>
+      <tr><td>«Зарни Ань» мята, морошка, брусника</td><td class="num">5,3%</td><td>стекло 0,45</td><td class="num">12</td><td class="num">70</td><td class="num">18 мес</td></tr>
+    </table></div>
+    <p style="margin-bottom:40px"><a class="btn ghost" href="parma.html">Страница бренда ПАРМА</a></p>
+
+    <h2>L'ESSENCE · сидры и медовуха</h2>
+    <div class="tablewrap"><table class="spec">
+      <tr><th>SKU</th><th>Алк.</th><th>Формат</th><th>В упак</th><th>Упак/паллета</th><th>Срок</th></tr>
+      <tr><td>Сидр полусухой газированный</td><td class="num">до 5,5%</td><td>стекло 0,45</td><td class="num">12</td><td class="num">70</td><td class="num">18 мес</td></tr>
+      <tr><td>Сидр «Чёрная смородина / Мята»</td><td class="num">до 5,5%</td><td>стекло 0,45</td><td class="num">12</td><td class="num">70</td><td class="num">18 мес</td></tr>
+      <tr><td>Сидр «Сочный Гранат»</td><td class="num">до 5,5%</td><td>стекло 0,45</td><td class="num">12</td><td class="num">70</td><td class="num">18 мес</td></tr>
+      <tr><td>Сидр «Вишня / Черешня»</td><td class="num">до 5,5%</td><td>стекло 0,45</td><td class="num">12</td><td class="num">70</td><td class="num">18 мес</td></tr>
+      <tr><td>Медовуха «Апельсин / Грейпфрут»</td><td class="num">до 5,5%</td><td>стекло 0,45</td><td class="num">12</td><td class="num">70</td><td class="num">18 мес</td></tr>
+    </table></div>
+    <p style="margin-bottom:40px"><a class="btn ghost" href="l-essence.html">Страница бренда L'ESSENCE</a></p>
+
+    <h2>A-LIVE · безалкогольные</h2>
+    <div class="tablewrap"><table class="spec">
+      <tr><th>SKU</th><th>Алк.</th><th>Формат</th><th>В упак</th><th>Упак/паллета</th><th>Срок</th></tr>
+      <tr><td>Мохито «Оригинальный»</td><td class="num">0%</td><td>ЖБ 0,45</td><td class="num">12</td><td class="num">112</td><td class="num">24 мес</td></tr>
+      <tr><td>Мохито «Манго»</td><td class="num">0%</td><td>ЖБ 0,45</td><td class="num">12</td><td class="num">112</td><td class="num">24 мес</td></tr>
+      <tr><td>Мохито «Клубника»</td><td class="num">0%</td><td>ЖБ 0,45</td><td class="num">12</td><td class="num">112</td><td class="num">24 мес</td></tr>
+      <tr><td>Мохито «Дыня»</td><td class="num">0%</td><td>ЖБ 0,45</td><td class="num">12</td><td class="num">112</td><td class="num">24 мес</td></tr>
+      <tr><td>Мохито «Арбуз»</td><td class="num">0%</td><td>ЖБ 0,45</td><td class="num">12</td><td class="num">112</td><td class="num">24 мес</td></tr>
+      <tr><td>Тоник «Классический»</td><td class="num">0%</td><td>ЖБ 0,45</td><td class="num">12</td><td class="num">112</td><td class="num">24 мес</td></tr>
+      <tr><td>Тоник «Индиан» (хинин)</td><td class="num">0%</td><td>ЖБ 0,45</td><td class="num">12</td><td class="num">112</td><td class="num">24 мес</td></tr>
+      <tr><td>Тоник «Биттер Лемон» (сок лимона)</td><td class="num">0%</td><td>ЖБ 0,45</td><td class="num">12</td><td class="num">112</td><td class="num">24 мес</td></tr>
+    </table></div>
+    <p><a class="btn ghost" href="a-live.html">Страница бренда A-LIVE</a></p>
+  </div>
+</section>
+<section class="light" style="padding-top:56px">
+  <div class="wrap">
+    <span class="label">Розлив / HoReCa</span>
+    <h2>Кеги и барные форматы</h2>
+    <p class="lead">Медовуха и сидр в кегах для баров, ресторанов и веранд; тоники Premium Bar — миксер-контракты. Карта пейрингов и welcome-сеты для отелей — по запросу.</p>
+    <a class="btn" href="kontakty.html">Запросить условия HoReCa</a>
+  </div>
+</section>
+<footer>
+  <div class="wrap">
+    <img src="logo-wordmark.svg" alt="ВЕЛЕС">
+    <span>© 2026 «Велес» · Химки · <a href="brandbook.html">брендбук</a> · <a href="kontakty.html">контакты</a></span>
+    <span class="note18" data-i18n="ft.warn">Чрезмерное употребление алкоголя вредит вашему здоровью. Информация об алкогольной продукции — только для лиц старше 18 лет. Энергетические напитки не продаются несовершеннолетним.</span>
+  </div>
+</footer>
+<script src="i18n.js" defer></script>
+</body>
+</html>

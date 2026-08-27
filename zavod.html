@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Завод и B2B | Велес</title>
+<meta name="description" content="Завод «Велес» в Химках: линия стекла 0,45 л, баночная линия, кеги. Условия для сетей, HoReCa, СТМ и контрактное производство.">
+<meta name="theme-color" content="#14100C">
+<meta property="og:title" content="Завод и B2B | Велес">
+<meta property="og:image" content="og-image.png">
+<link rel="icon" href="favicon.ico" sizes="32x32">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Prata&family=PT+Sans:wght@400;700&display=swap">
+<link rel="stylesheet" href="colors.css">
+<link rel="stylesheet" href="typography.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="age" class="hidden">
+  <div class="box glass">
+    <img src="logo-primary.svg" alt="ВЕЛЕС — завод напитков">
+    <h2 style="font-size:21px" data-i18n="age.t">Вам уже есть 18 лет?</h2>
+    <p data-i18n="age.p">Сайт содержит информацию о слабоалкогольных напитках естественного брожения и предназначен только для совершеннолетних.</p>
+    <div class="row">
+      <button class="btn" onclick="document.getElementById('age').classList.add('hidden');localStorage.setItem('veles18','y')" data-i18n="age.yes">Да, мне есть 18</button>
+      <a class="btn ghost" href="https://ya.ru" data-i18n="age.no">Нет</a>
+    </div>
+  </div>
+</div>
+<script>if(localStorage.getItem('veles18')!=='y'){document.getElementById('age').classList.remove('hidden');}</script>
+<nav>
+  <div class="wrap">
+    <a href="index.html"><img class="lg" src="logo-horizontal.svg" alt="ВЕЛЕС — завод напитков"></a>
+    <a class="nl" href="parma.html" data-i18n="nav.parma">ПАРМА</a>
+    <a class="nl" href="a-live.html" data-i18n="nav.alive">A-LIVE</a>
+    <a class="nl" href="l-essence.html" data-i18n="nav.less">L'ESSENCE</a>
+    <a class="nl" href="legendy.html" data-i18n="nav.leg">Легенды России</a>
+    <a class="nl" href="produkciya.html" data-i18n="nav.prod">Продукция</a>
+    <a class="nl on" href="zavod.html" data-i18n="nav.plant">Завод</a>
+    <a class="nl" href="brandbook.html" data-i18n="nav.book">Брендбук</a>
+    <a class="nl" href="kontakty.html" data-i18n="nav.cont">Контакты</a>
+    <select id="langsel" class="langsel" aria-label="Language"></select>
+    <a class="nl cta btn" href="kontakty.html" data-i18n="nav.cta">Образцы</a>
+  </div>
+</nav>
+<div class="hero-page"><div class="wrap"><span class="label">Производство</span><h1>Завод полного цикла</h1><p class="sub">Химки, Вашутинское шоссе. Автоматизированные линии розлива, лаборатория, склад класса «А». ЕГАИС, «Честный знак», сертификация ТР ТС.</p></div></div>
+<section>
+  <div class="wrap">
+    <div class="split">
+      <figure class="ph"><img src="photo-line.jpg" alt="Линия розлива"></figure>
+      <div>
+        <span class="label">Мощности</span>
+        <h2>Две линии + кеги</h2>
+        <ul class="speclist">
+          <li><span><b>Линия стекла 0,45 л</b> — до 3 млн бутылок/мес, кронен-укупорка, пастеризация</span></li>
+          <li><span><b>Баночная линия</b> — до 3 млн банок/мес, полная запечатка</span></li>
+          <li><span><b>Кеги</b> — розлив для HoReCa</span></li>
+          <li><span><b>≈45 млн литров в год</b> совокупной мощности</span></li>
+          <li><span><b>Склад класса «А»</b> — от 1 паллеты на РЦ, микс-паллеты по SKU</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="gal" style="margin-top:44px">
+      <figure><img src="photo-bottles.jpg" alt="Сырьё"><figcaption>Натуральное сырьё: мёд, хмель, дикоросы</figcaption></figure>
+      <figure><img src="photo-truck.jpg" alt="Логистика"><figcaption>Федеральная логистика аккредитованными ТК</figcaption></figure>
+      <figure><img src="photo-crate.jpg" alt="Тара"><figcaption>Фирменная тара и брендированная упаковка</figcaption></figure>
+    </div>
+  </div>
+</section>
+<div class="orn"></div>
+<section class="light">
+  <div class="wrap">
+    <span class="label">Торговым сетям</span>
+    <h2>Экономика, которая сходится у байера</h2>
+    <div class="grid3">
+      <div class="card"><h3>Доходность</h3><ul>
+        <li>45% фронт-маржи в регулярных продажах</li><li>35% маржи в глубоких акциях</li>
+        <li>Промо-скидка 25% за счёт завода</li><li>Маркетинговый фонд и каталоги</li></ul></div>
+      <div class="card"><h3>Логистика</h3><ul>
+        <li>OTIF ≥ 98,5%, строгие окна</li><li>От 1 паллеты на РЦ</li>
+        <li>Микс-паллеты по SKU</li><li>Образцы и спецификация — 48 часов</li></ul></div>
+      <div class="card"><h3>График листингов</h3><ul>
+        <li>Авг 2026 — КиБ, Бристоль</li><li>Сент — Лента · Окт — Магнит</li>
+        <li>Нояб — Верный, Пятёрочка</li><li>Дек — Фреш Маркет</li></ul></div>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="wrap">
+    <span class="label">СТМ и контрактное производство</span>
+    <h2>Создадим идеальный напиток вместе</h2>
+    <p class="lead">Библиотека готовых вкусов и рецептур, индивидуальный подход и комплексная маркетинговая поддержка — от брифа до паллеты на вашем РЦ.</p>
+    <div class="grid3">
+      <div class="card"><h3>Контрактное производство</h3><ul>
+        <li>Безалкогольные и слабоалкогольные напитки</li><li>Стекло 0,45 · банка · кеги</li><li>Полный цикл: рецептура → сертификация → розлив</li></ul></div>
+      <div class="card"><h3>СТМ для сетей</h3><ul>
+        <li>Отличающиеся рецептуры без каннибализации</li><li>Дизайн-поддержка</li><li>Гибкие тиражи и график</li></ul></div>
+      <div class="card"><h3>Разработка рецептур</h3><ul>
+        <li>Энергетики и тонизирующие</li><li>Лимонады, тоники, колы</li><li>Сидры и медовухи по брифу</li></ul></div>
+    </div>
+    <p style="margin-top:26px"><a class="btn" href="kontakty.html">Обсудить проект</a></p>
+  </div>
+</section>
+<footer>
+  <div class="wrap">
+    <img src="logo-wordmark.svg" alt="ВЕЛЕС">
+    <span>© 2026 «Велес» · Химки · <a href="brandbook.html">брендбук</a> · <a href="kontakty.html">контакты</a></span>
+    <span class="note18" data-i18n="ft.warn">Чрезмерное употребление алкоголя вредит вашему здоровью. Информация об алкогольной продукции — только для лиц старше 18 лет. Энергетические напитки не продаются несовершеннолетним.</span>
+  </div>
+</footer>
+<script src="i18n.js" defer></script>
+</body>
+</html>

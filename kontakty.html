@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Контакты | Велес</title>
+<meta name="description" content="Отдел продаж завода «Велес»: образцы в дегустационный комитет и Excel-спецификация за 48 часов. Химки, Московская область.">
+<meta name="theme-color" content="#14100C">
+<meta property="og:title" content="Контакты | Велес">
+<meta property="og:image" content="og-image.png">
+<link rel="icon" href="favicon.ico" sizes="32x32">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Prata&family=PT+Sans:wght@400;700&display=swap">
+<link rel="stylesheet" href="colors.css">
+<link rel="stylesheet" href="typography.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="age" class="hidden">
+  <div class="box glass">
+    <img src="logo-primary.svg" alt="ВЕЛЕС — завод напитков">
+    <h2 style="font-size:21px" data-i18n="age.t">Вам уже есть 18 лет?</h2>
+    <p data-i18n="age.p">Сайт содержит информацию о слабоалкогольных напитках естественного брожения и предназначен только для совершеннолетних.</p>
+    <div class="row">
+      <button class="btn" onclick="document.getElementById('age').classList.add('hidden');localStorage.setItem('veles18','y')" data-i18n="age.yes">Да, мне есть 18</button>
+      <a class="btn ghost" href="https://ya.ru" data-i18n="age.no">Нет</a>
+    </div>
+  </div>
+</div>
+<script>if(localStorage.getItem('veles18')!=='y'){document.getElementById('age').classList.remove('hidden');}</script>
+<nav>
+  <div class="wrap">
+    <a href="index.html"><img class="lg" src="logo-horizontal.svg" alt="ВЕЛЕС — завод напитков"></a>
+    <a class="nl" href="parma.html" data-i18n="nav.parma">ПАРМА</a>
+    <a class="nl" href="a-live.html" data-i18n="nav.alive">A-LIVE</a>
+    <a class="nl" href="l-essence.html" data-i18n="nav.less">L'ESSENCE</a>
+    <a class="nl" href="legendy.html" data-i18n="nav.leg">Легенды России</a>
+    <a class="nl" href="produkciya.html" data-i18n="nav.prod">Продукция</a>
+    <a class="nl" href="zavod.html" data-i18n="nav.plant">Завод</a>
+    <a class="nl" href="brandbook.html" data-i18n="nav.book">Брендбук</a>
+    <a class="nl on" href="kontakty.html" data-i18n="nav.cont">Контакты</a>
+    <select id="langsel" class="langsel" aria-label="Language"></select>
+    <a class="nl cta btn" href="kontakty.html" data-i18n="nav.cta">Образцы</a>
+  </div>
+</nav>
+<div class="hero-page"><div class="wrap"><span class="label">Контакты</span><h1>Образцы — за 48 часов</h1><p class="sub">Направим образцы в ваш дегустационный комитет и Excel-спецификацию с паллетными нормами. Работаем с федеральными и локальными сетями, дистрибьюторами и HoReCa по всей России.</p></div></div>
+<section>
+  <div class="wrap">
+    <div class="grid2">
+      <div class="card">
+        <h3>Отдел продаж</h3>
+        <div class="person"><b>Алексей Гусятников</b> · исполнительный директор<br>
+          <a href="tel:+79272226574">+7 927 222 65 74</a> · <a href="mailto:rugusyatal78@yandex.ru">rugusyatal78@yandex.ru</a></div>
+        <div class="person"><b>Ольга Анджиевская</b> · работа с сетями<br>
+          <a href="tel:+79205003787">+7 920 500 37 87</a> · <a href="mailto:olga_andg@mail.ru">olga_andg@mail.ru</a></div>
+        <p class="requisites">Производство и склад: 141401, Московская область, г. Химки, Вашутинское шоссе, владение 4Б</p>
+      </div>
+      <div class="card" style="border-color:var(--v-gold)">
+        <h3 style="color:var(--v-accent)">Запрос для сетей</h3>
+        <p style="font-size:14.5px;color:var(--v-mono);margin:10px 0 16px">Напишите с рабочей почты — в ответ придут спецификация, коммерческие условия и график поставок.</p>
+        <a class="btn" style="width:100%;justify-content:center" href="mailto:rugusyatal78@yandex.ru?subject=Запрос%20образцов%20—%20Велес">Написать в отдел продаж</a>
+        <p style="font-size:13px;color:var(--v-mono);margin-top:16px">Или позвоните — обсудим листинг, HoReCa или СТМ-проект.</p>
+      </div>
+    </div>
+  </div>
+</section>
+<footer>
+  <div class="wrap">
+    <img src="logo-wordmark.svg" alt="ВЕЛЕС">
+    <span>© 2026 «Велес» · Химки · <a href="brandbook.html">брендбук</a> · <a href="kontakty.html">контакты</a></span>
+    <span class="note18" data-i18n="ft.warn">Чрезмерное употребление алкоголя вредит вашему здоровью. Информация об алкогольной продукции — только для лиц старше 18 лет. Энергетические напитки не продаются несовершеннолетним.</span>
+  </div>
+</footer>
+<script src="i18n.js" defer></script>
+</body>
+</html>
