@@ -29,7 +29,7 @@ section{padding:80px 0 60px}
 .light h1,.light h2{color:#241E14}
 .light .label{color:#8A6420}
 .hero-page{border-bottom:1px solid #3A3226;position:relative;overflow:hidden}
-.hero-page::before{content:"";position:absolute;inset:0;background:url("ornament-tile.svg") center/420px repeat;opacity:.05;pointer-events:none}
+.hero-page::before{content:none}
 .hero-page .wrap{position:relative;padding:70px 24px 56px}
 .hero-page .sub{color:var(--v-mono);max-width:60ch;margin-top:16px}
 .slogan{font-family:var(--v-font-display);color:var(--v-accent);font-size:clamp(17px,2vw,22px);letter-spacing:.06em;margin-top:14px}
@@ -119,9 +119,7 @@ body{
   background:
     radial-gradient(900px 500px at 85% -5%, rgba(201,155,69,.14), transparent 60%),
     radial-gradient(700px 420px at -10% 30%, rgba(201,155,69,.08), transparent 60%),
-    url("ornament-tile.svg") center/560px repeat fixed,
     linear-gradient(180deg,#171310,#14100C 60%,#100D0A);
-  background-blend-mode: normal, normal, soft-light, normal;
 }
 .glass, .card, .sku-card, .bcard, #age .box, .typo, .sym{
   background: linear-gradient(160deg, rgba(38,30,22,.62), rgba(24,19,14,.55)) !important;
@@ -159,7 +157,6 @@ nav{
 .light{
   background:
     radial-gradient(800px 400px at 90% 0%, rgba(201,155,69,.12), transparent 60%),
-    url("ornament-tile.svg") center/560px repeat,
     linear-gradient(180deg,#F1E9D8,#EDE5D4);
 }
 .light .card, .light .sku-card{
@@ -183,7 +180,7 @@ nav{
 /* ===== HERO SLIDER (volksbrau-style) ===== */
 .slider{position:relative;min-height:86vh;overflow:hidden;border-bottom:1px solid rgba(228,188,107,.14)}
 .slide{position:absolute;inset:0;opacity:0;transition:opacity .9s ease;pointer-events:none;display:flex;align-items:center}
-.slide.on{opacity:1;pointer-events:auto;position:relative}
+.slide.on{opacity:1;pointer-events:auto}
 .slide.bgslide{background-size:cover;background-position:center}
 .slide.bgslide::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,16,12,.35) 0%,rgba(20,16,12,.15) 40%,rgba(16,12,9,.88) 100%)}
 .slide .caption{position:relative;z-index:2;align-self:flex-end;padding:0 0 90px;max-width:640px}
@@ -232,7 +229,7 @@ nav .wrap{overflow:visible}
 figure.ph.cut{box-shadow:none;background:radial-gradient(120% 95% at 50% 0%,rgba(201,155,69,.14),rgba(24,19,14,0) 62%);
   display:flex;align-items:center;justify-content:center;padding:20px}
 figure.ph.cut img{filter:drop-shadow(0 22px 40px rgba(0,0,0,.55));max-height:520px;width:auto;margin:0 auto}
-.slsplit{display:grid;grid-template-columns:1.05fr .95fr;gap:36px;align-items:center;min-height:86vh;position:relative;z-index:2}
+.slsplit{display:grid;grid-template-columns:1.05fr .95fr;gap:36px;align-items:center;padding:48px 24px;position:relative;z-index:2}
 .slsplit .caption{align-self:center;padding:0}
 .slimg img{max-height:62vh;width:auto;margin:0 auto;filter:drop-shadow(0 28px 50px rgba(0,0,0,.6))}
 @media(max-width:900px){.slsplit{grid-template-columns:1fr;padding:60px 0}.slimg img{max-height:38vh}}
@@ -263,7 +260,15 @@ figure.ph.cut img{filter:drop-shadow(0 22px 40px rgba(0,0,0,.55));max-height:520
 
 /* ===== fixes: карточки-вырезки, слайдер, мобильная шапка ===== */
 .sku-card .ph2.cutbox img{width:auto;height:auto;max-height:100%;max-width:92%;object-fit:contain}
-.slide .caption{padding:0 24px 90px}
 .slimg img.framed{border-radius:18px;box-shadow:0 30px 80px rgba(0,0,0,.55);filter:none;max-height:62vh}
 @media(max-width:900px){nav .cta{display:none}}
 .ph2.cutbox{height:320px}
+
+/* фиксированная высота слайдера + компактный мобильный герой */
+.slider{display:block}
+@media(max-width:640px){
+  #herogrid img[src="logo-primary.svg"]{display:none}
+  #herogrid img[src="hero.jpg"]{max-height:34vh!important}
+  #herogrid h1{font-size:26px}
+  .slide .sub{font-size:15px}
+}

@@ -54,7 +54,7 @@
 
 <header class="slider" id="slider">
   <div class="slide on">
-    <div class="wrap" style="display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center;min-height:86vh" id="herogrid">
+    <div class="wrap" style="display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center;padding:48px 24px" id="herogrid">
       <div>
         <img src="logo-primary.svg" alt="ВЕЛЕС — завод напитков" style="width:min(300px,70%);margin-bottom:28px">
         <h1><span data-i18n="hero.t1">Легенды России —</span><br><b style="color:var(--v-gold);font-weight:400" data-i18n="hero.t2">в каждой бутылке</b></h1>
@@ -82,7 +82,7 @@
   </div>
   <div class="slide">
     <div class="wrap slsplit">
-      <div class="caption"><img src="logo-alive.webp" alt="A-LIVE" class="brandlogo wide" style="margin-bottom:10px"><p data-i18n="sl.alive">.</p><a class="btn" href="a-live.html" data-i18n="sl.more">Подробнее</a></div>
+      <div class="caption"><h2>A-Live<sup>&reg;</sup></h2><p data-i18n="sl.alive">.</p><a class="btn" href="a-live.html" data-i18n="sl.more">Подробнее</a></div>
       <div class="slimg"><img src="cut-alive-mojito.webp" alt="A-LIVE"></div>
     </div>
   </div>
@@ -96,7 +96,7 @@
   <div class="sarrow next" onclick="slGo(1)" role="button" aria-label="Вперёд">&#8250;</div>
   <div class="slidebars" id="slidebars"></div>
 </header>
-<style>@media(max-width:900px){#herogrid{grid-template-columns:1fr!important;min-height:auto!important;padding-top:30px;padding-bottom:60px}}</style>
+<style>@media(max-width:900px){#herogrid{grid-template-columns:1fr!important;padding-top:30px!important;padding-bottom:40px!important}}</style>
 <script>
 (function(){
   var slides=document.querySelectorAll('#slider .slide'), n=slides.length, idx=0, timer;
@@ -111,6 +111,15 @@
   }
   window.slGo=function(d){show(idx+d);reset();};
   function reset(){clearInterval(timer);timer=setInterval(function(){show(idx+1);},7000);}
+  var box=document.getElementById('slider');
+  function fit(){
+    var h=0;
+    for(var i=0;i<n;i++){var w=slides[i].firstElementChild;if(w&&w.offsetHeight>h)h=w.offsetHeight;}
+    var floor=innerWidth>900?Math.round(innerHeight*0.86):0;
+    box.style.height=Math.max(floor,h+90)+'px';
+  }
+  if(window.ResizeObserver){var ro=new ResizeObserver(fit);for(var i=0;i<n;i++){if(slides[i].firstElementChild)ro.observe(slides[i].firstElementChild);}}
+  addEventListener('resize',fit);addEventListener('load',fit);fit();
   show(0);reset();
 })();
 </script>
