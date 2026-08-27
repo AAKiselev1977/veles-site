@@ -1,0 +1,11 @@
+/* ВЕЛЕС · Легенды России — типографика
+   Логотипы и заголовки: Prata (кириллица, антиква)
+   Текст: PT Serif · Служебное/данные: PT Sans
+   Техно-бренды (САМПО, БАРГУЗИН, ЖАР-ПТИЦА): Russo One */
+.veles-display{font-family:'Prata',Georgia,serif;font-weight:400;letter-spacing:.05em;}
+.veles-logo{font-family:'Prata',Georgia,serif;letter-spacing:.35em;text-transform:uppercase;}
+.veles-body{font-family:'PT Serif',Georgia,serif;line-height:1.62;}
+.veles-ui{font-family:'PT Sans',system-ui,sans-serif;}
+.veles-techno{font-family:'Russo One',sans-serif;letter-spacing:.08em;}
+.veles-eyebrow{font-family:'PT Sans',sans-serif;font-size:12px;font-weight:700;
+  letter-spacing:.22em;text-transform:uppercase;color:var(--veles-gold);}
