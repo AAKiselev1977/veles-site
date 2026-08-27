@@ -54,7 +54,7 @@
 
 <header class="slider" id="slider">
   <div class="slide on">
-    <div class="wrap" style="display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center;min-height:86vh" id="herogrid">
+    <div class="wrap" style="display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center;padding:48px 24px" id="herogrid">
       <div>
         <img src="logo-primary.svg" alt="ВЕЛЕС — завод напитков" style="width:min(300px,70%);margin-bottom:28px">
         <h1><span data-i18n="hero.t1">Легенды России —</span><br><b style="color:var(--v-gold);font-weight:400" data-i18n="hero.t2">в каждой бутылке</b></h1>
@@ -77,23 +77,26 @@
   <div class="slide">
     <div class="wrap slsplit">
       <div class="caption"><h2>L'ESSENCE<sup>®</sup></h2><p data-i18n="sl.less">.</p><a class="btn" href="l-essence.html" data-i18n="sl.more">Подробнее</a></div>
-      <div class="slimg"><img src="cut-lessence-line.webp" alt="L'ESSENCE"></div>
+      <div class="slimg"><img src="prod-lessence-line.jpg" alt="L'ESSENCE" class="framed"></div>
     </div>
   </div>
   <div class="slide">
     <div class="wrap slsplit">
-      <div class="caption"><img src="logo-alive.webp" alt="A-LIVE" class="brandlogo wide" style="margin-bottom:10px"><p data-i18n="sl.alive">.</p><a class="btn" href="a-live.html" data-i18n="sl.more">Подробнее</a></div>
+      <div class="caption"><h2>A-Live<sup>&reg;</sup></h2><p data-i18n="sl.alive">.</p><a class="btn" href="a-live.html" data-i18n="sl.more">Подробнее</a></div>
       <div class="slimg"><img src="cut-alive-mojito.webp" alt="A-LIVE"></div>
     </div>
   </div>
-  <div class="slide bgslide" style="background-image:url('khan-altai.jpg');background-position:center 25%">
-    <div class="wrap caption"><h2 data-i18n="ix.leg">Коллекция «Легенды России»</h2><p data-i18n="sl.leg">Восемь брендов на подлинной мифологии регионов — от Урала до Байкала.</p><a class="btn" href="legendy.html" data-i18n="sl.more">Подробнее</a></div>
+  <div class="slide">
+    <div class="wrap slsplit">
+      <div class="caption"><h2 data-i18n="ix.leg">Коллекция «Легенды России»</h2><p data-i18n="sl.leg">Восемь брендов на подлинной мифологии регионов — от Урала до Байкала.</p><a class="btn" href="legendy.html" data-i18n="sl.more">Подробнее</a></div>
+      <div class="slimg"><img src="khan-altai.jpg" alt="ХАН-АЛТАЙ" class="framed"></div>
+    </div>
   </div>
   <div class="sarrow prev" onclick="slGo(-1)" role="button" aria-label="Назад">&#8249;</div>
   <div class="sarrow next" onclick="slGo(1)" role="button" aria-label="Вперёд">&#8250;</div>
   <div class="slidebars" id="slidebars"></div>
 </header>
-<style>@media(max-width:900px){#herogrid{grid-template-columns:1fr!important;min-height:auto!important;padding-top:30px;padding-bottom:60px}}</style>
+<style>@media(max-width:900px){#herogrid{grid-template-columns:1fr!important;padding-top:30px!important;padding-bottom:40px!important}}</style>
 <script>
 (function(){
   var slides=document.querySelectorAll('#slider .slide'), n=slides.length, idx=0, timer;
@@ -108,6 +111,15 @@
   }
   window.slGo=function(d){show(idx+d);reset();};
   function reset(){clearInterval(timer);timer=setInterval(function(){show(idx+1);},7000);}
+  var box=document.getElementById('slider');
+  function fit(){
+    var h=0;
+    for(var i=0;i<n;i++){var w=slides[i].firstElementChild;if(w&&w.offsetHeight>h)h=w.offsetHeight;}
+    var floor=innerWidth>900?Math.round(innerHeight*0.86):0;
+    box.style.height=Math.max(floor,h+90)+'px';
+  }
+  if(window.ResizeObserver){var ro=new ResizeObserver(fit);for(var i=0;i<n;i++){if(slides[i].firstElementChild)ro.observe(slides[i].firstElementChild);}}
+  addEventListener('resize',fit);addEventListener('load',fit);fit();
   show(0);reset();
 })();
 </script>
@@ -131,7 +143,7 @@
         <div class="tx"><h3>ПАРМА</h3><div class="cat">Медовуха · дикоросы Коми</div>
         <p>Энергия древних легенд: брусника, морошка, черника и северный мёд. 100% продукт брожения.</p>
         <div class="meta">3 вкуса · стекло 0,45 л · алк. 5,3–5,8%</div></div></a>
-      <a class="sku-card" href="l-essence.html"><div class="ph2 cutbox"><img src="cut-lessence-line.webp" alt="L'ESSENCE"></div>
+      <a class="sku-card" href="l-essence.html"><div class="ph2"><img src="prod-lessence-line.jpg" alt="L'ESSENCE"></div>
         <div class="tx"><h3>L'ESSENCE</h3><div class="cat">Сидры и медовуха · vérité sauvage</div>
         <p>Истина внутри: полусухие игристые сидры и цитрусовая медовуха с акварельной эстетикой.</p>
         <div class="meta">5 вкусов · стекло 0,45 л · алк. до 5,5%</div></div></a>
