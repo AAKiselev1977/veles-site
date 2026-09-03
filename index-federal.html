@@ -127,6 +127,22 @@ ul.ticks li::before{
 .contacts p{font-size:14px;color:var(--ink-2);margin:0 0 14px}
 .contacts a{font-size:14.5px;font-weight:600;color:var(--spruce)}
 
+figure.shot{margin:0}
+figure.shot img{width:100%;height:auto;display:block;border:1px solid var(--line);border-radius:2px}
+figure.shot figcaption{font-size:12.5px;color:var(--muted);margin-top:12px;line-height:1.5}
+.hero-shot{margin:0 0 62px;position:relative}
+.hero-shot img{width:100%;height:auto;display:block;border-radius:2px}
+.hero-shot figcaption{
+  font-size:12.5px;color:var(--muted);margin-top:14px;display:flex;
+  flex-wrap:wrap;gap:6px 18px;
+}
+.cards{display:grid;gap:20px;margin-top:26px}
+@media (min-width:700px){.cards{grid-template-columns:repeat(2,1fr)}}
+@media (min-width:1060px){.cards{grid-template-columns:repeat(4,1fr)}}
+.cards figure img{background:var(--paper-2)}
+.cards h4{font-size:16px;margin:14px 0 2px}
+.cards .meta{font-size:12px;color:var(--muted)}
+
 footer{padding:40px 0 64px;font-size:13px;color:var(--muted)}
 footer p{margin:0 0 8px;max-width:86ch}
 .legal{margin-top:22px;padding-top:20px;border-top:1px solid var(--line);font-size:12px}
@@ -159,6 +175,12 @@ footer p{margin:0 0 8px;max-width:86ch}
       <a class="btn-ghost" href="#kontrakt">Контрактное производство</a>
       <a class="btn-ghost" href="#portfel">Каталог продукции</a>
     </div>
+  </div>
+  <div class="wrap">
+    <figure class="hero-shot">
+      <img src="legendy-v2/web/legendy-mid-v2.jpg" decoding="async" alt="Линейка коллекции «Легенды России»: Хан-Алтай, Жар-Птица, Жива, Малахитница">
+      <figcaption><span>Коллекция «Легенды России» — единый код упаковки на четырёх территориях</span><span>Дизайн-концепты, запуск 2026–2027</span></figcaption>
+    </figure>
   </div>
   <div class="wrap" style="padding:0">
     <div class="figures">
@@ -283,6 +305,16 @@ footer p{margin:0 0 8px;max-width:86ch}
       <div><dt>Лето 2027</dt><div><b>МАЛАХИТНИЦА</b></div><p>Медовуха и сидр Урала. Сказы Бажова: смородина и малахит, жимолость и рябина.</p></div>
       <div><dt>В резерве</dt><div><b>НАРТ САНЭ · САМПО · БАРГУЗИН</b></div><p>Кавказ, Карелия и Байкал — следующая очередь коллекции.</p></div>
     </dl>
+    <div class="cards">
+      <figure class="shot"><img src="legendy-v2/web/hero-khan-altai.jpg" loading="lazy" decoding="async" alt="Хан-Алтай, медовуха Кайчи">
+        <h4>ХАН-АЛТАЙ</h4><div class="meta">Медовуха и сидр · Алтай</div></figure>
+      <figure class="shot"><img src="legendy-v2/web/hero-zhar-ptitsa.jpg" loading="lazy" decoding="async" alt="Жар-Птица, энергетик Перо">
+        <h4>ЖАР-ПТИЦА</h4><div class="meta">Энергетики · 18+</div></figure>
+      <figure class="shot"><img src="legendy-v2/web/hero-zhiva.jpg" loading="lazy" decoding="async" alt="Жива, морс Клюква">
+        <h4>ЖИВА</h4><div class="meta">Морсы и лимонады · 0,0 %</div></figure>
+      <figure class="shot"><img src="legendy-v2/web/hero-malakhitnitsa.jpg" loading="lazy" decoding="async" alt="Малахитница, медовуха Хозяйка Медной горы">
+        <h4>МАЛАХИТНИЦА</h4><div class="meta">Медовуха и сидр · Урал</div></figure>
+    </div>
   </div>
 </section>
 
