@@ -1,0 +1,673 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Отжим</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;800&family=Golos+Text:wght@400;500;600&display=swap">
+<style>
+:root{
+  --void:#0A0D0B;
+  --void-2:#111614;
+  --bone:#F2EFE6;
+  --bone-dim:#9AA79E;
+  --line:#232B27;
+  --accent:#C4283F;
+  --f-display:"Unbounded","Trebuchet MS",sans-serif;
+  --f-body:"Golos Text","Helvetica Neue",Arial,sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:auto}
+body{
+  margin:0;background:var(--void);color:var(--bone);
+  font-family:var(--f-body);font-size:16px;line-height:1.6;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+.wrap{max-width:1240px;margin:0 auto;padding:0 28px}
+
+/* ---------- hero ---------- */
+.hero{min-height:92vh;display:flex;flex-direction:column;justify-content:center;position:relative}
+.eyebrow{
+  font-family:var(--f-body);font-size:11.5px;letter-spacing:.26em;text-transform:uppercase;
+  color:var(--bone-dim);margin-bottom:26px;
+}
+h1{
+  font-family:var(--f-display);font-weight:800;
+  font-size:clamp(46px,10.5vw,132px);line-height:.92;letter-spacing:-.03em;
+  margin:0;text-wrap:balance;
+}
+h1 .lo{color:var(--accent);transition:color .6s ease}
+.hero p{
+  max-width:46ch;margin:30px 0 0;font-size:clamp(16px,1.9vw,20px);color:var(--bone-dim);
+}
+.scroll-cue{
+  position:absolute;bottom:38px;left:28px;display:flex;align-items:center;gap:14px;
+  font-size:11.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--bone-dim);
+}
+.cue-rail{width:70px;height:1px;background:var(--line);position:relative;overflow:hidden}
+.cue-rail::after{
+  content:"";position:absolute;inset:0;background:var(--accent);
+  transform:translateX(-100%);animation:cue 2.4s ease-in-out infinite;
+}
+@keyframes cue{0%{transform:translateX(-100%)}60%{transform:translateX(100%)}100%{transform:translateX(100%)}}
+
+/* ---------- press stage ---------- */
+.stage{height:420vh;position:relative}
+.sticky{position:sticky;top:0;height:100vh;display:flex;align-items:center;justify-content:center}
+canvas#press{width:100%;height:100%;display:block}
+.stage-hud{
+  position:absolute;left:28px;top:50%;transform:translateY(-50%);
+  display:flex;flex-direction:column;gap:14px;pointer-events:none;
+}
+.step{display:flex;align-items:center;gap:12px;opacity:.28;transition:opacity .35s ease}
+.step.on{opacity:1}
+.step i{
+  width:7px;height:7px;border-radius:50%;background:var(--bone-dim);flex:none;
+  transition:background .35s ease,transform .35s ease;
+}
+.step.on i{background:var(--accent);transform:scale(1.5)}
+.step span{
+  font-size:11px;letter-spacing:.2em;text-transform:uppercase;
+  font-variant-numeric:tabular-nums;white-space:nowrap;
+}
+.stage-meter{
+  position:absolute;right:28px;top:50%;transform:translateY(-50%);
+  width:2px;height:220px;background:var(--line);
+}
+.stage-meter i{display:block;width:100%;background:var(--accent);height:0%}
+@media (max-width:760px){.stage-hud,.stage-meter{display:none}}
+
+/* ---------- flavour picker ---------- */
+.picker{
+  position:absolute;bottom:34px;left:50%;transform:translateX(-50%);
+  display:flex;gap:8px;flex-wrap:wrap;justify-content:center;
+}
+.picker button{
+  font-family:var(--f-body);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--bone-dim);background:transparent;border:1px solid var(--line);
+  padding:9px 15px;border-radius:999px;cursor:pointer;transition:all .3s ease;
+}
+.picker button:hover{color:var(--bone);border-color:var(--bone-dim)}
+.picker button[aria-pressed="true"]{color:var(--void);background:var(--accent);border-color:var(--accent)}
+.picker button:focus-visible{outline:2px solid var(--bone);outline-offset:3px}
+
+/* ---------- sections ---------- */
+section.block{padding:120px 0 40px}
+h2{
+  font-family:var(--f-display);font-weight:600;
+  font-size:clamp(26px,4.4vw,46px);line-height:1.06;letter-spacing:-.02em;margin:0 0 18px;
+  text-wrap:balance;
+}
+.lede{max-width:56ch;color:var(--bone-dim);font-size:17px;margin:0 0 44px}
+
+.recipe{display:grid;gap:1px;background:var(--line);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+@media (min-width:820px){.recipe{grid-template-columns:repeat(4,1fr)}}
+.recipe > div{background:var(--void);padding:26px 22px 30px}
+.recipe b{
+  display:block;font-family:var(--f-display);font-size:34px;font-weight:600;
+  letter-spacing:-.02em;color:var(--accent);font-variant-numeric:tabular-nums;
+  transition:color .6s ease;
+}
+.recipe span{display:block;font-size:13px;color:var(--bone-dim);margin-top:8px;line-height:1.45}
+
+/* ---------- collection ---------- */
+.coll{display:grid;gap:16px}
+@media (min-width:760px){.coll{grid-template-columns:repeat(2,1fr)}}
+@media (min-width:1080px){.coll{grid-template-columns:repeat(4,1fr)}}
+.card{
+  background:var(--void-2);border:1px solid var(--line);border-radius:3px;
+  padding:0 0 22px;overflow:hidden;position:relative;
+}
+.card canvas{width:100%;height:230px;display:block}
+.card h3{
+  font-family:var(--f-display);font-weight:600;font-size:17px;letter-spacing:.02em;
+  margin:18px 22px 4px;
+}
+.card p{margin:0 22px;font-size:12.5px;color:var(--bone-dim);line-height:1.5}
+.card .tag{
+  display:inline-block;margin:14px 22px 0;font-size:10px;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--void);padding:4px 9px;border-radius:999px;
+}
+
+/* ---------- marketing blocks ---------- */
+.kpi{display:grid;gap:1px;background:var(--line);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+@media (min-width:700px){.kpi{grid-template-columns:repeat(3,1fr)}}
+@media (min-width:1040px){.kpi{grid-template-columns:repeat(5,1fr)}}
+.kpi>div{background:var(--void);padding:24px 20px 28px}
+.kpi b{display:block;font-family:var(--f-display);font-size:29px;font-weight:600;letter-spacing:-.02em;
+  color:var(--bone);font-variant-numeric:tabular-nums}
+.kpi span{display:block;font-size:12.5px;color:var(--bone-dim);margin-top:8px;line-height:1.45}
+
+.split{display:grid;gap:38px}
+@media (min-width:900px){.split{grid-template-columns:1.05fr .95fr;gap:64px}}
+.claim{border-left:2px solid var(--accent);padding-left:22px;margin:0 0 26px;transition:border-color .6s ease}
+.claim b{display:block;font-family:var(--f-display);font-size:clamp(38px,6vw,64px);font-weight:800;
+  line-height:1;letter-spacing:-.03em;color:var(--accent);font-variant-numeric:tabular-nums;transition:color .6s ease}
+.claim em{display:block;font-style:normal;font-size:14px;color:var(--bone-dim);margin-top:10px;max-width:34ch}
+
+.tbl{width:100%;border-collapse:collapse;font-size:14px}
+.tbl th,.tbl td{text-align:left;padding:12px 14px 12px 0;border-bottom:1px solid var(--line);vertical-align:top}
+.tbl th{font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--bone-dim);font-weight:500}
+.tbl td.n,.tbl th.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap;padding-right:0}
+.tbl tr:last-child td{border-bottom:0}
+.tbl tr.hi td{color:var(--accent);font-weight:600;transition:color .6s ease}
+.scrollx{overflow-x:auto}
+
+.lines{display:grid;gap:1px;background:var(--line);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+@media (min-width:820px){.lines{grid-template-columns:repeat(3,1fr)}}
+.lines>div{background:var(--void);padding:26px 22px 30px}
+.lines h4{font-family:var(--f-display);font-size:18px;font-weight:600;margin:0 0 4px}
+.lines .fmt{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--bone-dim)}
+.lines p{font-size:13.5px;color:var(--bone-dim);margin:14px 0 0;line-height:1.55}
+.lines .season{display:block;margin-top:14px;font-size:12px;font-weight:600}
+
+.tl{border-top:1px solid var(--line)}
+.tl>div{display:grid;gap:6px 26px;padding:20px 0;border-bottom:1px solid var(--line)}
+@media (min-width:760px){.tl>div{grid-template-columns:130px 1fr 1fr}}
+.tl dt{font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);
+  font-weight:600;transition:color .6s ease;margin:0}
+.tl b{font-family:var(--f-display);font-size:16px;font-weight:600}
+.tl p{margin:4px 0 0;font-size:13.5px;color:var(--bone-dim);line-height:1.5}
+
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 30px}
+.chips span{font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--bone-dim);
+  border:1px solid var(--line);border-radius:999px;padding:7px 13px}
+
+footer{border-top:1px solid var(--line);margin-top:110px;padding:32px 0 60px;
+  font-size:12.5px;color:var(--bone-dim)}
+footer p{margin:0 0 6px;max-width:70ch}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+
+@media (prefers-reduced-motion:reduce){
+  .stage{height:auto}
+  .sticky{position:static;height:70vh}
+  .cue-rail::after{animation:none;transform:translateX(0)}
+}
+</style>
+
+<div class="wrap">
+  <header class="hero">
+    <div class="eyebrow">Завод напитков «Велес» · Сыктывкар</div>
+    <h1>Отжим<br><span class="lo">начинается</span><br>со скролла</h1>
+    <p>Прокрутите страницу — и ягода попадёт под нож, под пресс и в банку. Это не видео: каждая капля считается заново под ваш скролл.</p>
+    <div class="scroll-cue"><span class="cue-rail"></span> листайте вниз</div>
+  </header>
+</div>
+
+<div class="stage" id="stage">
+  <div class="sticky">
+    <canvas id="press"></canvas>
+    <div class="stage-hud" id="hud">
+      <div class="step"><i></i><span>01 · Сбор</span></div>
+      <div class="step"><i></i><span>02 · Надрез</span></div>
+      <div class="step"><i></i><span>03 · Пресс</span></div>
+      <div class="step"><i></i><span>04 · Розлив</span></div>
+      <div class="step"><i></i><span>05 · Укупорка</span></div>
+    </div>
+    <div class="stage-meter"><i id="meter"></i></div>
+    <div class="picker" id="picker"></div>
+  </div>
+</div>
+
+<div class="wrap">
+  <section class="block">
+    <h2>Что вы только что отжали</h2>
+    <p class="lede">Цифры под конкретный вкус — они меняются вместе с выбором наверху, потому что это данные из технологической карты, а не украшение.</p>
+    <div class="recipe" id="recipe"></div>
+  </section>
+
+  <section class="block">
+    <h2>Позиционирование</h2>
+    <p class="lede">A-Live — единственный бренд группы без территориальной легенды. Мы переносим на него северный код в городском, безалкогольном регистре: не пафос тайги, а её свежесть.</p>
+    <div class="chips">
+      <span>18–40 лет</span><span>город</span><span>осознанное потребление</span>
+      <span>Сыктывкар · Ухта · СЗФО</span><span>0 % алкоголя</span><span>24 месяца срока</span>
+    </div>
+    <div class="split">
+      <div>
+        <div class="claim"><b>≈ 4,5 ₽</b><em>не заложено в цену каждой банки 0,45 л: сахар ниже порога 5 г на 100 мл, акциз на сахаросодержащие напитки не применяется</em></div>
+        <div class="claim"><b>≈ 6 000 ₽</b><em>та же разница в пересчёте на паллету из 1 344 банок — деньги, которых нет в цене конкурента</em></div>
+        <div class="claim"><b>64,5 ккал</b><em>в банке 0,45 л: вдвое легче массовых лимонадов. Сегодня это преимущество нигде не заявлено</em></div>
+      </div>
+      <div>
+        <h3 style="font-family:var(--f-display);font-size:19px;font-weight:600;margin:0 0 14px">Ключевая находка</h3>
+        <p style="color:var(--bone-dim);font-size:15px;margin:0 0 18px">По-коми <b style="color:var(--bone)">«ловъя» значит «живой»</b>. Название, придуманное как английское <em>alive</em>, читается по-коми ровно как то же самое слово. Бесплатный и неотчуждаемый мост между бренд-неймом и территорией.</p>
+        <p style="color:var(--bone-dim);font-size:15px;margin:0">Северная ягода вместо тропиков выводит продукт из прямого ценового сравнения: брусники и морошки нет ни у одного федерального игрока, а морошку невозможно культивировать промышленно — её только собирают.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <h2>Три линии — три канала</h2>
+    <p class="lede">Портфель сокращён с восьми SKU в одном формате до девяти в трёх линиях и двух форматах. Линии закрывают год целиком: FRESH проседает зимой, ENERGY — летом, BAR ровный.</p>
+    <div class="lines">
+      <div><h4>FRESH</h4><span class="fmt">банка 0,45 л · 4 SKU</span>
+        <p>Мохито и лимонады. Импульсная покупка: ретейл, магазины у дома, холодильники у кассы.</p>
+        <span class="season" style="color:#8FC24A">Сезон апрель — сентябрь</span></div>
+      <div><h4>BAR</h4><span class="fmt">slim 0,25 л · 3 SKU</span>
+        <p>Тоники и миксеры. Бары, рестораны, кальянные. Порция 250 мл рассчитана под коктейль, наценка заведения 3,5–4,5×.</p>
+        <span class="season" style="color:#5FB2AB">Спрос ровный весь год</span></div>
+      <div><h4>ENERGY</h4><span class="fmt">банка 0,45 л · 1 SKU</span>
+        <p>«ВЫН» — АЗС на трассах Сыктывкар — Ухта — Усинск, вахтовые посёлки, придорожная торговля.</p>
+        <span class="season" style="color:#E4667D">Несезонный, пик зимой</span></div>
+    </div>
+  </section>
+
+  <section class="block">
+    <h2>Экономика канала</h2>
+    <p class="lede">Цены и наценка по всей цепочке. Все значения с НДС, отгрузка самовывозом со склада в Сыктывкаре. Модель — подставляются фактические данные завода.</p>
+    <div class="scrollx">
+      <table class="tbl">
+        <thead><tr><th>Позиция</th><th>Формат</th><th class="n">Завод → дистрибьютор</th><th class="n">→ рознице</th><th class="n">Наценка дистр.</th><th class="n">РРЦ</th><th class="n">Доход с упаковки 12 шт</th></tr></thead>
+        <tbody>
+          <tr><td>Мохито FRESH</td><td>банка 0,45 л</td><td class="n">42 ₽</td><td class="n">56 ₽</td><td class="n">33 %</td><td class="n">79 ₽</td><td class="n">168 ₽</td></tr>
+          <tr><td>Мультипак FRESH</td><td>4 × 0,45 л</td><td class="n">160 ₽</td><td class="n">212 ₽</td><td class="n">33 %</td><td class="n">299 ₽</td><td class="n">—</td></tr>
+          <tr><td>Тоники BAR</td><td>slim 0,25 л</td><td class="n">38 ₽</td><td class="n">50 ₽</td><td class="n">32 %</td><td class="n">75 ₽</td><td class="n">144 ₽</td></tr>
+          <tr class="hi"><td>ENERGY «ВЫН»</td><td>банка 0,45 л</td><td class="n">52 ₽</td><td class="n">69 ₽</td><td class="n">33 %</td><td class="n">99 ₽</td><td class="n">204 ₽</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="color:var(--bone-dim);font-size:14px;margin:26px 0 0;max-width:62ch">Валовой доход дистрибьютора с паллеты: <b style="color:var(--bone)">18 800 ₽</b> на мохито и <b style="color:var(--bone)">22 800 ₽</b> на энергетике при одинаковом месте на паллете. Объём делает FRESH, маржу — ENERGY.</p>
+  </section>
+
+  <section class="block">
+    <h2>Календарь 2026</h2>
+    <p class="lede">FRESH продаётся апрель — сентябрь, поэтому релонч обязан попасть во второй квартал. ENERGY несезонен и запускается в четвёртом, когда линия свободна от пикового FRESH.</p>
+    <dl class="tl">
+      <div><dt>IV кв. 2025</dt><div><b>Подготовка</b><p>Утверждение техкарт ТК-01…ТК-06, редизайн банок, слепые и домашние тесты двух новых вкусов.</p></div><div><p>Прайс-лист, переговоры о полке, правка блокирующей опечатки на макете тоника.</p></div></div>
+      <div><dt>I кв. 2026</dt><div><b>Декларирование</b><p>Декларации на новые SKU, заказ оснастки slim 0,25 л, промышленные варки FRESH.</p></div><div><p>Пресейл HoReCa, подготовка кампании «Ловъя значит живой».</p></div></div>
+      <div><dt>II кв. 2026</dt><div><b>Релонч FRESH</b><p>Четыре вкуса в новой упаковке, включая бруснику и морошку.</p></div><div><p>Кампания, сэмплинг в пекарне «Нянь Мунам», выход на маркетплейсы мультипаком.</p></div></div>
+      <div><dt>III кв. 2026</dt><div><b>Линия BAR</b><p>Три тоника в slim 0,25 л, пик сезона и максимальная загрузка линии.</p></div><div><p>Барменский конкурс «Северный микс», туркоридор Якша — Маньпупунёр.</p></div></div>
+      <div><dt>IV кв. 2026</dt><div><b>Запуск ENERGY «ВЫН»</b><p>Энергетик и опциональный сезонник Облепиха-имбирь.</p></div><div><p>Программа «Вахта на связи»: АЗС, подрядчики, трассы. Новогодние наборы BAR.</p></div></div>
+    </dl>
+  </section>
+
+  <section class="block">
+    <h2>Цели года</h2>
+    <p class="lede">Маркетинговый бюджет базового сценария — 3,85 млн ₽, около 12 % от выручки в год перезапуска с выходом на 5–6 % в 2027.</p>
+    <div class="kpi">
+      <div><b>600 000</b><span>банок отгрузки за год — около 446 паллет</span></div>
+      <div><b>15–20 %</b><span>доля ENERGY в объёме портфеля</span></div>
+      <div><b>45 %</b><span>нумерическая дистрибуция в Республике Коми</span></div>
+      <div><b>120</b><span>точек HoReCa с линией BAR</span></div>
+      <div><b>≥ 28 %</b><span>валовая маржа портфеля</span></div>
+    </div>
+  </section>
+
+  <section class="block">
+    <h2>Легенды России</h2>
+    <p class="lede">Восемь брендов, один код: тёмный фон, золото, гравюрный герой в арочном медальоне и региональный орнаментальный поясок. Медальон — общий каркас, различают территория и герой.</p>
+    <div class="coll" id="coll"></div>
+    <p style="color:var(--bone-dim);font-size:14px;margin:30px 0 0;max-width:70ch">Восемь брендов, один брендблок: сеть получает готовую полку, покупатель — коллекцию. График запусков: сентябрь 2026 — ХАН-АЛТАЙ, ноябрь 2026 — ЖАР-ПТИЦА, январь 2027 — ЖИВА, лето 2027 — МАЛАХИТНИЦА. В резерве САМПО (Карелия) и БАРГУЗИН (Байкал).</p>
+  </section>
+
+  <footer>
+    <p>Демонстрация принципа: анимация построена на скролле, все кадры считаются в canvas в реальном времени, без видео и без внешних изображений.</p>
+    <p>© «Велес» · концепт-макет для согласования. Чрезмерное употребление алкоголя вредит вашему здоровью. Энергетические напитки не продаются несовершеннолетним.</p>
+  </footer>
+</div>
+
+<script>
+(() => {
+  "use strict";
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  const FLAVOURS = [
+    { id:"brusnika", name:"Брусника-Лайм", accent:"#C4283F", juice:"#B02338",
+      berry:"#C4283F", berryDark:"#7C1122", wedge:"#8FBF43",
+      facts:[["3,8 г","сахара на 100 мл — ниже акцизного порога"],
+             ["68","ккал в банке 0,45 л"],
+             ["4,0 %","массовая доля сока"],
+             ["24","месяца срок годности"]] },
+    { id:"moroshka", name:"Морошка", accent:"#E0A233", juice:"#D08F1E",
+      berry:"#E6A431", berryDark:"#A96A0C", wedge:"#6FA84A",
+      facts:[["3,7 г","сахара на 100 мл"],
+             ["67","ккал в банке 0,45 л"],
+             ["1,5 %","массовая доля сока морошки"],
+             ["18","месяцев — до протокола стабильности"]] },
+    { id:"original", name:"Оригинальный", accent:"#8FC24A", juice:"#7FB03A",
+      berry:"#9ACB57", berryDark:"#5E8A26", wedge:"#C7E08A",
+      facts:[["3,6 г","сахара на 100 мл"],
+             ["64,5","ккал в банке 0,45 л"],
+             ["1,7 %","сок лайма"],
+             ["0,45 %","массовая доля CO₂"]] },
+    { id:"vyn", name:"ENERGY «ВЫН»", accent:"#E4667D", juice:"#6E1428",
+      berry:"#C4283F", berryDark:"#5C0E1E", wedge:"#8FBF43",
+      facts:[["0 г","сахара — на подсластителях"],
+             ["144","мг кофеина в банке"],
+             ["18 мг","экстракта родиолы розовой"],
+             ["2,5 %","сок брусники"]] }
+  ];
+  let cur = 0;
+
+  /* ---------- flavour picker ---------- */
+  const picker = document.getElementById("picker");
+  FLAVOURS.forEach((f, i) => {
+    const b = document.createElement("button");
+    b.textContent = f.name;
+    b.setAttribute("aria-pressed", i === 0 ? "true" : "false");
+    b.addEventListener("click", () => setFlavour(i));
+    picker.appendChild(b);
+  });
+
+  const recipe = document.getElementById("recipe");
+  function paintFacts(){
+    const f = FLAVOURS[cur];
+    recipe.innerHTML = "";
+    f.facts.forEach(([v, s]) => {
+      const d = document.createElement("div");
+      d.innerHTML = `<b></b><span></span>`;
+      d.querySelector("b").textContent = v;
+      d.querySelector("span").textContent = s;
+      recipe.appendChild(d);
+    });
+  }
+  function setFlavour(i){
+    cur = i;
+    document.documentElement.style.setProperty("--accent", FLAVOURS[i].accent);
+    [...picker.children].forEach((b, k) => b.setAttribute("aria-pressed", k === i ? "true" : "false"));
+    paintFacts();
+    draw();
+  }
+
+  /* ---------- press canvas ---------- */
+  const cv = document.getElementById("press");
+  const ctx = cv.getContext("2d");
+  const S = 1000;                       // логическая сцена 1000×1000
+  let dpr = 1, W = 0, Hh = 0, sc = 1, ox = 0, oy = 0;
+
+  function resize(){
+    dpr = Math.min(devicePixelRatio || 1, 2);
+    const r = cv.getBoundingClientRect();
+    W = r.width; Hh = r.height;
+    cv.width = Math.round(W * dpr); cv.height = Math.round(Hh * dpr);
+    sc = Math.min(W, Hh) / S;
+    ox = (W - S * sc) / 2; oy = (Hh - S * sc) / 2;
+    draw();
+  }
+
+  const lerp = (a,b,t) => a + (b - a) * t;
+  const clamp = (v,a,b) => Math.min(b, Math.max(a, v));
+  // нормируем прогресс внутри отрезка [a,b] и сглаживаем
+  const seg = (p,a,b) => clamp((p - a) / (b - a), 0, 1);
+  const ease = t => t < .5 ? 2*t*t : 1 - Math.pow(-2*t+2, 2)/2;
+
+  // детерминированный псевдослучайный ряд — одинаковый при каждой перерисовке
+  function rnd(i){ const x = Math.sin(i * 127.1 + 311.7) * 43758.5453; return x - Math.floor(x); }
+
+  const FRUIT = Array.from({length:8}, (_,i) => ({
+    x: 300 + rnd(i) * 400,
+    delay: rnd(i + 40) * .10,
+    r: 34 + rnd(i + 80) * 22,
+    spin: (rnd(i + 120) - .5) * 1.4
+  }));
+
+  const CAN = { x:500, top:560, w:190, h:330, r:26 };
+
+  function drawBerry(x, y, r, rot, f, cutT){
+    ctx.save(); ctx.translate(x, y); ctx.rotate(rot);
+    const half = r * cutT * 1.05;          // расхождение половинок после надреза
+    for (const s of [-1, 1]){
+      ctx.save(); ctx.translate(0, s * half);
+      ctx.beginPath();
+      if (cutT > 0.02){
+        // половинка: полукруг плоской стороной к линии реза
+        ctx.arc(0, 0, r, s > 0 ? 0 : Math.PI, s > 0 ? Math.PI : Math.PI*2);
+        ctx.closePath();
+      } else {
+        ctx.arc(0, 0, r, 0, Math.PI*2);
+      }
+      const g = ctx.createRadialGradient(-r*.3, -r*.35, r*.1, 0, 0, r);
+      g.addColorStop(0, f.berry); g.addColorStop(1, f.berryDark);
+      ctx.fillStyle = g; ctx.fill();
+      if (cutT > 0.02){                     // мякоть на срезе
+        ctx.beginPath();
+        ctx.arc(0, 0, r*.82, s > 0 ? 0 : Math.PI, s > 0 ? Math.PI : Math.PI*2);
+        ctx.closePath();
+        ctx.fillStyle = "rgba(255,255,255,.18)"; ctx.fill();
+      }
+      ctx.restore();
+    }
+    ctx.restore();
+  }
+
+  function drawCan(fillT, capT, labelT, f){
+    const {x, top, w, h, r} = CAN, L = x - w/2;
+    ctx.save();
+    // корпус
+    ctx.beginPath();
+    ctx.moveTo(L, top + r); ctx.quadraticCurveTo(L, top, L + r, top);
+    ctx.lineTo(L + w - r, top); ctx.quadraticCurveTo(L + w, top, L + w, top + r);
+    ctx.lineTo(L + w, top + h - r); ctx.quadraticCurveTo(L + w, top + h, L + w - r, top + h);
+    ctx.lineTo(L + r, top + h); ctx.quadraticCurveTo(L, top + h, L, top + h - r);
+    ctx.closePath();
+    const gm = ctx.createLinearGradient(L, 0, L + w, 0);
+    gm.addColorStop(0, "#4C5450"); gm.addColorStop(.28, "#C9D0CB");
+    gm.addColorStop(.5, "#8E9691"); gm.addColorStop(.78, "#B6BDB8");
+    gm.addColorStop(1, "#434A46");
+    ctx.fillStyle = gm; ctx.fill();
+    ctx.save(); ctx.clip();
+    // сок внутри
+    if (fillT > 0){
+      const fh = h * fillT;
+      ctx.fillStyle = f.juice;
+      ctx.fillRect(L, top + h - fh, w, fh);
+      ctx.fillStyle = "rgba(255,255,255,.14)";
+      ctx.fillRect(L, top + h - fh, w, 7);
+    }
+    // этикетка наматывается
+    if (labelT > 0){
+      const lw = w * labelT;
+      ctx.fillStyle = f.accent;
+      ctx.fillRect(L, top + 96, lw, 132);
+      ctx.globalAlpha = clamp((labelT - .55) / .45, 0, 1);
+      ctx.fillStyle = "#0A0D0B";
+      ctx.font = "600 27px 'Unbounded', sans-serif";
+      ctx.textAlign = "center"; ctx.textBaseline = "middle";
+      ctx.fillText("a-Live", x, top + 146);
+      ctx.font = "500 14px 'Golos Text', sans-serif";
+      ctx.fillText(f.name.toUpperCase(), x, top + 186);
+      ctx.globalAlpha = 1;
+    }
+    ctx.restore();
+    // крышка
+    if (capT > 0){
+      ctx.globalAlpha = capT;
+      ctx.fillStyle = "#D6DCD7";
+      ctx.fillRect(L - 6, top - 20 * capT, w + 12, 22 * capT);
+      ctx.globalAlpha = 1;
+    }
+    ctx.restore();
+  }
+
+  let progress = 0;
+
+  function draw(){
+    if (!ctx) return;
+    const f = FLAVOURS[cur], p = progress;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.clearRect(0, 0, W, Hh);
+    ctx.save();
+    ctx.translate(ox, oy); ctx.scale(sc, sc);
+
+    const yCut = 360;                                  // линия ножа
+    const fallT = seg(p, .02, .26);
+    const cutT  = seg(p, .27, .38);
+    const pressT= seg(p, .38, .56);
+    const pourT = seg(p, .46, .80);
+    const capT  = seg(p, .82, .90);
+    const labT  = seg(p, .86, .97);
+
+    // ------- падающие ягоды -------
+    FRUIT.forEach((fr, i) => {
+      const t = clamp((fallT - fr.delay) / (1 - fr.delay), 0, 1);
+      if (t <= 0) return;
+      const y = lerp(-120, yCut, ease(t));
+      const squash = 1 - pressT * .40;
+      const spread = 1 + pressT * .26;
+      // остаток мякоти уходит не в прозрачность, а в размер: ягода «выжимается»
+      const shrink = pourT > .48 ? clamp(1 - (pourT - .48) / .30, 0, 1) : 1;
+      if (shrink <= .02) return;
+      ctx.globalAlpha = .35 + .65 * shrink;
+      ctx.save();
+      ctx.translate(fr.x, y + pressT * 44);
+      ctx.scale(spread * (.25 + .75 * shrink), squash * (.25 + .75 * shrink));
+      // под прессом половинки снова сходятся — сок уже ушёл
+      drawBerry(0, 0, fr.r, fr.spin * t, f, cutT * (1 - pressT * .72));
+      ctx.restore();
+      ctx.globalAlpha = 1;
+    });
+
+    // ------- нож -------
+    if (cutT > 0 && cutT < 1){
+      const bx = lerp(-60, S + 60, cutT);
+      ctx.strokeStyle = "rgba(242,239,230,.85)"; ctx.lineWidth = 2;
+      ctx.beginPath(); ctx.moveTo(bx - 340, yCut); ctx.lineTo(bx, yCut); ctx.stroke();
+      ctx.fillStyle = "#F2EFE6";
+      ctx.beginPath();
+      ctx.moveTo(bx, yCut - 13); ctx.lineTo(bx + 46, yCut); ctx.lineTo(bx, yCut + 13);
+      ctx.closePath(); ctx.fill();
+    }
+
+    // ------- пресс -------
+    if (pressT > 0){
+      const py = lerp(-40, yCut + 8, ease(pressT));
+      ctx.fillStyle = "#1A211D"; ctx.strokeStyle = "#39433D"; ctx.lineWidth = 2;
+      ctx.fillRect(230, py - 54, 540, 54); ctx.strokeRect(230, py - 54, 540, 54);
+      ctx.fillStyle = "#39433D"; ctx.fillRect(478, py - 190, 44, 140);
+    }
+
+    // ------- струя и капли -------
+    if (pourT > 0 && pourT < 1){
+      const top = yCut + 30, bot = CAN.top + 14;
+      const w0 = lerp(4, 15, Math.sin(pourT * Math.PI));
+      ctx.fillStyle = f.juice;
+      ctx.beginPath();
+      ctx.moveTo(CAN.x - w0, top); ctx.lineTo(CAN.x + w0, top);
+      ctx.lineTo(CAN.x + w0 * .55, bot); ctx.lineTo(CAN.x - w0 * .55, bot);
+      ctx.closePath(); ctx.fill();
+      for (let i = 0; i < 16; i++){
+        const ph = (pourT * 2.4 + rnd(i + 200)) % 1;
+        const dy = lerp(top, bot, ph);
+        const dx = CAN.x + (rnd(i + 300) - .5) * 62 * (1 - ph);
+        ctx.globalAlpha = .55 * (1 - ph);
+        ctx.beginPath(); ctx.arc(dx, dy, 3 + rnd(i + 400) * 4, 0, Math.PI*2);
+        ctx.fillStyle = f.juice; ctx.fill();
+        ctx.globalAlpha = 1;
+      }
+    }
+
+    drawCan(seg(p, .50, .84), capT, labT, f);
+    ctx.restore();
+
+    // ------- HUD -------
+    const steps = document.querySelectorAll(".step");
+    const idx = p < .27 ? 0 : p < .38 ? 1 : p < .50 ? 2 : p < .84 ? 3 : 4;
+    steps.forEach((s, i) => s.classList.toggle("on", i === idx));
+    const m = document.getElementById("meter");
+    if (m) m.style.height = (p * 100).toFixed(1) + "%";
+  }
+
+  const stage = document.getElementById("stage");
+  function onScroll(){
+    const r = stage.getBoundingClientRect();
+    const total = stage.offsetHeight - innerHeight;
+    progress = clamp((-r.top) / (total || 1), 0, 1);
+    draw();
+  }
+
+  /* ---------- collection cards ---------- */
+  const COLL = [
+    { n:"ХАН-АЛТАЙ", d:"Медовуха и сидр · Алтай", t:"Сентябрь 2026",
+      bg:"#123A3E", gold:"#C9A24A", hero:"peaks" },
+    { n:"ЖАР-ПТИЦА", d:"Энергетики · 18+", t:"Ноябрь 2026",
+      bg:"#0C0C0C", gold:"#D79A32", hero:"feather" },
+    { n:"ЖИВА", d:"Морсы · 0,0 %", t:"Январь 2027",
+      bg:"#12224A", gold:"#BFCBD6", hero:"ladle" },
+    { n:"МАЛАХИТНИЦА", d:"Медовуха и сидр · Урал", t:"Лето 2027",
+      bg:"#123D2C", gold:"#C08A54", hero:"lizard" }
+  ];
+  const coll = document.getElementById("coll");
+  COLL.forEach(c => {
+    const card = document.createElement("div"); card.className = "card";
+    const cvs = document.createElement("canvas");
+    card.appendChild(cvs);
+    card.insertAdjacentHTML("beforeend",
+      `<span class="tag" style="background:${c.gold}">${c.t}</span>
+       <h3></h3><p></p>`);
+    card.querySelector("h3").textContent = c.n;
+    card.querySelector("p").textContent = c.d;
+    coll.appendChild(card);
+    drawMedallion(cvs, c);
+  });
+
+  function drawMedallion(cvs, c){
+    const d = Math.min(devicePixelRatio || 1, 2);
+    const w = cvs.clientWidth || 280, h = 230;
+    cvs.width = w * d; cvs.height = h * d;
+    const g = cvs.getContext("2d");
+    g.setTransform(d, 0, 0, d, 0, 0);
+    g.fillStyle = c.bg; g.fillRect(0, 0, w, h);
+    const cx = w / 2, cy = h / 2 - 6, aw = 74, ah = 104;
+    // арочный медальон — общий каркас коллекции
+    g.strokeStyle = c.gold; g.lineWidth = 2;
+    for (const k of [0, 7]){
+      g.beginPath();
+      g.moveTo(cx - aw + k, cy + ah - k);
+      g.lineTo(cx - aw + k, cy - ah * .18);
+      g.quadraticCurveTo(cx - aw + k, cy - ah + k, cx, cy - ah + k);
+      g.quadraticCurveTo(cx + aw - k, cy - ah + k, cx + aw - k, cy - ah * .18);
+      g.lineTo(cx + aw - k, cy + ah - k);
+      g.closePath();
+      g.globalAlpha = k ? .45 : 1; g.stroke(); g.globalAlpha = 1;
+    }
+    g.save(); g.translate(cx, cy); g.strokeStyle = c.gold; g.lineWidth = 1.7;
+    if (c.hero === "peaks"){
+      g.beginPath(); g.moveTo(-52, 46); g.lineTo(-16, -18); g.lineTo(4, 8);
+      g.lineTo(26, -34); g.lineTo(56, 46); g.closePath(); g.stroke();
+      g.beginPath(); g.moveTo(-22, -46); g.quadraticCurveTo(0, -60, 22, -46);
+      g.moveTo(-9, -50); g.lineTo(0, -40); g.lineTo(9, -50); g.stroke();
+    } else if (c.hero === "feather"){
+      g.beginPath(); g.moveTo(0, 56); g.quadraticCurveTo(-30, 4, -8, -50);
+      g.quadraticCurveTo(22, -8, 0, 56); g.stroke();
+      for (let i = -4; i <= 4; i++){
+        g.beginPath(); g.moveTo(0, i * 11 + 6);
+        g.lineTo(i % 2 ? -19 : 19, i * 11 - 4); g.stroke();
+      }
+      g.beginPath(); g.arc(-2, -26, 8, 0, Math.PI*2); g.stroke();
+    } else if (c.hero === "ladle"){
+      g.beginPath(); g.moveTo(-40, 6); g.quadraticCurveTo(-40, 34, 0, 34);
+      g.quadraticCurveTo(40, 34, 40, 6); g.quadraticCurveTo(40, -14, 16, -14);
+      g.stroke();
+      g.beginPath(); g.moveTo(-40, 6); g.quadraticCurveTo(-52, -16, -30, -26);
+      g.quadraticCurveTo(-14, -32, -16, -14); g.stroke();
+      for (let i = 0; i < 3; i++){
+        g.beginPath(); g.moveTo(-10 + i * 10, 36); g.lineTo(-14 + i * 10, 62); g.stroke();
+      }
+    } else {
+      g.beginPath(); g.moveTo(-44, 34); g.quadraticCurveTo(-6, 26, 2, -6);
+      g.quadraticCurveTo(8, -32, 34, -36); g.stroke();
+      for (let i = 0; i < 4; i++){
+        const t = i / 3, x = lerp(-40, 20, t), y = lerp(30, -12, t);
+        g.beginPath(); g.moveTo(x, y); g.lineTo(x - 12, y + 15); g.stroke();
+        g.beginPath(); g.moveTo(x, y); g.lineTo(x + 11, y + 16); g.stroke();
+      }
+      g.beginPath(); g.moveTo(28, -44); g.lineTo(32, -52); g.lineTo(36, -44);
+      g.lineTo(40, -52); g.lineTo(44, -44); g.stroke();
+    }
+    g.restore();
+    // орнаментальный поясок
+    g.strokeStyle = c.gold; g.globalAlpha = .7; g.lineWidth = 1.2;
+    for (let x = 16; x < w - 16; x += 15){
+      g.beginPath(); g.moveTo(x, h - 20); g.lineTo(x + 7.5, h - 27);
+      g.lineTo(x + 15, h - 20); g.stroke();
+    }
+    g.globalAlpha = 1;
+  }
+
+  addEventListener("resize", () => { resize(); COLL.forEach((c, i) =>
+    drawMedallion(coll.children[i].querySelector("canvas"), c)); });
+  addEventListener("scroll", onScroll, { passive:true });
+  paintFacts(); resize(); onScroll();
+  if (reduce){ progress = 1; draw(); }
+})();
+</script>
