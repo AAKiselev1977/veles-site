@@ -561,7 +561,8 @@ footer p{margin:0 0 6px;max-width:70ch}
 
     // ------- HUD -------
     const steps = document.querySelectorAll(".step");
-    const idx = p < .27 ? 0 : p < .38 ? 1 : p < .50 ? 2 : p < .84 ? 3 : 4;
+    // шаг берём из тех же отрезков, что и рисование, иначе подсветка расходится с картинкой
+    const idx = capT > 0 ? 4 : pourT > 0 ? 3 : pressT > 0 ? 2 : cutT > 0 ? 1 : 0;
     steps.forEach((s, i) => s.classList.toggle("on", i === idx));
     const m = document.getElementById("meter");
     if (m) m.style.height = (p * 100).toFixed(1) + "%";
