@@ -68,7 +68,7 @@ footer p{margin:0 0 6px;max-width:78ch}
 
 <header>
   <div class="wrap">
-    <div class="eyebrow">ПАРМА · кубическая бутылка · 4 грани</div>
+    <div class="eyebrow">ПАРМА · кубическая бутылка</div>
     <h1>Наклоните бутылку — напиток останется на месте</h1>
     <p class="lede">Здесь вращается сама бутылка, а не камера. Поверхность напитка держит горизонт и плещется при повороте, как настоящая жидкость. Тяните вбок, чтобы повернуть, и вверх-вниз, чтобы наклонить. Колесо приближает.</p>
     <div class="picker" id="picker"></div>
@@ -100,20 +100,19 @@ footer p{margin:0 0 6px;max-width:78ch}
         <div><dt>Сечение</dt><dd>квадрат, фаска 4 мм</dd></div>
         <div><dt>Стенка</dt><dd>3 мм, дно 14 мм</dd></div>
         <div><dt>Укупорка</dt><dd>винтовая, венчик 28 мм</dd></div>
-        <div><dt>Этикетка</dt><dd>50 × 93 мм, 4 грани</dd></div>
+        <div><dt>Этикетка</dt><dd>50 × 93 мм, фас и оборот</dd></div>
       </dl>
       <div class="files">
         <h3>Файлы</h3>
         <ul>
-          <li><a id="dl-front" href="#" download>Этикетка · фас · SVG</a><span>50 × 93 мм обрезной, вылет 3 мм, 1 шт. на бутылку</span></li>
-          <li><a id="dl-side" href="#" download>Этикетка · бок · SVG</a><span>левая и правая грани одинаковы, 2 шт. на бутылку</span></li>
+          <li><a id="dl-front" href="#" download>Этикетка · фас · SVG</a><span>50 × 93 мм обрезной, вылет 3 мм</span></li>
           <li><a id="dl-back" href="#" download>Этикетка · оборот · SVG</a><span>состав, сведения о напитке и QR</span></li>
           <li><a href="parma-3d/files/parma-butylka.stl" download>Корпус для 3D-печати · STL</a><span>60 × 60 × 249 мм, стенка 3 мм, дно 14 мм</span></li>
           <li><a href="parma-3d/files/parma-kryshka.stl" download>Колпачок для 3D-печати · STL</a><span>32 × 32 × 40 мм, с накаткой</span></li>
           <li><a href="parma-3d/files/README-pechat.txt" download>Памятка по печати</a><span>материал, поддержки, зазор посадки</span></li>
         </ul>
       </div>
-      <p class="note">Этикетка занимает все четыре грани: фас, две одинаковые боковые и оборот со сведениями и QR. Геометрия строится по чертежу прямо в браузере, а плоскость среза напитка задана в мировых координатах — поэтому при любом наклоне поверхность остаётся горизонтальной.</p>
+      <p class="note">Этикетки только на фасе и обороте: боковые грани оставлены чистым стеклом, сквозь них виден напиток. Геометрия строится по чертежу прямо в браузере, а плоскость среза напитка задана в мировых координатах — поэтому при любом наклоне поверхность остаётся горизонтальной.</p>
     </aside>
   </div>
 </div>
@@ -346,17 +345,15 @@ capRings.push(ringCircle(CAP_TOP - 0.002, CAP_R * 0.98));
 capRings.push(ringCircle(CAP_TOP, CAP_R * 0.88));
 put(loft(capRings, false, true), capMat);
 
-// Четыре грани квадратной бутылки: фас, два одинаковых бока и оборот.
-// Материалов три — боковые грани делят один.
+// Этикетки только на фасе и обороте: боковые грани оставлены чистым стеклом,
+// сквозь них виден сам напиток.
 const LAB_W = W * 0.84, LAB_CY = 0.0955;      // ширина и центр по эталону
 const mkLab = () => new THREE.MeshStandardMaterial({
   color:0xffffff, roughness:0.60, metalness:0, envMapIntensity:1.1 });
-const labMat = { front: mkLab(), side: mkLab(), back: mkLab() };
+const labMat = { front: mkLab(), back: mkLab() };
 const FACES = [
   { kind:"front", n:[0, 0,  1], rot: 0 },
   { kind:"back",  n:[0, 0, -1], rot: Math.PI },
-  { kind:"side",  n:[ 1, 0, 0], rot: Math.PI / 2 },
-  { kind:"side",  n:[-1, 0, 0], rot: -Math.PI / 2 },
 ];
 const labMeshes = FACES.map(f => {
   const m = new THREE.Mesh(new THREE.PlaneGeometry(1, 1), labMat[f.kind]);
@@ -368,7 +365,7 @@ const labMeshes = FACES.map(f => {
 
 const loader = new THREE.TextureLoader();
 function setLabels(id){
-  for (const kind of ["front", "side", "back"])
+  for (const kind of ["front", "back"])
     loader.load(`parma-3d/labels/${id}-${kind}.png`, t => {
       t.colorSpace = THREE.SRGBColorSpace;
       t.anisotropy = renderer.capabilities.getMaxAnisotropy();
@@ -440,7 +437,7 @@ function pick(i){
   document.getElementById("sub").textContent = d.sub;
   document.getElementById("comp").textContent = d.comp;
   document.getElementById("abv").textContent = d.abv;
-  for (const kind of ["front", "side", "back"]){
+  for (const kind of ["front", "back"]){
     const a = document.getElementById("dl-" + kind);
     a.href = `parma-3d/files/parma-etiketka-${d.id}-${kind}.svg`;
     a.setAttribute("download", a.href.split("/").pop());
