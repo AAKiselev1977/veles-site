@@ -3,18 +3,15 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>ПАРМА — 3D-модели бутылки</title>
-<meta name="description" content="Интерактивный просмотр 3D-моделей кубической бутылки ПАРМА: вращение, приближение, просмотр в дополненной реальности.">
+<title>ПАРМА — 3D-модель бутылки</title>
+<meta name="description" content="Интерактивная 3D-модель кубической бутылки ПАРМА: наклоняйте бутылку, напиток держит горизонт и плещется.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=PT+Serif:wght@400;700&family=Golos+Text:wght@400;500;600&display=swap">
-<script type="module" src="https://unpkg.com/@google/model-viewer@3.5.0/dist/model-viewer.min.js"></script>
 <style>
 :root{
-  --spruce:#16352A; --spruce-2:#1E4433; --bone:#EFE7D6; --bone-dim:#A8B3A2;
-  --brass:#A98A4A; --line:#2A4A38;
-  --pera:#2E6B45; --voypel:#23244F; --zarni:#B8791A;
-  --accent:var(--pera);
+  --spruce:#16352A; --bone:#EFE7D6; --bone-dim:#A8B3A2; --brass:#A98A4A; --line:#2A4A38;
+  --pera:#2E6B45; --voypel:#23244F; --zarni:#B8791A; --accent:var(--pera);
   --f-head:"PT Serif",Georgia,serif; --f-body:"Golos Text","Helvetica Neue",Arial,sans-serif;
 }
 *{box-sizing:border-box}
@@ -22,59 +19,47 @@ body{margin:0;background:var(--spruce);color:var(--bone);font-family:var(--f-bod
   font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
 .wrap{max-width:1180px;margin:0 auto;padding:0 26px}
 a{color:var(--brass)}
-h1{font-family:var(--f-head);font-size:clamp(28px,4.4vw,46px);line-height:1.1;margin:0 0 12px}
+h1{font-family:var(--f-head);font-size:clamp(27px,4.2vw,44px);line-height:1.1;margin:0 0 12px}
 .eyebrow{font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--brass);
   font-weight:600;margin-bottom:18px}
-.lede{max-width:62ch;color:var(--bone-dim);margin:0 0 34px}
-header{padding:56px 0 26px;border-bottom:1px solid var(--line)}
-
-.picker{display:flex;gap:10px;flex-wrap:wrap;margin:26px 0}
-.picker button{
-  font-family:var(--f-body);font-size:13px;letter-spacing:.08em;font-weight:600;
+.lede{max-width:60ch;color:var(--bone-dim);margin:0 0 30px}
+header{padding:52px 0 24px;border-bottom:1px solid var(--line)}
+.picker{display:flex;gap:10px;flex-wrap:wrap;margin:24px 0}
+.picker button,.tools button{
+  font-family:var(--f-body);font-size:13px;letter-spacing:.06em;font-weight:600;
   color:var(--bone-dim);background:transparent;border:1px solid var(--line);
-  padding:11px 20px;border-radius:2px;cursor:pointer;transition:all .25s ease;
-}
-.picker button:hover{color:var(--bone);border-color:var(--bone-dim)}
+  padding:11px 20px;border-radius:2px;cursor:pointer;transition:all .25s ease}
+.picker button:hover,.tools button:hover{color:var(--bone);border-color:var(--bone-dim)}
 .picker button[aria-pressed="true"]{color:var(--spruce);background:var(--accent);border-color:var(--accent)}
-.picker button:focus-visible{outline:2px solid var(--brass);outline-offset:3px}
-
-.stage{display:grid;gap:28px;padding:34px 0 60px}
-@media (min-width:940px){.stage{grid-template-columns:1.35fr .65fr;gap:48px;align-items:start}}
-.viewer{
-  position:relative;background:linear-gradient(180deg,#20402F 0%,#132A20 100%);
+.stage{display:grid;gap:28px;padding:30px 0 56px}
+@media (min-width:940px){.stage{grid-template-columns:1.35fr .65fr;gap:46px;align-items:start}}
+#view{position:relative;background:radial-gradient(120% 90% at 50% 25%,#27503B 0%,#0F2419 100%);
   border:1px solid var(--line);border-radius:3px;overflow:hidden;
-}
-model-viewer{width:100%;height:min(74vh,720px);display:block;--poster-color:transparent}
-.hint{
-  position:absolute;left:16px;bottom:14px;font-size:11.5px;letter-spacing:.1em;
-  text-transform:uppercase;color:var(--bone-dim);pointer-events:none;opacity:.85;
-}
+  height:min(76vh,760px);min-height:440px;cursor:grab}
+#view.dragging{cursor:grabbing}
+#view canvas{display:block;width:100%;height:100%}
+.hint{position:absolute;left:16px;bottom:14px;font-size:11.5px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--bone-dim);pointer-events:none;opacity:.85}
 .tools{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
-.tools button,.tools a{
-  font-family:var(--f-body);font-size:12px;font-weight:600;color:var(--bone-dim);
-  background:transparent;border:1px solid var(--line);padding:9px 14px;border-radius:2px;
-  cursor:pointer;text-decoration:none;transition:all .25s ease;
-}
-.tools button:hover,.tools a:hover{color:var(--bone);border-color:var(--bone-dim)}
+.tools button{padding:9px 14px;font-size:12px}
 .tools button[aria-pressed="true"]{color:var(--spruce);background:var(--brass);border-color:var(--brass)}
-
 h2{font-family:var(--f-head);font-size:22px;margin:0 0 6px}
-.sub{font-size:13px;color:var(--brass);letter-spacing:.06em;margin:0 0 20px}
+.sub{font-size:13px;color:var(--brass);margin:0 0 20px}
 dl.spec{margin:0;border-top:1px solid var(--line)}
 dl.spec>div{display:flex;justify-content:space-between;gap:18px;padding:11px 0;
   border-bottom:1px solid var(--line);font-size:14px}
 dl.spec dt{color:var(--bone-dim);margin:0}
 dl.spec dd{margin:0;text-align:right;font-variant-numeric:tabular-nums}
-.note{font-size:13px;color:var(--bone-dim);margin-top:22px;line-height:1.55}
-.files{margin-top:28px;border-top:1px solid var(--line);padding-top:20px}
-.files h3{font-family:var(--f-head);font-size:17px;margin:0 0 12px}
+.files{margin-top:26px;border-top:1px solid var(--line);padding-top:18px}
+.files h3{font-family:var(--f-head);font-size:17px;margin:0 0 10px}
 .files ul{list-style:none;margin:0;padding:0}
 .files li{padding:9px 0;border-bottom:1px solid var(--line)}
 .files li:last-child{border-bottom:0}
 .files a{display:block;font-size:14px;font-weight:600;color:var(--bone);text-decoration:none}
 .files a:hover{color:var(--brass)}
 .files span{display:block;font-size:12px;color:var(--bone-dim);margin-top:2px}
-footer{border-top:1px solid var(--line);padding:26px 0 60px;font-size:12.5px;color:var(--bone-dim)}
+.note{font-size:13px;color:var(--bone-dim);margin-top:20px;line-height:1.55}
+footer{border-top:1px solid var(--line);padding:24px 0 56px;font-size:12.5px;color:var(--bone-dim)}
 footer p{margin:0 0 6px;max-width:78ch}
 :focus-visible{outline:2px solid var(--brass);outline-offset:3px}
 </style>
@@ -84,8 +69,8 @@ footer p{margin:0 0 6px;max-width:78ch}
 <header>
   <div class="wrap">
     <div class="eyebrow">ПАРМА · кубическая бутылка</div>
-    <h1>3D-модель. Покрутите её.</h1>
-    <p class="lede">Тяните мышью, чтобы вращать. Колесо — приближение. На телефоне работает пальцем, а кнопка «Смотреть в комнате» ставит бутылку на ваш стол в натуральную величину.</p>
+    <h1>Наклоните бутылку — напиток останется на месте</h1>
+    <p class="lede">Здесь вращается сама бутылка, а не камера. Поверхность напитка держит горизонт и плещется при повороте, как настоящая жидкость. Тяните вбок, чтобы повернуть, и вверх-вниз, чтобы наклонить. Колесо приближает.</p>
     <div class="picker" id="picker"></div>
   </div>
 </header>
@@ -93,40 +78,14 @@ footer p{margin:0 0 6px;max-width:78ch}
 <div class="wrap">
   <div class="stage">
     <div>
-      <div class="viewer">
-        <model-viewer id="mv"
-          alt="3D-модель бутылки ПАРМА"
-          camera-controls touch-action="pan-y" autoplay
-          auto-rotate rotation-per-second="18deg"
-          shadow-intensity="1.1" shadow-softness="0.8"
-          exposure="0.95" environment-image="neutral"
-          camera-orbit="28deg 76deg 1.05m" min-camera-orbit="auto 0deg auto"
-          field-of-view="26deg" ar ar-modes="webxr scene-viewer quick-look">
-        </model-viewer>
-        <div class="hint">тяните, чтобы вращать</div>
-      </div>
+      <div id="view"><div class="hint">вбок — поворот · вверх-вниз — наклон</div></div>
       <div class="tools">
-        <button id="spin" aria-pressed="true">Вращение</button>
-        <button data-orbit="0deg 90deg 1.05m">Фас</button>
-        <button data-orbit="45deg 78deg 1.05m">Три четверти</button>
-        <button data-orbit="90deg 90deg 1.05m">Профиль</button>
-        <button data-orbit="180deg 90deg 1.05m">Тыл</button>
-        <button data-orbit="35deg 20deg 1.0m">Сверху</button>
+        <button id="idle" aria-pressed="true">Покачивание</button>
+        <button data-set="front">Фас</button>
+        <button data-set="tq">Три четверти</button>
+        <button data-set="side">Профиль</button>
+        <button data-set="pour">Наклон</button>
         <button id="reset">Сбросить</button>
-        <a id="dl" href="#" download>Скачать GLB</a>
-      </div>
-      <div class="files">
-        <h3>Файлы</h3>
-        <ul>
-          <li><a href="parma-3d/files/parma-butylka.stl" download>Корпус для 3D-печати · STL</a>
-              <span>60 × 60 × 310 мм, стенка 3 мм</span></li>
-          <li><a href="parma-3d/files/parma-kryshka.stl" download>Крышка для 3D-печати · STL</a>
-              <span>35 × 35 × 24 мм, с накаткой</span></li>
-          <li><a id="dllab" href="#" download>Этикетка в типографию · SVG</a>
-              <span id="labsize">54 × 51 мм обрезной, вылет 3 мм</span></li>
-          <li><a href="parma-3d/files/README-pechat.txt" download>Памятка по печати</a>
-              <span>материал, поддержки, зазор посадки</span></li>
-        </ul>
       </div>
     </div>
 
@@ -137,14 +96,22 @@ footer p{margin:0 0 6px;max-width:78ch}
         <div><dt>Состав</dt><dd id="comp">Брусника · клюква</dd></div>
         <div><dt>Крепость</dt><dd id="abv">5,8 % об.</dd></div>
         <div><dt>Объём</dt><dd>0,45 л</dd></div>
-        <div><dt>Габарит</dt><dd>6,0 × 6,0 × 31,5 см</dd></div>
-        <div><dt>Сечение</dt><dd>квадрат с фаской 5 мм</dd></div>
-        <div><dt>Стекло</dt><dd>прозрачное, IOR 1,52</dd></div>
-        <div><dt>Укупорка</dt><dd>винтовая крышка</dd></div>
-        <div><dt>Полигонов</dt><dd>398</dd></div>
+        <div><dt>Габарит</dt><dd>60 × 60 × 310 мм</dd></div>
+        <div><dt>Сечение</dt><dd>квадрат, фаска 6 мм</dd></div>
+        <div><dt>Стенка</dt><dd>3 мм, дно вогнутое</dd></div>
+        <div><dt>Укупорка</dt><dd>винтовая, венчик 28 мм</dd></div>
+        <div><dt>Этикетка</dt><dd>54 × 100 мм</dd></div>
       </dl>
-      <p class="note">Модель построена в Blender по чертежу, а не восстановлена по фотографиям: форма бутылки известна точно, и параметрическая геометрия оказалась и легче, и достовернее реконструкции. Стекло здесь настоящее — оно преломляет свет, а не имитирует его текстурой.</p>
-      <p class="note">Файл GLB открывается в браузере, Figma, PowerPoint и Blender. На iPhone и Android кнопка дополненной реальности показывает бутылку в реальном масштабе — удобно на переговорах.</p>
+      <div class="files">
+        <h3>Файлы</h3>
+        <ul>
+          <li><a href="parma-3d/files/parma-butylka.stl" download>Корпус для 3D-печати · STL</a><span>60 × 60 × 310 мм, стенка 3 мм</span></li>
+          <li><a href="parma-3d/files/parma-kryshka.stl" download>Крышка для 3D-печати · STL</a><span>35 × 35 × 24 мм, с накаткой</span></li>
+          <li><a id="dllab" href="#" download>Этикетка в типографию · SVG</a><span>54 × 100 мм обрезной, вылет 3 мм</span></li>
+          <li><a href="parma-3d/files/README-pechat.txt" download>Памятка по печати</a><span>материал, поддержки, зазор посадки</span></li>
+        </ul>
+      </div>
+      <p class="note">Геометрия строится по чертежу прямо в браузере, а не подгружается сканом. Плоскость среза напитка задана в мировых координатах — поэтому при любом наклоне бутылки поверхность остаётся горизонтальной, а качание считает пружина с затуханием.</p>
     </aside>
   </div>
 </div>
@@ -152,76 +119,348 @@ footer p{margin:0 0 6px;max-width:78ch}
 <footer>
   <div class="wrap">
     <p>Концепт-макет для согласования. Квадратное сечение — не стоковая форма: такая бутылка требует индивидуальной пресс-формы, минимального тиража и отдельной варки стекла.</p>
-    <p>© «Велес» · Чрезмерное употребление алкоголя вредит вашему здоровью. Информация предназначена для лиц старше 18 лет.</p>
+    <p>© «Велес» · Чрезмерное употребление алкоголя вредит вашему здоровью. Информация для лиц старше 18 лет.</p>
   </div>
 </footer>
 
-<script>
-(() => {
-  "use strict";
-  const DATA = [
-    { id:"pera",   name:"Пера",      sub:"Рождённый тайгой",
-      comp:"Брусника · клюква", abv:"5,8 % об.", colour:"var(--pera)",
-      src:"parma-3d/models/parma-pera-model.glb", lab:"parma-3d/files/parma-etiketka-pera.svg", labsz:"54 × 51 мм обрезной, вылет 3 мм" },
-    { id:"voypel", name:"Войпель",   sub:"Властелин северного ветра",
-      comp:"Черника · ежевика · лесная малина", abv:"5,8 % об.", colour:"var(--voypel)",
-      src:"parma-3d/models/parma-voypel-model.glb", lab:"parma-3d/files/parma-etiketka-voypel.svg", labsz:"54 × 55 мм обрезной, вылет 3 мм" },
-    { id:"zarni",  name:"Зарни Ань", sub:"Хранительница очага",
-      comp:"Мята · морошка · брусника", abv:"5,5 % об.", colour:"var(--zarni)",
-      src:"parma-3d/models/parma-zarni-model.glb", lab:"parma-3d/files/parma-etiketka-zarni.svg", labsz:"54 × 29 мм обрезной, вылет 3 мм" },
-  ];
-  const mv = document.getElementById("mv");
-  const picker = document.getElementById("picker");
-  const DEFAULT_ORBIT = "28deg 76deg 1.05m";
-  let cur = 0;
+<script type="importmap">
+{"imports":{"three":"https://unpkg.com/three@0.161.0/build/three.module.js",
+            "three/addons/":"https://unpkg.com/three@0.161.0/examples/jsm/"}}
+</script>
+<script type="module">
+import * as THREE from "three";
 
-  DATA.forEach((d, i) => {
-    const b = document.createElement("button");
-    b.textContent = d.name;
-    b.setAttribute("aria-pressed", i === 0 ? "true" : "false");
-    b.addEventListener("click", () => pick(i));
-    picker.appendChild(b);
-  });
+const DATA = [
+  { name:"Пера", sub:"Рождённый тайгой", comp:"Брусника · клюква", abv:"5,8 % об.",
+    css:"var(--pera)", liquid:0x6E1020, cap:0x1F4D2B,
+    label:"parma-3d/labels/pera.png", print:"parma-3d/files/parma-etiketka-pera.svg" },
+  { name:"Войпель", sub:"Властелин северного ветра", comp:"Черника · ежевика · лесная малина",
+    abv:"5,8 % об.", css:"var(--voypel)", liquid:0x221845, cap:0x1B2E5C,
+    label:"parma-3d/labels/voypel.png", print:"parma-3d/files/parma-etiketka-voypel.svg" },
+  { name:"Зарни Ань", sub:"Хранительница очага", comp:"Мята · морошка · брусника",
+    abv:"5,5 % об.", css:"var(--zarni)", liquid:0xC07A16, cap:0x8E1B24,
+    label:"parma-3d/labels/zarni.png", print:"parma-3d/files/parma-etiketka-zarni.svg" },
+];
 
-  function pick(i){
-    cur = i;
-    const d = DATA[i];
-    document.documentElement.style.setProperty("--accent", d.colour);
-    mv.setAttribute("src", d.src);   // атрибут, а не свойство: элемент апгрейдится позже скрипта
-    document.getElementById("ttl").textContent = d.name;
-    document.getElementById("sub").textContent = d.sub;
-    document.getElementById("comp").textContent = d.comp;
-    document.getElementById("abv").textContent = d.abv;
-    const dl = document.getElementById("dl");
-    dl.href = d.src; dl.setAttribute("download", d.src.split("/").pop());
-    const dlab = document.getElementById("dllab");
-    dlab.href = d.lab; dlab.setAttribute("download", d.lab.split("/").pop());
-    document.getElementById("labsize").textContent = d.labsz;
-    [...picker.children].forEach((b, k) => b.setAttribute("aria-pressed", k === i ? "true" : "false"));
+const W = 0.060, HALF = W / 2, FILLET = 0.006, WALL = 0.003;
+const H_BODY = 0.212, H_SHLD = 0.040, H_NECK = 0.058, R_NECK = 0.0140;
+const LIQ_Y = H_BODY * 0.845;
+// Кольца лофта строятся в абсолютных высотах от донышка. Каждую геометрию
+// сдвигаем на полвысоты вниз, чтобы бутылка кренилась вокруг своего центра,
+// а не вокруг дна — иначе при наклоне она уезжает из кадра.
+const Y0 = -(H_BODY + H_SHLD + H_NECK) / 2;
+
+const view = document.getElementById("view");
+const renderer = new THREE.WebGLRenderer({ antialias:true });
+renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure = 1.0;
+renderer.localClippingEnabled = true;
+view.appendChild(renderer.domElement);
+
+const scene = new THREE.Scene();
+const pmrem = new THREE.PMREMGenerator(renderer);
+
+// Собственное студийное окружение вместо RoomEnvironment: там потолочная панель
+// отражалась в плече бутылки жёстким белым клином. Здесь только мягкие софтбоксы.
+scene.environment = pmrem.fromEquirectangular((() => {
+  const cv = document.createElement("canvas"); cv.width = 1024; cv.height = 512;
+  const c = cv.getContext("2d");
+  const g = c.createLinearGradient(0, 0, 0, 512);
+  g.addColorStop(0, "#DCE6DF"); g.addColorStop(0.42, "#AFBEB4");
+  g.addColorStop(0.50, "#8A998F"); g.addColorStop(0.53, "#4C584F");
+  g.addColorStop(1, "#1E241E");
+  c.fillStyle = g; c.fillRect(0, 0, 1024, 512);
+  for (const [x, y, rx, ry, a] of [[300, 140, 230, 130, 0.90], [770, 185, 165, 105, 0.55],
+                                   [560, 105, 120, 70, 0.45]]){
+    c.save(); c.translate(x, y); c.scale(1, ry / rx); c.translate(-x, -y);
+    const rg = c.createRadialGradient(x, y, 0, x, y, rx);
+    rg.addColorStop(0, `rgba(255,255,255,${a})`); rg.addColorStop(1, "rgba(255,255,255,0)");
+    c.fillStyle = rg; c.beginPath(); c.arc(x, y, rx, 0, Math.PI * 2); c.fill(); c.restore();
   }
+  const t = new THREE.CanvasTexture(cv);
+  t.mapping = THREE.EquirectangularReflectionMapping;
+  t.colorSpace = THREE.SRGBColorSpace;
+  return t;
+})()).texture;
 
-  document.querySelectorAll("[data-orbit]").forEach(b => {
-    b.addEventListener("click", () => {
-      mv.setAttribute("camera-orbit", b.dataset.orbit);
-      setSpin(false);
-    });
-  });
-
-  const spin = document.getElementById("spin");
-  function setSpin(on){
-    spin.setAttribute("aria-pressed", on ? "true" : "false");
-    if (on) mv.setAttribute("auto-rotate", ""); else mv.removeAttribute("auto-rotate");
+// градиентный задник: без него прозрачное стекло преломляет пустоту и читается чёрным
+function gradientTexture(stops, w = 8, h = 512){
+  const cv = document.createElement("canvas"); cv.width = w; cv.height = h;
+  const g = cv.getContext("2d").createLinearGradient(0, 0, 0, h);
+  stops.forEach(([o, c]) => g.addColorStop(o, c));
+  const ctx = cv.getContext("2d"); ctx.fillStyle = g; ctx.fillRect(0, 0, w, h);
+  const t = new THREE.CanvasTexture(cv); t.colorSpace = THREE.SRGBColorSpace; return t;
+}
+// задник со световой колонной: её преломление в стенках и читается стеклом
+scene.background = (() => {
+  const cv = document.createElement("canvas"); cv.width = 512; cv.height = 512;
+  const c = cv.getContext("2d");
+  const g = c.createLinearGradient(0, 0, 0, 512);
+  g.addColorStop(0, "#3B7154"); g.addColorStop(0.60, "#2A5540");
+  g.addColorStop(0.66, "#122C1F"); g.addColorStop(1, "#08170F");
+  c.fillStyle = g; c.fillRect(0, 0, 512, 512);
+  for (const [x0, x1, a] of [[70, 190, 0.30], [340, 430, 0.16]]){
+    const col = c.createLinearGradient(x0, 0, x1, 0);
+    col.addColorStop(0, "rgba(214,238,222,0)");
+    col.addColorStop(0.5, `rgba(214,238,222,${a})`);
+    col.addColorStop(1, "rgba(214,238,222,0)");
+    c.fillStyle = col; c.fillRect(x0, 30, x1 - x0, 400);
   }
-  spin.addEventListener("click", () => setSpin(spin.getAttribute("aria-pressed") !== "true"));
-
-  document.getElementById("reset").addEventListener("click", () => {
-    mv.setAttribute("camera-orbit", DEFAULT_ORBIT);
-    mv.setAttribute("field-of-view", "26deg");
-    setSpin(true);
-  });
-
-  pick(0);
+  const t = new THREE.CanvasTexture(cv); t.colorSpace = THREE.SRGBColorSpace; return t;
 })();
+
+// мягкая подложка под бутылкой — даёт контакт с плоскостью и блик на дне
+const padCv = document.createElement("canvas"); padCv.width = padCv.height = 256;
+{
+  const c = padCv.getContext("2d");
+  const g = c.createRadialGradient(128, 128, 8, 128, 128, 128);
+  g.addColorStop(0, "rgba(230,240,235,0.55)"); g.addColorStop(1, "rgba(230,240,235,0)");
+  c.fillStyle = g; c.fillRect(0, 0, 256, 256);
+}
+const padTex = new THREE.CanvasTexture(padCv); padTex.colorSpace = THREE.SRGBColorSpace;
+const pad = new THREE.Mesh(new THREE.PlaneGeometry(0.34, 0.34).rotateX(-Math.PI / 2),
+  new THREE.MeshBasicMaterial({ map:padTex, transparent:true, depthWrite:false }));
+
+pad.position.y = Y0 - 0.001;
+scene.add(pad);
+
+
+const camera = new THREE.PerspectiveCamera(30, 1, 0.01, 20);
+let camDist = 0.80;
+
+const key = new THREE.DirectionalLight(0xffffff, 0.45); key.position.set(0.5, 0.8, 0.7); scene.add(key);
+const fillL = new THREE.DirectionalLight(0xcfe3ff, 0.30); fillL.position.set(-0.6, 0.3, 0.4); scene.add(fillL);
+const rim = new THREE.DirectionalLight(0xffe8c0, 0.40); rim.position.set(-0.2, 0.5, -0.8); scene.add(rim);
+
+function ringSquare(y, half, fil, n = 10){
+  const p = [], c = half - fil;
+  const corners = [[c, c, 0], [-c, c, Math.PI / 2], [-c, -c, Math.PI], [c, -c, -Math.PI / 2]];
+  for (const [cx, cz, a0] of corners)
+    for (let i = 0; i <= n; i++){
+      const a = a0 + (Math.PI / 2) * i / n;
+      p.push(new THREE.Vector3(cx + fil * Math.cos(a), y, cz + fil * Math.sin(a)));
+    }
+  return p;
+}
+// круг — частный случай скруглённого квадрата (фаска = половине стороны),
+// поэтому у всех колец силуэта одинаковые число точек и фаза: лофт не перекручивает
+const ringCircle = (y, r) => ringSquare(y, r, r);
+function loft(rings, capBottom, capTop){
+  const pos = [], idx = [], off = [];
+  rings.forEach(r => { off.push(pos.length / 3); r.forEach(v => pos.push(v.x, v.y, v.z)); });
+  for (let s = 0; s < rings.length - 1; s++){
+    const a = rings[s], b = rings[s + 1], n = Math.min(a.length, b.length);
+    for (let i = 0; i < n; i++){
+      const j = (i + 1) % n;
+      idx.push(off[s] + i, off[s + 1] + i, off[s + 1] + j,
+               off[s] + i, off[s + 1] + j, off[s] + j);
+    }
+  }
+  const fan = (ri, flip) => { const r = rings[ri], o = off[ri];
+    for (let i = 1; i < r.length - 1; i++)
+      flip ? idx.push(o, o + i + 1, o + i) : idx.push(o, o + i, o + i + 1); };
+  if (capBottom) fan(0, true);
+  if (capTop) fan(rings.length - 1, false);
+  const g = new THREE.BufferGeometry();
+  g.setAttribute("position", new THREE.Float32BufferAttribute(pos, 3));
+  g.setIndex(idx); g.computeVertexNormals();
+  return g;
+}
+function bottleProfile(half, fil, rneck){
+  const r = [ringSquare(0, half * 0.97, fil), ringSquare(0.006, half, fil), ringSquare(H_BODY, half, fil)];
+  const steps = 24;
+  for (let i = 1; i <= steps; i++){
+    const t = i / steps, e = t * t * (3 - 2 * t), y = H_BODY + H_SHLD * t;
+    const hh = half * (1 - e) + rneck * e;
+    r.push(ringSquare(y, hh, Math.min(fil * (1 - e) + hh * e, hh * 0.999)));
+  }
+  const top = H_BODY + H_SHLD;
+  // венчик под винтовую крышку: бортик 28 мм
+  r.push(ringCircle(top + 0.004, rneck));
+  r.push(ringCircle(top + H_NECK - 0.011, rneck));
+  r.push(ringCircle(top + H_NECK - 0.009, rneck + 0.0017));
+  r.push(ringCircle(top + H_NECK - 0.004, rneck + 0.0017));
+  r.push(ringCircle(top + H_NECK - 0.002, rneck));
+  r.push(ringCircle(top + H_NECK, rneck));
+  r.push(ringCircle(top + H_NECK, rneck - 0.0026));   // толщина стенки венчика
+  r.push(ringCircle(top + H_NECK - 0.012, rneck - 0.0026));   // губа венчика
+  return r;
+}
+
+const bottle = new THREE.Group();
+scene.add(bottle);
+const put = (geo, mat) => { geo.translate(0, Y0, 0); const m = new THREE.Mesh(geo, mat);
+  bottle.add(m); return m; };
+
+const glassMat = new THREE.MeshPhysicalMaterial({
+  color:0xE6F3E9, metalness:0, roughness:0.035, transmission:1.0, thickness:0.010,
+  ior:1.52, transparent:true, side:THREE.FrontSide, envMapIntensity:0.9,
+  // полубелое стекло: чем длиннее путь луча, тем зеленее — плечи и рёбра темнее граней
+  attenuationColor:new THREE.Color(0x86C29B), attenuationDistance:0.055 });
+put(loft(bottleProfile(HALF, FILLET, R_NECK), true, false), glassMat);
+
+const inner = HALF - WALL;
+const liqPlane = new THREE.Plane(new THREE.Vector3(0, -1, 0), 0);
+const liqMat = new THREE.MeshPhysicalMaterial({
+  color:0x6E1020, metalness:0, roughness:0.22, side:THREE.DoubleSide,
+  envMapIntensity:0.55, clearcoat:0.7, clearcoatRoughness:0.1,
+  clippingPlanes:[liqPlane] });
+put(loft([ringSquare(0.0075, inner * 0.985, FILLET), ringSquare(0.012, inner, FILLET),
+          ringSquare(H_BODY + H_SHLD * 0.55, inner, FILLET)], true, true), liqMat);
+
+const capMat = new THREE.MeshStandardMaterial({ color:0x1F4D2B, metalness:0.85, roughness:0.3 });
+const capTopY = H_BODY + H_SHLD + H_NECK, rc = R_NECK + 0.0026;
+const knurl = [ringCircle(capTopY - 0.019, rc)];
+for (const y of [capTopY - 0.016, capTopY - 0.003]){
+  // накатка: чередуем радиус по вершинам базового кольца
+  knurl.push(ringCircle(y, rc).map((v, i) => {
+    const k = (i % 2 ? 1 : 1.022);
+    return new THREE.Vector3(v.x * k, y, v.z * k);
+  }));
+}
+knurl.push(ringCircle(capTopY + 0.004, rc));
+knurl.push(ringCircle(capTopY + 0.005, rc - 0.0025));
+put(loft(knurl, false, true), capMat);
+
+const labMat = new THREE.MeshStandardMaterial({
+  color:0xffffff, roughness:0.70, metalness:0, envMapIntensity:0.5 });
+const labelMesh = new THREE.Mesh(new THREE.PlaneGeometry(1, 1), labMat);
+labelMesh.position.z = HALF + 0.00025;
+bottle.add(labelMesh);
+const loader = new THREE.TextureLoader();
+function setLabel(url){
+  loader.load(url, t => {
+    t.colorSpace = THREE.SRGBColorSpace;
+    t.anisotropy = renderer.capabilities.getMaxAnisotropy();
+    labMat.map = t; labMat.needsUpdate = true;
+    const lw = W * 0.90, lh = lw * (t.image.height / t.image.width);   // 54 x 100 мм
+    labelMesh.scale.set(lw, lh, 1);
+    labelMesh.position.y = Y0 + 0.014 + lh / 2 + (H_BODY - 0.014 - lh) * 0.46;
+  });
+}
+
+let yaw = 0.62, roll = 0, targetYaw = 0.62, targetRoll = 0;
+let vYaw = 0, dragging = false, lastX = 0, lastY = 0, idle = true;
+let slosh = 0, sloshV = 0;
+const idleBtn = document.getElementById("idle");
+
+function down(e){ dragging = true; view.classList.add("dragging"); idle = false;
+  idleBtn.setAttribute("aria-pressed", "false");
+  const p = e.touches ? e.touches[0] : e; lastX = p.clientX; lastY = p.clientY; }
+function move(e){
+  if (!dragging) return;
+  const p = e.touches ? e.touches[0] : e;
+  const dx = p.clientX - lastX, dy = p.clientY - lastY;
+  lastX = p.clientX; lastY = p.clientY;
+  targetYaw += dx * 0.008; vYaw = dx * 0.008;
+  // вверх-вниз — крен вбок: именно так видно, что напиток держит горизонт
+  targetRoll = Math.max(-1.15, Math.min(1.15, targetRoll + dy * 0.007));
+  if (e.cancelable) e.preventDefault();
+}
+function up(){ dragging = false; view.classList.remove("dragging"); }
+view.addEventListener("mousedown", down);
+addEventListener("mousemove", move); addEventListener("mouseup", up);
+view.addEventListener("touchstart", down, { passive:true });
+view.addEventListener("touchmove", move, { passive:false });
+addEventListener("touchend", up);
+view.addEventListener("wheel", e => {
+  camDist = Math.max(0.44, Math.min(1.4, camDist + e.deltaY * 0.0007));
+  if (e.cancelable) e.preventDefault();
+}, { passive:false });
+
+document.querySelectorAll("[data-set]").forEach(b => b.addEventListener("click", () => {
+  idle = false; idleBtn.setAttribute("aria-pressed", "false");
+  const s = b.dataset.set;
+  if (s === "front"){ targetYaw = 0; targetRoll = 0; }
+  if (s === "tq"){ targetYaw = 0.72; targetRoll = 0; }
+  if (s === "side"){ targetYaw = Math.PI / 2; targetRoll = 0; }
+  if (s === "pour"){ targetYaw = 0.45; targetRoll = 0.92; }
+}));
+idleBtn.addEventListener("click", () => {
+  idle = !idle; idleBtn.setAttribute("aria-pressed", idle ? "true" : "false"); });
+document.getElementById("reset").addEventListener("click", () => {
+  targetYaw = 0.62; targetRoll = 0; camDist = 0.80;
+  idle = true; idleBtn.setAttribute("aria-pressed", "true"); });
+
+const picker = document.getElementById("picker");
+DATA.forEach((d, i) => {
+  const b = document.createElement("button");
+  b.textContent = d.name;
+  b.setAttribute("aria-pressed", i === 0 ? "true" : "false");
+  b.addEventListener("click", () => pick(i));
+  picker.appendChild(b);
+});
+function pick(i){
+  const d = DATA[i];
+  document.documentElement.style.setProperty("--accent", d.css);
+  liqMat.color.setHex(d.liquid); capMat.color.setHex(d.cap);
+  setLabel(d.label);
+  document.getElementById("ttl").textContent = d.name;
+  document.getElementById("sub").textContent = d.sub;
+  document.getElementById("comp").textContent = d.comp;
+  document.getElementById("abv").textContent = d.abv;
+  const dl = document.getElementById("dllab");
+  dl.href = d.print; dl.setAttribute("download", d.print.split("/").pop());
+  [...picker.children].forEach((b, k) => b.setAttribute("aria-pressed", k === i ? "true" : "false"));
+}
+
+function resize(){
+  const r = view.getBoundingClientRect();
+  const w = Math.max(1, Math.round(r.width)), h = Math.max(1, Math.round(r.height));
+  renderer.setSize(w, h, false);
+  camera.aspect = w / h; camera.updateProjectionMatrix();
+}
+// ResizeObserver, а не window.resize: контейнер меняет размер и без перерисовки окна
+new ResizeObserver(resize).observe(view);
+resize();
+
+const clock = new THREE.Clock();
+const worldLevel = new THREE.Vector3();
+const normal = new THREE.Vector3();
+
+const AXIS_Y = new THREE.Vector3(0, 1, 0), AXIS_Z = new THREE.Vector3(0, 0, 1);
+const qYaw = new THREE.Quaternion(), qRoll = new THREE.Quaternion();
+
+function step(dt){
+  if (idle){ targetYaw += dt * 0.28; targetRoll = Math.sin(performance.now() * 0.0006) * 0.08; }
+  yaw += (targetYaw - yaw) * Math.min(1, dt * 7);
+  const prevRoll = roll;
+  roll += (targetRoll - roll) * Math.min(1, dt * 7);
+  // сначала вращение вокруг своей оси, затем крен в экранной плоскости —
+  // кватернионы, чтобы не зависеть от порядка углов Эйлера
+  bottle.quaternion.copy(qRoll.setFromAxisAngle(AXIS_Z, roll))
+                   .multiply(qYaw.setFromAxisAngle(AXIS_Y, yaw));
+
+  // пружина с затуханием: качание возбуждается скоростью поворота бутылки
+  const drive = (roll - prevRoll) * 46 + vYaw * 7;
+  sloshV += (-slosh * 26 - sloshV * 3.4 + drive) * dt;
+  slosh = Math.max(-0.22, Math.min(0.22, slosh + sloshV * dt));
+  vYaw *= 0.90;
+
+  // срез напитка задан в мировых координатах — отсюда и гравитация
+  bottle.updateMatrixWorld();
+  worldLevel.set(0, Y0 + LIQ_Y, 0).applyMatrix4(bottle.matrixWorld);
+  normal.set(Math.sin(slosh), -Math.cos(slosh), Math.sin(slosh * 0.7)).normalize();
+  liqPlane.setFromNormalAndCoplanarPoint(normal, worldLevel);
+
+  camera.position.set(0, 0.02, camDist);
+  camera.lookAt(0, 0, 0);
+  renderer.render(scene, camera);
+}
+
+function tick(){
+  step(Math.min(clock.getDelta(), 0.05));
+  requestAnimationFrame(tick);
+}
+
+// отладочный доступ к сцене: ?debug в адресе
+if (location.search.includes("debug"))
+  window.__parma = { THREE, scene, renderer, camera, bottle, glassMat, liqMat, labMat,
+                     liqPlane, step, set:(r, y) => { targetRoll = r; targetYaw = y; idle = false; } };
+
+pick(0);
+tick();
 </script>
 </body>
 </html>
