@@ -33,13 +33,13 @@ header{padding:52px 0 24px;border-bottom:1px solid var(--line)}
 .picker button[aria-pressed="true"]{color:var(--spruce);background:var(--accent);border-color:var(--accent)}
 .stage{display:grid;gap:28px;padding:30px 0 56px}
 @media (min-width:940px){.stage{grid-template-columns:1.35fr .65fr;gap:46px;align-items:start}}
-#view{position:relative;background:radial-gradient(120% 90% at 50% 25%,#27503B 0%,#0F2419 100%);
+#view{position:relative;background:radial-gradient(120% 90% at 50% 30%,#F4F4F3 0%,#C9C9C7 100%);
   border:1px solid var(--line);border-radius:3px;overflow:hidden;
   height:min(76vh,760px);min-height:440px;cursor:grab}
 #view.dragging{cursor:grabbing}
 #view canvas{display:block;width:100%;height:100%}
 .hint{position:absolute;left:16px;bottom:14px;font-size:11.5px;letter-spacing:.1em;
-  text-transform:uppercase;color:var(--bone-dim);pointer-events:none;opacity:.85}
+  text-transform:uppercase;color:#5A6159;pointer-events:none;opacity:.9}
 .tools{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
 .tools button{padding:9px 14px;font-size:12px}
 .tools button[aria-pressed="true"]{color:var(--spruce);background:var(--brass);border-color:var(--brass)}
@@ -68,7 +68,7 @@ footer p{margin:0 0 6px;max-width:78ch}
 
 <header>
   <div class="wrap">
-    <div class="eyebrow">ПАРМА · кубическая бутылка</div>
+    <div class="eyebrow">ПАРМА · кубическая бутылка · 4 грани</div>
     <h1>Наклоните бутылку — напиток останется на месте</h1>
     <p class="lede">Здесь вращается сама бутылка, а не камера. Поверхность напитка держит горизонт и плещется при повороте, как настоящая жидкость. Тяните вбок, чтобы повернуть, и вверх-вниз, чтобы наклонить. Колесо приближает.</p>
     <div class="picker" id="picker"></div>
@@ -96,22 +96,24 @@ footer p{margin:0 0 6px;max-width:78ch}
         <div><dt>Состав</dt><dd id="comp">Брусника · клюква</dd></div>
         <div><dt>Крепость</dt><dd id="abv">5,8 % об.</dd></div>
         <div><dt>Объём</dt><dd>0,45 л</dd></div>
-        <div><dt>Габарит</dt><dd>60 × 60 × 310 мм</dd></div>
-        <div><dt>Сечение</dt><dd>квадрат, фаска 6 мм</dd></div>
-        <div><dt>Стенка</dt><dd>3 мм, дно вогнутое</dd></div>
+        <div><dt>Габарит</dt><dd>60 × 60 × 256 мм</dd></div>
+        <div><dt>Сечение</dt><dd>квадрат, фаска 4 мм</dd></div>
+        <div><dt>Стенка</dt><dd>3 мм, дно 14 мм</dd></div>
         <div><dt>Укупорка</dt><dd>винтовая, венчик 28 мм</dd></div>
-        <div><dt>Этикетка</dt><dd>54 × 100 мм</dd></div>
+        <div><dt>Этикетка</dt><dd>50 × 93 мм, 4 грани</dd></div>
       </dl>
       <div class="files">
         <h3>Файлы</h3>
         <ul>
-          <li><a href="parma-3d/files/parma-butylka.stl" download>Корпус для 3D-печати · STL</a><span>60 × 60 × 310 мм, стенка 3 мм</span></li>
-          <li><a href="parma-3d/files/parma-kryshka.stl" download>Крышка для 3D-печати · STL</a><span>35 × 35 × 24 мм, с накаткой</span></li>
-          <li><a id="dllab" href="#" download>Этикетка в типографию · SVG</a><span>54 × 100 мм обрезной, вылет 3 мм</span></li>
+          <li><a id="dl-front" href="#" download>Этикетка · фас · SVG</a><span>50 × 93 мм обрезной, вылет 3 мм, 1 шт. на бутылку</span></li>
+          <li><a id="dl-side" href="#" download>Этикетка · бок · SVG</a><span>левая и правая грани одинаковы, 2 шт. на бутылку</span></li>
+          <li><a id="dl-back" href="#" download>Этикетка · оборот · SVG</a><span>состав, сведения о напитке и QR</span></li>
+          <li><a href="parma-3d/files/parma-butylka.stl" download>Корпус для 3D-печати · STL</a><span>60 × 60 × 249 мм, стенка 3 мм, дно 14 мм</span></li>
+          <li><a href="parma-3d/files/parma-kryshka.stl" download>Колпачок для 3D-печати · STL</a><span>32 × 32 × 40 мм, с накаткой</span></li>
           <li><a href="parma-3d/files/README-pechat.txt" download>Памятка по печати</a><span>материал, поддержки, зазор посадки</span></li>
         </ul>
       </div>
-      <p class="note">Геометрия строится по чертежу прямо в браузере, а не подгружается сканом. Плоскость среза напитка задана в мировых координатах — поэтому при любом наклоне бутылки поверхность остаётся горизонтальной, а качание считает пружина с затуханием.</p>
+      <p class="note">Этикетка занимает все четыре грани: фас, две одинаковые боковые и оборот со сведениями и QR. Геометрия строится по чертежу прямо в браузере, а плоскость среза напитка задана в мировых координатах — поэтому при любом наклоне поверхность остаётся горизонтальной.</p>
     </aside>
   </div>
 </div>
@@ -131,30 +133,35 @@ footer p{margin:0 0 6px;max-width:78ch}
 import * as THREE from "three";
 
 const DATA = [
-  { name:"Пера", sub:"Рождённый тайгой", comp:"Брусника · клюква", abv:"5,8 % об.",
-    css:"var(--pera)", liquid:0x6E1020, cap:0x1F4D2B,
-    label:"parma-3d/labels/pera.png", print:"parma-3d/files/parma-etiketka-pera.svg" },
-  { name:"Войпель", sub:"Властелин северного ветра", comp:"Черника · ежевика · лесная малина",
-    abv:"5,8 % об.", css:"var(--voypel)", liquid:0x221845, cap:0x1B2E5C,
-    label:"parma-3d/labels/voypel.png", print:"parma-3d/files/parma-etiketka-voypel.svg" },
-  { name:"Зарни Ань", sub:"Хранительница очага", comp:"Мята · морошка · брусника",
-    abv:"5,5 % об.", css:"var(--zarni)", liquid:0xC07A16, cap:0x8E1B24,
-    label:"parma-3d/labels/zarni.png", print:"parma-3d/files/parma-etiketka-zarni.svg" },
+  { id:"pera", name:"Пера", sub:"Рождённый тайгой", comp:"Брусника · клюква", abv:"5,8 % об.",
+    css:"var(--pera)", liquid:0x8E1524, cap:0x1F4D2B,
+  },
+  { id:"voypel", name:"Войпель", sub:"Властелин северного ветра", comp:"Черника · ежевика · лесная малина",
+    abv:"5,8 % об.", css:"var(--voypel)", liquid:0x2E1F5E, cap:0x1B2E5C,
+  },
+  { id:"zarni", name:"Зарни Ань", sub:"Хранительница очага", comp:"Мята · морошка · брусника",
+    abv:"5,5 % об.", css:"var(--zarni)", liquid:0xC98A1E, cap:0x8E1B24,
+  },
 ];
 
-const W = 0.060, HALF = W / 2, FILLET = 0.006, WALL = 0.003;
-const H_BODY = 0.212, H_SHLD = 0.040, H_NECK = 0.058, R_NECK = 0.0140;
-const LIQ_Y = H_BODY * 0.845;
+// Пропорции сняты с утверждённого кадра: корпус к высоте 1:4,26, плечо
+// резкое — 3 % высоты, налив уходит в горло, дно толстое.
+const W = 0.060, HALF = W / 2, FILLET = 0.004, WALL = 0.003;
+const BASE = 0.014;                                    // толщина дна
+const H_BODY = 0.1825, H_SHLD = 0.0075, H_NECK = 0.058, R_NECK = 0.0135;
+const H_GLASS = H_BODY + H_SHLD + H_NECK;              // 248 мм до венчика
+const CAP_R = 0.0150, CAP_BOT = H_GLASS - 0.032, CAP_TOP = H_GLASS + 0.008;
+const LIQ_Y = 0.2015;                                  // уровень налива, в горле
 // Кольца лофта строятся в абсолютных высотах от донышка. Каждую геометрию
 // сдвигаем на полвысоты вниз, чтобы бутылка кренилась вокруг своего центра,
 // а не вокруг дна — иначе при наклоне она уезжает из кадра.
-const Y0 = -(H_BODY + H_SHLD + H_NECK) / 2;
+const Y0 = -CAP_TOP / 2;
 
 const view = document.getElementById("view");
 const renderer = new THREE.WebGLRenderer({ antialias:true });
 renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
 renderer.toneMapping = THREE.ACESFilmicToneMapping;
-renderer.toneMappingExposure = 1.0;
+renderer.toneMappingExposure = 1.12;
 renderer.localClippingEnabled = true;
 view.appendChild(renderer.domElement);
 
@@ -196,30 +203,28 @@ function gradientTexture(stops, w = 8, h = 512){
 scene.background = (() => {
   const cv = document.createElement("canvas"); cv.width = 512; cv.height = 512;
   const c = cv.getContext("2d");
+  // белая студия, как в утверждённом кадре: светлый верх, чуть темнее низ
   const g = c.createLinearGradient(0, 0, 0, 512);
-  g.addColorStop(0, "#3B7154"); g.addColorStop(0.60, "#2A5540");
-  g.addColorStop(0.66, "#122C1F"); g.addColorStop(1, "#08170F");
+  g.addColorStop(0, "#F4F4F3"); g.addColorStop(0.58, "#E4E4E2");
+  g.addColorStop(0.64, "#D2D2D0"); g.addColorStop(1, "#C4C4C2");
   c.fillStyle = g; c.fillRect(0, 0, 512, 512);
-  for (const [x0, x1, a] of [[70, 190, 0.30], [340, 430, 0.16]]){
-    const col = c.createLinearGradient(x0, 0, x1, 0);
-    col.addColorStop(0, "rgba(214,238,222,0)");
-    col.addColorStop(0.5, `rgba(214,238,222,${a})`);
-    col.addColorStop(1, "rgba(214,238,222,0)");
-    c.fillStyle = col; c.fillRect(x0, 30, x1 - x0, 400);
-  }
+  const glow = c.createRadialGradient(256, 200, 20, 256, 200, 300);
+  glow.addColorStop(0, "rgba(255,255,255,0.85)");
+  glow.addColorStop(1, "rgba(255,255,255,0)");
+  c.fillStyle = glow; c.fillRect(0, 0, 512, 512);
   const t = new THREE.CanvasTexture(cv); t.colorSpace = THREE.SRGBColorSpace; return t;
 })();
 
-// мягкая подложка под бутылкой — даёт контакт с плоскостью и блик на дне
+// мягкая тень под бутылкой — даёт контакт с плоскостью
 const padCv = document.createElement("canvas"); padCv.width = padCv.height = 256;
 {
   const c = padCv.getContext("2d");
   const g = c.createRadialGradient(128, 128, 8, 128, 128, 128);
-  g.addColorStop(0, "rgba(230,240,235,0.55)"); g.addColorStop(1, "rgba(230,240,235,0)");
+  g.addColorStop(0, "rgba(60,66,62,0.42)"); g.addColorStop(1, "rgba(60,66,62,0)");
   c.fillStyle = g; c.fillRect(0, 0, 256, 256);
 }
 const padTex = new THREE.CanvasTexture(padCv); padTex.colorSpace = THREE.SRGBColorSpace;
-const pad = new THREE.Mesh(new THREE.PlaneGeometry(0.34, 0.34).rotateX(-Math.PI / 2),
+const pad = new THREE.Mesh(new THREE.PlaneGeometry(0.26, 0.26).rotateX(-Math.PI / 2),
   new THREE.MeshBasicMaterial({ map:padTex, transparent:true, depthWrite:false }));
 
 pad.position.y = Y0 - 0.001;
@@ -227,11 +232,11 @@ scene.add(pad);
 
 
 const camera = new THREE.PerspectiveCamera(30, 1, 0.01, 20);
-let camDist = 0.80;
+let camDist = 0.66;
 
-const key = new THREE.DirectionalLight(0xffffff, 0.45); key.position.set(0.5, 0.8, 0.7); scene.add(key);
-const fillL = new THREE.DirectionalLight(0xcfe3ff, 0.30); fillL.position.set(-0.6, 0.3, 0.4); scene.add(fillL);
-const rim = new THREE.DirectionalLight(0xffe8c0, 0.40); rim.position.set(-0.2, 0.5, -0.8); scene.add(rim);
+const key = new THREE.DirectionalLight(0xffffff, 0.95); key.position.set(0.5, 0.8, 0.7); scene.add(key);
+const fillL = new THREE.DirectionalLight(0xcfe3ff, 0.55); fillL.position.set(-0.6, 0.3, 0.4); scene.add(fillL);
+const rim = new THREE.DirectionalLight(0xffe8c0, 0.60); rim.position.set(-0.2, 0.5, -0.8); scene.add(rim);
 
 function ringSquare(y, half, fil, n = 10){
   const p = [], c = half - fil;
@@ -268,8 +273,9 @@ function loft(rings, capBottom, capTop){
   return g;
 }
 function bottleProfile(half, fil, rneck){
-  const r = [ringSquare(0, half * 0.97, fil), ringSquare(0.006, half, fil), ringSquare(H_BODY, half, fil)];
-  const steps = 24;
+  const r = [ringSquare(0, half * 0.97, fil), ringSquare(0.005, half, fil),
+             ringSquare(H_BODY, half, fil)];
+  const steps = 20;
   for (let i = 1; i <= steps; i++){
     const t = i / steps, e = t * t * (3 - 2 * t), y = H_BODY + H_SHLD * t;
     const hh = half * (1 - e) + rneck * e;
@@ -303,41 +309,74 @@ put(loft(bottleProfile(HALF, FILLET, R_NECK), true, false), glassMat);
 const inner = HALF - WALL;
 const liqPlane = new THREE.Plane(new THREE.Vector3(0, -1, 0), 0);
 const liqMat = new THREE.MeshPhysicalMaterial({
-  color:0x6E1020, metalness:0, roughness:0.22, side:THREE.DoubleSide,
-  envMapIntensity:0.55, clearcoat:0.7, clearcoatRoughness:0.1,
+  color:0x8E1524, metalness:0, roughness:0.25, side:THREE.DoubleSide,
+  envMapIntensity:1.1, clearcoat:0.5, clearcoatRoughness:0.12,
+  // лёгкое собственное свечение вместо просвета: напиток непрозрачен,
+  // но в бутылке на просвет он должен читаться рубином, а не чёрным
+  emissive:new THREE.Color(0x8E1524), emissiveIntensity:0.30,
   clippingPlanes:[liqPlane] });
-put(loft([ringSquare(0.0075, inner * 0.985, FILLET), ringSquare(0.012, inner, FILLET),
-          ringSquare(H_BODY + H_SHLD * 0.55, inner, FILLET)], true, true), liqMat);
+// Внутренний объём повторяет саму бутылку, но начинается от толстого дна:
+// тогда срез гравитации всюду находит материал — и в корпусе, и в горле.
+function innerProfile(){
+  const half = inner, fil = Math.max(0.0015, FILLET - WALL), rn = R_NECK - 0.0028;
+  const r = [ringSquare(BASE, half * 0.96, fil), ringSquare(BASE + 0.004, half, fil),
+             ringSquare(H_BODY, half, fil)];
+  const steps = 20;
+  for (let i = 1; i <= steps; i++){
+    const t = i / steps, e = t * t * (3 - 2 * t), y = H_BODY + H_SHLD * t;
+    const hh = half * (1 - e) + rn * e;
+    r.push(ringSquare(y, hh, Math.min(fil * (1 - e) + hh * e, hh * 0.999)));
+  }
+  r.push(ringCircle(H_BODY + H_SHLD + 0.004, rn));
+  r.push(ringCircle(H_GLASS - 0.014, rn));
+  return r;
+}
+put(loft(innerProfile(), true, true), liqMat);
 
-const capMat = new THREE.MeshStandardMaterial({ color:0x1F4D2B, metalness:0.85, roughness:0.3 });
-const capTopY = H_BODY + H_SHLD + H_NECK, rc = R_NECK + 0.0026;
-const knurl = [ringCircle(capTopY - 0.019, rc)];
-for (const y of [capTopY - 0.016, capTopY - 0.003]){
-  // накатка: чередуем радиус по вершинам базового кольца
-  knurl.push(ringCircle(y, rc).map((v, i) => {
-    const k = (i % 2 ? 1 : 1.022);
+const capMat = new THREE.MeshStandardMaterial({ color:0x1F4D2B, metalness:0.35, roughness:0.42 });
+// термоколпак: сидит на горле, с вертикальной накаткой и завалом сверху
+const capRings = [ringCircle(CAP_BOT, CAP_R * 0.97)];
+for (const y of [CAP_BOT + 0.002, CAP_TOP - 0.006]){
+  capRings.push(ringCircle(y, CAP_R).map(v => {
+    const k = (Math.round(Math.atan2(v.z, v.x) / (Math.PI / 14)) % 2 ? 1 : 1.018);
     return new THREE.Vector3(v.x * k, y, v.z * k);
   }));
 }
-knurl.push(ringCircle(capTopY + 0.004, rc));
-knurl.push(ringCircle(capTopY + 0.005, rc - 0.0025));
-put(loft(knurl, false, true), capMat);
+capRings.push(ringCircle(CAP_TOP - 0.002, CAP_R * 0.98));
+capRings.push(ringCircle(CAP_TOP, CAP_R * 0.88));
+put(loft(capRings, false, true), capMat);
 
-const labMat = new THREE.MeshStandardMaterial({
-  color:0xffffff, roughness:0.70, metalness:0, envMapIntensity:0.5 });
-const labelMesh = new THREE.Mesh(new THREE.PlaneGeometry(1, 1), labMat);
-labelMesh.position.z = HALF + 0.00025;
-bottle.add(labelMesh);
+// Четыре грани квадратной бутылки: фас, два одинаковых бока и оборот.
+// Материалов три — боковые грани делят один.
+const LAB_W = W * 0.84, LAB_CY = 0.0955;      // ширина и центр по эталону
+const mkLab = () => new THREE.MeshStandardMaterial({
+  color:0xffffff, roughness:0.60, metalness:0, envMapIntensity:1.1 });
+const labMat = { front: mkLab(), side: mkLab(), back: mkLab() };
+const FACES = [
+  { kind:"front", n:[0, 0,  1], rot: 0 },
+  { kind:"back",  n:[0, 0, -1], rot: Math.PI },
+  { kind:"side",  n:[ 1, 0, 0], rot: Math.PI / 2 },
+  { kind:"side",  n:[-1, 0, 0], rot: -Math.PI / 2 },
+];
+const labMeshes = FACES.map(f => {
+  const m = new THREE.Mesh(new THREE.PlaneGeometry(1, 1), labMat[f.kind]);
+  m.rotation.y = f.rot;
+  m.position.set(f.n[0] * (HALF + 0.00025), Y0 + LAB_CY, f.n[2] * (HALF + 0.00025));
+  bottle.add(m);
+  return m;
+});
+
 const loader = new THREE.TextureLoader();
-function setLabel(url){
-  loader.load(url, t => {
-    t.colorSpace = THREE.SRGBColorSpace;
-    t.anisotropy = renderer.capabilities.getMaxAnisotropy();
-    labMat.map = t; labMat.needsUpdate = true;
-    const lw = W * 0.90, lh = lw * (t.image.height / t.image.width);   // 54 x 100 мм
-    labelMesh.scale.set(lw, lh, 1);
-    labelMesh.position.y = Y0 + 0.014 + lh / 2 + (H_BODY - 0.014 - lh) * 0.46;
-  });
+function setLabels(id){
+  for (const kind of ["front", "side", "back"])
+    loader.load(`parma-3d/labels/${id}-${kind}.png`, t => {
+      t.colorSpace = THREE.SRGBColorSpace;
+      t.anisotropy = renderer.capabilities.getMaxAnisotropy();
+      labMat[kind].map = t; labMat[kind].needsUpdate = true;
+      if (kind !== "front") return;
+      const lh = LAB_W * (t.image.height / t.image.width);
+      labMeshes.forEach(m => m.scale.set(LAB_W, lh, 1));
+    });
 }
 
 let yaw = 0.62, roll = 0, targetYaw = 0.62, targetRoll = 0;
@@ -365,7 +404,7 @@ view.addEventListener("touchstart", down, { passive:true });
 view.addEventListener("touchmove", move, { passive:false });
 addEventListener("touchend", up);
 view.addEventListener("wheel", e => {
-  camDist = Math.max(0.44, Math.min(1.4, camDist + e.deltaY * 0.0007));
+  camDist = Math.max(0.34, Math.min(1.1, camDist + e.deltaY * 0.0007));
   if (e.cancelable) e.preventDefault();
 }, { passive:false });
 
@@ -380,7 +419,7 @@ document.querySelectorAll("[data-set]").forEach(b => b.addEventListener("click",
 idleBtn.addEventListener("click", () => {
   idle = !idle; idleBtn.setAttribute("aria-pressed", idle ? "true" : "false"); });
 document.getElementById("reset").addEventListener("click", () => {
-  targetYaw = 0.62; targetRoll = 0; camDist = 0.80;
+  targetYaw = 0.62; targetRoll = 0; camDist = 0.66;
   idle = true; idleBtn.setAttribute("aria-pressed", "true"); });
 
 const picker = document.getElementById("picker");
@@ -394,14 +433,18 @@ DATA.forEach((d, i) => {
 function pick(i){
   const d = DATA[i];
   document.documentElement.style.setProperty("--accent", d.css);
-  liqMat.color.setHex(d.liquid); capMat.color.setHex(d.cap);
-  setLabel(d.label);
+  liqMat.color.setHex(d.liquid); liqMat.emissive.setHex(d.liquid);
+  capMat.color.setHex(d.cap);
+  setLabels(d.id);
   document.getElementById("ttl").textContent = d.name;
   document.getElementById("sub").textContent = d.sub;
   document.getElementById("comp").textContent = d.comp;
   document.getElementById("abv").textContent = d.abv;
-  const dl = document.getElementById("dllab");
-  dl.href = d.print; dl.setAttribute("download", d.print.split("/").pop());
+  for (const kind of ["front", "side", "back"]){
+    const a = document.getElementById("dl-" + kind);
+    a.href = `parma-3d/files/parma-etiketka-${d.id}-${kind}.svg`;
+    a.setAttribute("download", a.href.split("/").pop());
+  }
   [...picker.children].forEach((b, k) => b.setAttribute("aria-pressed", k === i ? "true" : "false"));
 }
 
