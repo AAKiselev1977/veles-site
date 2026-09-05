@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ПАРМА — 3D-модели бутылки</title>
+<meta name="description" content="Интерактивный просмотр 3D-моделей кубической бутылки ПАРМА: вращение, приближение, просмотр в дополненной реальности.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=PT+Serif:wght@400;700&family=Golos+Text:wght@400;500;600&display=swap">
+<script type="module" src="https://unpkg.com/@google/model-viewer@3.5.0/dist/model-viewer.min.js"></script>
+<style>
+:root{
+  --spruce:#16352A; --spruce-2:#1E4433; --bone:#EFE7D6; --bone-dim:#A8B3A2;
+  --brass:#A98A4A; --line:#2A4A38;
+  --pera:#2E6B45; --voypel:#23244F; --zarni:#B8791A;
+  --accent:var(--pera);
+  --f-head:"PT Serif",Georgia,serif; --f-body:"Golos Text","Helvetica Neue",Arial,sans-serif;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--spruce);color:var(--bone);font-family:var(--f-body);
+  font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1180px;margin:0 auto;padding:0 26px}
+a{color:var(--brass)}
+h1{font-family:var(--f-head);font-size:clamp(28px,4.4vw,46px);line-height:1.1;margin:0 0 12px}
+.eyebrow{font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--brass);
+  font-weight:600;margin-bottom:18px}
+.lede{max-width:62ch;color:var(--bone-dim);margin:0 0 34px}
+header{padding:56px 0 26px;border-bottom:1px solid var(--line)}
+
+.picker{display:flex;gap:10px;flex-wrap:wrap;margin:26px 0}
+.picker button{
+  font-family:var(--f-body);font-size:13px;letter-spacing:.08em;font-weight:600;
+  color:var(--bone-dim);background:transparent;border:1px solid var(--line);
+  padding:11px 20px;border-radius:2px;cursor:pointer;transition:all .25s ease;
+}
+.picker button:hover{color:var(--bone);border-color:var(--bone-dim)}
+.picker button[aria-pressed="true"]{color:var(--spruce);background:var(--accent);border-color:var(--accent)}
+.picker button:focus-visible{outline:2px solid var(--brass);outline-offset:3px}
+
+.stage{display:grid;gap:28px;padding:34px 0 60px}
+@media (min-width:940px){.stage{grid-template-columns:1.35fr .65fr;gap:48px;align-items:start}}
+.viewer{
+  position:relative;background:linear-gradient(180deg,#20402F 0%,#132A20 100%);
+  border:1px solid var(--line);border-radius:3px;overflow:hidden;
+}
+model-viewer{width:100%;height:min(74vh,720px);display:block;--poster-color:transparent}
+.hint{
+  position:absolute;left:16px;bottom:14px;font-size:11.5px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--bone-dim);pointer-events:none;opacity:.85;
+}
+.tools{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.tools button,.tools a{
+  font-family:var(--f-body);font-size:12px;font-weight:600;color:var(--bone-dim);
+  background:transparent;border:1px solid var(--line);padding:9px 14px;border-radius:2px;
+  cursor:pointer;text-decoration:none;transition:all .25s ease;
+}
+.tools button:hover,.tools a:hover{color:var(--bone);border-color:var(--bone-dim)}
+.tools button[aria-pressed="true"]{color:var(--spruce);background:var(--brass);border-color:var(--brass)}
+
+h2{font-family:var(--f-head);font-size:22px;margin:0 0 6px}
+.sub{font-size:13px;color:var(--brass);letter-spacing:.06em;margin:0 0 20px}
+dl.spec{margin:0;border-top:1px solid var(--line)}
+dl.spec>div{display:flex;justify-content:space-between;gap:18px;padding:11px 0;
+  border-bottom:1px solid var(--line);font-size:14px}
+dl.spec dt{color:var(--bone-dim);margin:0}
+dl.spec dd{margin:0;text-align:right;font-variant-numeric:tabular-nums}
+.note{font-size:13px;color:var(--bone-dim);margin-top:22px;line-height:1.55}
+footer{border-top:1px solid var(--line);padding:26px 0 60px;font-size:12.5px;color:var(--bone-dim)}
+footer p{margin:0 0 6px;max-width:78ch}
+:focus-visible{outline:2px solid var(--brass);outline-offset:3px}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="eyebrow">ПАРМА · кубическая бутылка</div>
+    <h1>3D-модель. Покрутите её.</h1>
+    <p class="lede">Тяните мышью, чтобы вращать. Колесо — приближение. На телефоне работает пальцем, а кнопка «Смотреть в комнате» ставит бутылку на ваш стол в натуральную величину.</p>
+    <div class="picker" id="picker"></div>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="stage">
+    <div>
+      <div class="viewer">
+        <model-viewer id="mv"
+          alt="3D-модель бутылки ПАРМА"
+          camera-controls touch-action="pan-y"
+          auto-rotate rotation-per-second="18deg"
+          shadow-intensity="1.1" shadow-softness="0.8"
+          exposure="0.95" environment-image="neutral"
+          camera-orbit="28deg 76deg 1.05m" min-camera-orbit="auto 0deg auto"
+          field-of-view="26deg" ar ar-modes="webxr scene-viewer quick-look">
+        </model-viewer>
+        <div class="hint">тяните, чтобы вращать</div>
+      </div>
+      <div class="tools">
+        <button id="spin" aria-pressed="true">Вращение</button>
+        <button data-orbit="0deg 90deg 1.05m">Фас</button>
+        <button data-orbit="45deg 78deg 1.05m">Три четверти</button>
+        <button data-orbit="90deg 90deg 1.05m">Профиль</button>
+        <button data-orbit="180deg 90deg 1.05m">Тыл</button>
+        <button data-orbit="35deg 20deg 1.0m">Сверху</button>
+        <button id="reset">Сбросить</button>
+        <a id="dl" href="#" download>Скачать GLB</a>
+      </div>
+    </div>
+
+    <aside>
+      <h2 id="ttl">Пера</h2>
+      <p class="sub" id="sub">Рождённый тайгой</p>
+      <dl class="spec">
+        <div><dt>Состав</dt><dd id="comp">Брусника · клюква</dd></div>
+        <div><dt>Крепость</dt><dd id="abv">5,8 % об.</dd></div>
+        <div><dt>Объём</dt><dd>0,45 л</dd></div>
+        <div><dt>Габарит</dt><dd>6,0 × 6,0 × 31,5 см</dd></div>
+        <div><dt>Сечение</dt><dd>квадрат с фаской 5 мм</dd></div>
+        <div><dt>Стекло</dt><dd>прозрачное, IOR 1,52</dd></div>
+        <div><dt>Укупорка</dt><dd>винтовая крышка</dd></div>
+        <div><dt>Полигонов</dt><dd>398</dd></div>
+      </dl>
+      <p class="note">Модель построена в Blender по чертежу, а не восстановлена по фотографиям: форма бутылки известна точно, и параметрическая геометрия оказалась и легче, и достовернее реконструкции. Стекло здесь настоящее — оно преломляет свет, а не имитирует его текстурой.</p>
+      <p class="note">Файл GLB открывается в браузере, Figma, PowerPoint и Blender. На iPhone и Android кнопка дополненной реальности показывает бутылку в реальном масштабе — удобно на переговорах.</p>
+    </aside>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <p>Концепт-макет для согласования. Квадратное сечение — не стоковая форма: такая бутылка требует индивидуальной пресс-формы, минимального тиража и отдельной варки стекла.</p>
+    <p>© «Велес» · Чрезмерное употребление алкоголя вредит вашему здоровью. Информация предназначена для лиц старше 18 лет.</p>
+  </div>
+</footer>
+
+<script>
+(() => {
+  "use strict";
+  const DATA = [
+    { id:"pera",   name:"Пера",      sub:"Рождённый тайгой",
+      comp:"Брусника · клюква", abv:"5,8 % об.", colour:"var(--pera)",
+      src:"parma-3d/models/parma-pera-model.glb" },
+    { id:"voypel", name:"Войпель",   sub:"Властелин северного ветра",
+      comp:"Черника · ежевика · лесная малина", abv:"5,8 % об.", colour:"var(--voypel)",
+      src:"parma-3d/models/parma-voypel-model.glb" },
+    { id:"zarni",  name:"Зарни Ань", sub:"Хранительница очага",
+      comp:"Мята · морошка · брусника", abv:"5,5 % об.", colour:"var(--zarni)",
+      src:"parma-3d/models/parma-zarni-model.glb" },
+  ];
+  const mv = document.getElementById("mv");
+  const picker = document.getElementById("picker");
+  const DEFAULT_ORBIT = "28deg 76deg 1.05m";
+  let cur = 0;
+
+  DATA.forEach((d, i) => {
+    const b = document.createElement("button");
+    b.textContent = d.name;
+    b.setAttribute("aria-pressed", i === 0 ? "true" : "false");
+    b.addEventListener("click", () => pick(i));
+    picker.appendChild(b);
+  });
+
+  function pick(i){
+    cur = i;
+    const d = DATA[i];
+    document.documentElement.style.setProperty("--accent", d.colour);
+    mv.setAttribute("src", d.src);   // атрибут, а не свойство: элемент апгрейдится позже скрипта
+    document.getElementById("ttl").textContent = d.name;
+    document.getElementById("sub").textContent = d.sub;
+    document.getElementById("comp").textContent = d.comp;
+    document.getElementById("abv").textContent = d.abv;
+    const dl = document.getElementById("dl");
+    dl.href = d.src; dl.setAttribute("download", d.src.split("/").pop());
+    [...picker.children].forEach((b, k) => b.setAttribute("aria-pressed", k === i ? "true" : "false"));
+  }
+
+  document.querySelectorAll("[data-orbit]").forEach(b => {
+    b.addEventListener("click", () => {
+      mv.setAttribute("camera-orbit", b.dataset.orbit);
+      setSpin(false);
+    });
+  });
+
+  const spin = document.getElementById("spin");
+  function setSpin(on){
+    spin.setAttribute("aria-pressed", on ? "true" : "false");
+    if (on) mv.setAttribute("auto-rotate", ""); else mv.removeAttribute("auto-rotate");
+  }
+  spin.addEventListener("click", () => setSpin(spin.getAttribute("aria-pressed") !== "true"));
+
+  document.getElementById("reset").addEventListener("click", () => {
+    mv.setAttribute("camera-orbit", DEFAULT_ORBIT);
+    mv.setAttribute("field-of-view", "26deg");
+    setSpin(true);
+  });
+
+  pick(0);
+})();
+</script>
+</body>
+</html>
