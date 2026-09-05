@@ -268,6 +268,19 @@ const poolUni = {
 };
 const poolScene = new THREE.Scene();
 const poolCam = new THREE.OrthographicCamera(0, 1, 1, 0, -1, 1);
+
+// Пролив идёт поверх всей страницы, а не внутри окна просмотра: свой холст
+// во весь экран, прикреплённый к окну, поэтому лужа держится нижней кромки
+// экрана при любой прокрутке, а струя падает через всю страницу.
+const spill = document.createElement("canvas");
+spill.style.cssText = "position:fixed;left:0;top:0;width:100%;height:100%;" +
+                      "pointer-events:none;z-index:70";
+document.body.appendChild(spill);
+const spillRenderer = new THREE.WebGLRenderer({ canvas:spill, alpha:true, antialias:true });
+spillRenderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+spillRenderer.setClearAlpha(0);
+const fitSpill = () => spillRenderer.setSize(innerWidth, innerHeight, false);
+addEventListener("resize", fitSpill); fitSpill();
 poolScene.add(new THREE.Mesh(
   new THREE.PlaneGeometry(1, 1).translate(0.5, 0.5, 0),
   new THREE.ShaderMaterial({
@@ -280,18 +293,20 @@ poolScene.add(new THREE.Mesh(
       void main(){
         float x = vUv.x, y = vUv.y;
         float surf = uLevel + uTilt * (x - 0.5)
-                   + uWave * (0.012 * sin(x * 11.0 + uTime * 2.1)
-                            + 0.006 * sin(x * 23.0 - uTime * 3.3));
+                   + uWave * (0.016 * sin(x * 7.0 + uTime * 1.7)
+                            + 0.008 * sin(x * 17.0 - uTime * 2.9))
+                   + 0.004 * sin(x * 5.0 + uTime * 0.7);
         vec3 col = uColor; float a = 0.0;
         if (uLevel > 0.0015){
           float d = surf - y;                              // > 0 — внутри лужи
           float body = smoothstep(0.0, 0.0035, d);
           float depth = clamp(d / max(uLevel, 0.002), 0.0, 1.0);
-          col = mix(uColor * 2.1, uColor * 0.7, depth);    // у поверхности светлее
-          float line = exp(-pow((y - surf) / 0.0045, 2.0));
-          float sheen = exp(-pow((y - surf + 0.018) / 0.012, 2.0)) * 0.25;
-          a = body * 0.90 + line * 0.65;
-          col += vec3(line * 0.55 + sheen);
+          col = mix(uColor * 2.3, uColor * 0.8, depth);    // у поверхности светлее
+          float line = exp(-pow((y - surf) / 0.0035, 2.0));
+          float sheen = exp(-pow((y - surf + 0.020) / 0.014, 2.0)) * 0.22;
+          // полупрозрачно: сквозь налитое должна просвечивать сама страница
+          a = body * (0.52 + 0.20 * depth) + line * 0.75;
+          col += vec3(line * 0.60 + sheen);
         }
         // Струя из горлышка до поверхности лужи: книзу разгоняется и утончается,
         // как настоящая — с лёгким дрожанием, а не змейкой.
@@ -449,18 +464,22 @@ function step(dt){
   // Лужа живёт в экранных координатах: её не сносит вместе с камерой,
   // она просто копится у нижней кромки кадра.
   poolUni.uTime.value += dt;
-  poolUni.uLevel.value += (poured * 0.22 - poolUni.uLevel.value) * Math.min(1, dt * 2.6);
-  poolUni.uTilt.value += (slosh * 0.16 - poolUni.uTilt.value) * Math.min(1, dt * 3.0);
+  poolUni.uLevel.value += (poured * 0.17 - poolUni.uLevel.value) * Math.min(1, dt * 2.6);
+  poolUni.uTilt.value += (slosh * 0.10 - poolUni.uTilt.value) * Math.min(1, dt * 3.0);
   poolUni.uWave.value = Math.min(1, poolUni.uWave.value * (1 - dt * 0.8)
                                   + (pourRate > 0 ? dt * 2.2 : 0));
+
+  // горлышко проецируем в координаты окна, а не холста просмотра: струя
+  // должна начинаться там, где бутылка стоит на странице
+  const r = view.getBoundingClientRect();
   const sp = tmp.copy(lipLow).project(camera);
-  poolUni.uStream.value.set((sp.x + 1) / 2, pourRate > 0 ? 1 : 0);
-  poolUni.uTop.value = (sp.y + 1) / 2;
-  if (poolUni.uLevel.value > 0.002 || pourRate > 0){
-    renderer.autoClear = false;
-    renderer.render(poolScene, poolCam);
-    renderer.autoClear = true;
-  }
+  poolUni.uStream.value.set((r.left + (sp.x + 1) / 2 * r.width) / innerWidth,
+                            pourRate > 0 ? 1 : 0);
+  poolUni.uTop.value = 1 - (r.top + (1 - (sp.y + 1) / 2) * r.height) / innerHeight;
+
+  spillRenderer.clear();
+  if (poolUni.uLevel.value > 0.002 || pourRate > 0)
+    spillRenderer.render(poolScene, poolCam);
 }
 
 function tick(){
