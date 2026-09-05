@@ -265,6 +265,7 @@ const poolUni = {
   uWave:   { value: 0 },
   uStream: { value: new THREE.Vector2(0.5, 0) },   // x струи и её сила
   uTop:    { value: 1 },        // откуда льётся, доля кадра
+  uSwipe:  { value: new THREE.Vector3(0.5, 0, 0) },// x, сила и возраст смахивания
 };
 const poolScene = new THREE.Scene();
 const poolCam = new THREE.OrthographicCamera(0, 1, 1, 0, -1, 1);
@@ -289,13 +290,18 @@ poolScene.add(new THREE.Mesh(
       void main(){ vUv = uv; gl_Position = projectionMatrix * modelViewMatrix * vec4(position,1.0); }`,
     fragmentShader: `
       uniform vec3 uColor; uniform float uLevel, uTime, uTilt, uWave, uTop;
-      uniform vec2 uStream; varying vec2 vUv;
+      uniform vec2 uStream; uniform vec3 uSwipe; varying vec2 vUv;
       void main(){
         float x = vUv.x, y = vUv.y;
         float surf = uLevel + uTilt * (x - 0.5)
                    + uWave * (0.016 * sin(x * 7.0 + uTime * 1.7)
                             + 0.008 * sin(x * 17.0 - uTime * 2.9))
                    + 0.004 * sin(x * 5.0 + uTime * 0.7);
+        // отклик на смахивание: от места касания расходятся затухающие волны
+        float dx = x - uSwipe.x;
+        float ring = exp(-pow(dx / (0.06 + uSwipe.z * 0.55), 2.0))
+                   * cos(abs(dx) * 42.0 - uSwipe.z * 11.0);
+        surf += uSwipe.y * 0.030 * ring;
         vec3 col = uColor; float a = 0.0;
         if (uLevel > 0.0015){
           float d = surf - y;                              // > 0 — внутри лужи
@@ -320,6 +326,28 @@ poolScene.add(new THREE.Mesh(
         gl_FragColor = vec4(col, a);
       }`,
   })));
+
+// смахивание по разлитому: пружина наклона и расходящаяся волна
+let poolTilt = 0, poolTiltV = 0, swipeX = 0.5, swipeAmp = 0, swipeAge = 0;
+let lastSx = null;
+function swipeAt(cx, cy){
+  const ny = 1 - cy / innerHeight;
+  if (ny > poolUni.uLevel.value + 0.035) { lastSx = null; return; }   // мимо лужи
+  const nx = cx / innerWidth;
+  if (lastSx !== null){
+    const d = nx - lastSx;
+    poolTiltV += d * 5.5;                    // жидкость сгоняется в сторону движения
+    swipeAmp = Math.min(1, swipeAmp + Math.abs(d) * 9);
+    if (Math.abs(d) > 0.001) swipeAge = 0;
+  }
+  swipeX = nx; lastSx = nx;
+}
+addEventListener("mousemove", e => swipeAt(e.clientX, e.clientY));
+addEventListener("mouseleave", () => { lastSx = null; });
+addEventListener("touchmove", e => {
+  const t = e.touches[0]; if (t) swipeAt(t.clientX, t.clientY);
+}, { passive: true });
+addEventListener("touchend", () => { lastSx = null; });
 
 let poured = 0;            // доля вылитого
 let pourRate = 0;          // насколько сильно льётся прямо сейчас
@@ -465,7 +493,13 @@ function step(dt){
   // она просто копится у нижней кромки кадра.
   poolUni.uTime.value += dt;
   poolUni.uLevel.value += (poured * 0.17 - poolUni.uLevel.value) * Math.min(1, dt * 2.6);
-  poolUni.uTilt.value += (slosh * 0.10 - poolUni.uTilt.value) * Math.min(1, dt * 3.0);
+  // наклон лужи: собственная пружина от смахивания плюс качание из бутылки
+  poolTiltV += (-poolTilt * 20 - poolTiltV * 2.2) * dt;
+  poolTilt = Math.max(-0.10, Math.min(0.10, poolTilt + poolTiltV * dt));
+  poolUni.uTilt.value += (poolTilt + slosh * 0.08 - poolUni.uTilt.value) * Math.min(1, dt * 6);
+  swipeAmp *= Math.max(0, 1 - dt * 1.5);
+  swipeAge += dt;
+  poolUni.uSwipe.value.set(swipeX, swipeAmp, swipeAge);
   poolUni.uWave.value = Math.min(1, poolUni.uWave.value * (1 - dt * 0.8)
                                   + (pourRate > 0 ? dt * 2.2 : 0));
 
